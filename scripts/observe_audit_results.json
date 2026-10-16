@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-10-13T09:23:57.651Z",
+  "url": "http://localhost:3000",
+  "renderStatus": {
+    "initialRenderSuccess": true,
+    "postEnterRenderSuccess": true,
+    "hasViteOverlayInitial": false,
+    "hasViteOverlay": false,
+    "hasHeader": true,
+    "hasSidebar": true,
+    "hasContextBar": true,
+    "hasControlCenterNav": true,
+    "navItemCount": 17,
+    "navItemsSample": [
+      "System Operator EXECUTION AUTHORITY (SOD)",
+      "INCIDENT ACTIVE RN-2026-0041 • DATA-X",
+      "Control Center 02",
+      "Event Detection 03",
+      "System Map 04",
+      "Collective Intelligence 05",
+      "Propagation Analysis 06",
+      "Control Margin 07",
+      "Control Foundry 08",
+      "Governed Execution 09"
+    ]
+  },
+  "systemTelemetryRead": {
+    "displayedMargin": "34",
+    "bodySnippet": "FINANCIAL IMMUNE SYSTEM | SOVEREIGN ENCLAVE | SYSTEMIC CONTROL INTELLIGENCE // IBM Z ARCHITECTURE | INCIDENT ACTIVE: RN-2026-0041 | Oct 13 • 09:23:57 UTC | Demo Mode | System Operator | A: Common Data (DATA-X) | B: Rail Outage (RTGS/CCP) | C: Latent Contagion (MODEL-C) | D: AI Herding Convergence | Attack Active | Reset | WORKSPACE: | Control Center | | | CONTROL | INCIDENT: RN-2026-0041 | Inspect Event | STATE: | CRITICAL | LAST EVENT: | INSTITUTION_DEGRADATION | AFFECTED: | 4 nodes | CYBERNETIC LOOP: | 03Detect | → | 04Map | → | 05AI Herd | → | 06Propagate"
+  },
+  "errors": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": []
+  }
+}

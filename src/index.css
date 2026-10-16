@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#050811] text-[#f8fafc] font-sans antialiased;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(30, 58, 138, 0.07) 0%, transparent 60%),
+      linear-gradient(to right, rgba(30, 41, 59, 0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(30, 41, 59, 0.12) 1px, transparent 1px);
+    background-size: 100% 100%, 32px 32px, 32px 32px;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* Universal tabular numerals for zero UI jitter during live financial telemetry */
+  .tabular-nums, .font-mono {
+    font-feature-settings: 'tnum' 1, 'zero' 1;
+  }
+}
+
+/* Custom crisp dark scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050811;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 2.5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Subtle, restrained status pulse */
+@keyframes restrained-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.08); }
+}
+
+.animate-status-pulse {
+  animation: restrained-pulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Institutional Design System Surfaces wrapped in @layer components */
+@layer components {
+  .fis-panel {
+    @apply bg-[#0a0f1d] border border-[#1e2d4a] rounded-lg;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+  }
+
+  .fis-panel-sub {
+    @apply bg-[#0f172a] border border-[#1e293b] rounded;
+  }
+
+  .fis-panel-interactive {
+    @apply bg-[#0a0f1d] border border-[#1e2d4a] rounded-lg transition-all duration-150 hover:border-[#2a3f66] hover:bg-[#0c1426];
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Subtle glass treatment for contextual overlays */
+  .fis-glass-surface {
+    @apply bg-[#0a0f1d]/90 backdrop-blur-md border border-[#1e2d4a];
+  }
+
+  /* Data Table Grid Rhythm */
+  .fis-table-header {
+    @apply px-3 py-2 text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold border-b border-[#151f33] bg-[#070b16];
+  }
+
+  .fis-table-cell {
+    @apply px-3 py-2 text-xs font-mono text-slate-300 border-b border-[#111928];
+  }
+}
