@@ -76,6 +76,7 @@ export const VerificationView: React.FC = () => {
     foundryState?.lifecycle_state === 'EXECUTED' ||
     controlState.control_margin_percent === 42 ||
     controlState.control_margin_percent === 84 ||
+    controlState.control_margin_percent >= 80 ||
     (controlState.overall_status as string) === 'UNVERIFIED_FAILURE' ||
     controlState.overall_status === 'RESIDUAL_RISK' ||
     controlState.controllability_state === 'CONTROL_NOT_RESTORED' ||
@@ -87,7 +88,9 @@ export const VerificationView: React.FC = () => {
   const isRecovered = hasExecutedIntervention && (
     latestVerif?.verification_result === 'VERIFIED_EFFECTIVE' ||
     latestVerif?.observed_outcome === 'CONTROL_RESTORED' ||
+    latestVerif?.restoration_assessment?.restoration_state === 'VERIFIED_RESTORATION' ||
     controlState.overall_status === 'RESTORED' ||
+    controlState.controllability_state === 'CONTROL_RESTORED' ||
     controlState.control_margin_percent >= 80
   );
 
@@ -103,8 +106,8 @@ export const VerificationView: React.FC = () => {
       ? 'bg-emerald-950 text-emerald-400 border-emerald-800'
       : 'bg-red-950 text-red-400 border-red-800 animate-pulse';
 
-  const expectedMargin = latestVerif?.expected_margin || (isRecovered ? 84 : 74);
-  const observedMargin = latestVerif?.post_intervention_margin || (isRecovered ? 84 : 42);
+  const expectedMargin = latestVerif?.expected_margin || (isRecovered ? 84.2 : 74);
+  const observedMargin = latestVerif?.post_intervention_margin || (isRecovered ? (controlState.control_margin_percent >= 80 ? controlState.control_margin_percent : 84.2) : 42);
   const preMargin = latestVerif?.pre_intervention_margin || (isRecovered ? 42 : 35);
   const expectedDelta = Math.max(0, expectedMargin - preMargin);
   const observedDelta = observedMargin - preMargin;

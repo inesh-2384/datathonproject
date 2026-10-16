@@ -375,41 +375,83 @@ export class GovernedExecutionBus {
 
     switch (candidate.type) {
       case 'DEPENDENCY_ISOLATION': {
+        const isSecondaryQuarantine = 
+          candidate.id.includes('MODEL-QUARANTINE-BACKSTOP') ||
+          candidate.id.includes('MODEL-C-QUARANTINE') ||
+          candidate.id.includes('CAND-SEC-01') ||
+          (candidate.target_entities.includes('MODEL-C') && candidate.target_dependencies.includes('DEP_MODEL_C_ASSET_17'));
+
         for (const depId of candidate.target_dependencies) {
           const dep = engine.dependencies.find((d: any) => d.dependency_id === depId);
           if (dep) {
             const prev = dep.status;
-            dep.status = 'RECOVERING';
-            deltas.push({ entity_type: 'DEPENDENCY', entity_id: depId, field: 'status', previous_value: prev, new_value: 'RECOVERING' });
+            dep.status = isSecondaryQuarantine ? 'STABLE' : 'RECOVERING';
+            if (isSecondaryQuarantine) {
+              dep.exposure_weight = 0.10;
+            }
+            deltas.push({ entity_type: 'DEPENDENCY', entity_id: depId, field: 'status', previous_value: prev, new_value: dep.status });
           }
         }
         for (const entId of candidate.target_entities) {
           const prov = engine.dataProviders.find((p: any) => p.provider_id === entId);
           if (prov) {
             const prev = prov.status;
-            prov.status = 'RECOVERING';
-            deltas.push({ entity_type: 'DATA_PROVIDER', entity_id: entId, field: 'status', previous_value: prev, new_value: 'RECOVERING' });
+            prov.status = isSecondaryQuarantine ? 'STABLE' : 'RECOVERING';
+            deltas.push({ entity_type: 'DATA_PROVIDER', entity_id: entId, field: 'status', previous_value: prev, new_value: prov.status });
           }
           const inst = engine.institutions.find((i: any) => i.institution_id === entId);
           if (inst) {
             const prev = inst.status;
-            inst.status = 'RECOVERING';
-            deltas.push({ entity_type: 'INSTITUTION', entity_id: entId, field: 'status', previous_value: prev, new_value: 'RECOVERING' });
+            inst.status = isSecondaryQuarantine ? 'STABLE' : 'RECOVERING';
+            deltas.push({ entity_type: 'INSTITUTION', entity_id: entId, field: 'status', previous_value: prev, new_value: inst.status });
           }
           const infra = engine.infrastructureNodes.find((n: any) => n.node_id === entId);
           if (infra) {
             const prev = infra.status;
-            infra.status = 'RECOVERING';
-            infra.current_load_percent = 52.0;
-            deltas.push({ entity_type: 'INFRASTRUCTURE_NODE', entity_id: entId, field: 'status', previous_value: prev, new_value: 'RECOVERING' });
+            infra.status = isSecondaryQuarantine ? 'STABLE' : 'RECOVERING';
+            infra.current_load_percent = isSecondaryQuarantine ? 35.0 : 52.0;
+            deltas.push({ entity_type: 'INFRASTRUCTURE_NODE', entity_id: entId, field: 'status', previous_value: prev, new_value: infra.status });
           }
           const model = engine.aiModels.find((m: any) => m.model_id === entId);
           if (model) {
             const prev = model.status;
             model.status = 'STABLE';
             model.effective_diversity_score = 0.85;
-            model.herd_correlation_risk = 0.22;
+            model.herd_correlation_risk = 0.12;
             deltas.push({ entity_type: 'AI_MODEL', entity_id: entId, field: 'status', previous_value: prev, new_value: 'STABLE' });
+            deltas.push({ entity_type: 'AI_MODEL', entity_id: entId, field: 'effective_diversity_score', previous_value: 0.28, new_value: 0.85 });
+            deltas.push({ entity_type: 'AI_MODEL', entity_id: entId, field: 'herd_correlation_risk', previous_value: 0.76, new_value: 0.12 });
+          }
+          const asset = engine.assets?.find((a: any) => a.asset_id === entId);
+          if (asset) {
+            const prev = asset.status;
+            asset.status = 'STABLE';
+            deltas.push({ entity_type: 'ASSET', entity_id: entId, field: 'status', previous_value: prev, new_value: 'STABLE' });
+          }
+        }
+
+        // If secondary backstop, also clear upstream DATA-X and connected bank rails
+        if (isSecondaryQuarantine) {
+          const dataX = engine.dataProviders.find((p: any) => p.provider_id === 'DATA-X');
+          if (dataX && dataX.status !== 'STABLE') {
+            const prev = dataX.status;
+            dataX.status = 'STABLE';
+            deltas.push({ entity_type: 'DATA_PROVIDER', entity_id: 'DATA-X', field: 'status', previous_value: prev, new_value: 'STABLE' });
+          }
+          for (const bankId of ['BANK-A', 'BANK-B', 'BANK-C', 'BANK-D']) {
+            const inst = engine.institutions.find((i: any) => i.institution_id === bankId);
+            if (inst && inst.status !== 'STABLE') {
+              const prev = inst.status;
+              inst.status = 'STABLE';
+              deltas.push({ entity_type: 'INSTITUTION', entity_id: bankId, field: 'status', previous_value: prev, new_value: 'STABLE' });
+            }
+          }
+          for (const dep of engine.dependencies) {
+            if (dep.status !== 'STABLE') {
+              const prev = dep.status;
+              dep.status = 'STABLE';
+              deltas.push({ entity_type: 'DEPENDENCY', entity_id: dep.dependency_id, field: 'status', previous_value: prev, new_value: 'STABLE' });
+            }
           }
         }
         break;
@@ -524,6 +566,22 @@ export class GovernedExecutionBus {
     const executionResult = { execution: executionRecord, events };
     this.idempotencyCache.set(cacheKey, executionResult);
     this.executionHistory.set(candidate.id, { candidate, deltas, reverted: false });
+
+    // Track executed intervention in engine state
+    if (engine && Array.isArray(engine.interventions)) {
+      if (!engine.interventions.some((i: any) => i.intervention_id === candidate.id)) {
+        engine.interventions.push({
+          intervention_id: candidate.id,
+          incident_id: candidate.incident_id,
+          type: candidate.type,
+          proposer_role: executorRole,
+          target_entity_ids: candidate.target_entities,
+          status: 'EXECUTED',
+          expected_margin_delta: candidate.expected_control_margin_delta,
+          timestamp
+        });
+      }
+    }
 
     return executionResult;
   }

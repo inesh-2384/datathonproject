@@ -59,8 +59,11 @@ export const ReassessmentView: React.FC = () => {
     foundryState?.active_reassessment?.status === 'ACTIVE';
   const isRestored =
     controlState.overall_status === 'RESTORED' ||
+    controlState.controllability_state === 'CONTROL_RESTORED' ||
     latestVerif?.verification_result === 'VERIFIED_EFFECTIVE' ||
-    latestVerif?.observed_outcome === 'CONTROL_RESTORED';
+    latestVerif?.observed_outcome === 'CONTROL_RESTORED' ||
+    latestVerif?.restoration_assessment?.restoration_state === 'VERIFIED_RESTORATION' ||
+    controlState.control_margin_percent >= 84;
 
   const isEligibleForReassessment = isUnverifiedFailure || isRestored;
 
@@ -76,7 +79,8 @@ export const ReassessmentView: React.FC = () => {
         (a.candidate_id === activeEscalatedCandidateId ||
           a.candidate_id === selectedSecCandidate ||
           a.candidate_id.includes('QUARANTINE') ||
-          a.candidate_id.includes('BACKSTOP')) &&
+          a.candidate_id.includes('BACKSTOP') ||
+          a.candidate_id.includes('CAND-SEC-01')) &&
         a.decision === 'AUTHORIZED'
     )
   );
@@ -87,7 +91,8 @@ export const ReassessmentView: React.FC = () => {
       (foundryState.latest_execution.candidate_id === activeEscalatedCandidateId ||
         foundryState.latest_execution.candidate_id === selectedSecCandidate ||
         foundryState.latest_execution.candidate_id.includes('QUARANTINE') ||
-        foundryState.latest_execution.candidate_id.includes('BACKSTOP')))
+        foundryState.latest_execution.candidate_id.includes('BACKSTOP') ||
+        foundryState.latest_execution.candidate_id.includes('CAND-SEC-01')))
   );
 
   const authStatus: 'PENDING' | 'AUTHORIZED' | 'EXECUTED' = isSecExecuted
