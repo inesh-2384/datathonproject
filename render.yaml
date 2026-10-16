@@ -4,9 +4,11 @@ services:
     runtime: node
     plan: free
     region: oregon
-    buildCommand: npm install && npm run build
+    buildCommand: npm install --include=dev && npm run build
     startCommand: npm run server
     envVars:
+      - key: NODE_VERSION
+        value: "20.18.0"
       - key: NODE_ENV
         value: production
       - key: PORT
