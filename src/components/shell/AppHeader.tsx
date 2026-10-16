@@ -134,6 +134,7 @@ export const AppHeader: React.FC = () => {
         {/* Operator Role Pill */}
         <button
           type="button"
+          data-testid="header-role-pill"
           onClick={() => setRoleModalOpen(true)}
           className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0b1428] border border-blue-500/40 text-xs font-mono text-blue-300 hover:border-blue-400 transition-colors"
           title="Switch Operational Role / Dual-Auth Signer"

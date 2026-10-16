@@ -128,16 +128,19 @@ async function run() {
   });
   await sleep(2500);
 
+  async function switchRole(role) {
+    await page.evaluate((r) => {
+      if (window.__FIS_STORE__) {
+        window.__FIS_STORE__.getState().setRole(r);
+      }
+    }, role);
+    await sleep(800);
+  }
+
   // STEP 4: SWITCH ROLE TO INCIDENT_COMMANDER
   console.log('\n--- STEP 4: SWITCH ROLE TO INCIDENT_COMMANDER ---');
-  await page.evaluate(() => {
-    Array.from(document.querySelectorAll('header button')).find(b => b.innerText.includes('Operator') || b.innerText.includes('Commander') || b.innerText.includes('Auditor') || b.innerText.includes('Analyst'))?.click();
-  });
-  await sleep(1000);
-  await page.evaluate(() => {
-    Array.from(document.querySelectorAll('div, button')).find(b => b.innerText.trim() === 'Incident Commander' || b.innerText.includes('Incident Commander'))?.click();
-  });
-  await sleep(1000);
+  await switchRole('INCIDENT_COMMANDER');
+  console.log('[PASS] Step 4: Switched to INCIDENT_COMMANDER (Authorization Authority)');
 
   // STEP 5: AUTHORIZE INTERVENTION
   console.log('\n--- STEP 5: DUAL-KEY AUTHORIZATION OF CANDIDATE INT-01 ---');
@@ -162,14 +165,7 @@ async function run() {
 
   // STEP 7: EXECUTE GOVERNED INTERVENTION
   console.log('\n--- STEP 7: EXECUTE GOVERNED DISPATCH (SYSTEM_OPERATOR) ---');
-  await page.evaluate(() => {
-    Array.from(document.querySelectorAll('header button')).find(b => b.innerText.includes('Operator') || b.innerText.includes('Commander') || b.innerText.includes('Auditor') || b.innerText.includes('Analyst'))?.click();
-  });
-  await sleep(1000);
-  await page.evaluate(() => {
-    Array.from(document.querySelectorAll('div, button')).find(b => b.innerText.trim() === 'System Operator' || b.innerText.includes('System Operator'))?.click();
-  });
-  await sleep(1000);
+  await switchRole('SYSTEM_OPERATOR');
 
   await page.evaluate(() => {
     const execBtn = document.querySelector('[data-testid="foundry-execute-btn"]') ||
@@ -210,12 +206,7 @@ async function run() {
 
   // STEP 10: AUTHORIZE BACKSTOP (AS INCIDENT_COMMANDER)
   console.log('\n--- STEP 10: AUTHORIZE BACKSTOP INT-02 ---');
-  await page.evaluate(() => {
-    const btn = Array.from(document.querySelectorAll('button')).find(b => b.innerText.trim() === 'INCIDENT_COMMANDER') ||
-                Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('INCIDENT_COMMANDER'));
-    if (btn) btn.click();
-  });
-  await sleep(1000);
+  await switchRole('INCIDENT_COMMANDER');
   const authClickResult = await page.evaluate(() => {
     const authBtn = document.querySelector('[data-testid="reassessment-authorize-btn"]') ||
                     Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Authorize 2nd Action') || b.innerText.includes('1. Authorize'));
@@ -231,12 +222,7 @@ async function run() {
 
   // STEP 11: EXECUTE BACKSTOP (AS SYSTEM_OPERATOR)
   console.log('\n--- STEP 11: EXECUTE BACKSTOP INT-02 ---');
-  await page.evaluate(() => {
-    const btn = Array.from(document.querySelectorAll('button')).find(b => b.innerText.trim() === 'SYSTEM_OPERATOR') ||
-                Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('SYSTEM_OPERATOR'));
-    if (btn) btn.click();
-  });
-  await sleep(1000);
+  await switchRole('SYSTEM_OPERATOR');
   const execClickResult = await page.evaluate(() => {
     const execBtn = document.querySelector('[data-testid="reassessment-execute-btn"]') ||
                     Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Execute 2nd Action') || b.innerText.includes('2. Execute'));

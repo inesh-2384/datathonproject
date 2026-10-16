@@ -1109,3 +1109,7 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
   setInterventionModalOpen: (open: boolean) => set({ isInterventionModalOpen: open }),
   setDemoMode: (demo: boolean) => set({ isDemoMode: demo })
 }));
+
+if (typeof window !== 'undefined') {
+  (window as any).__FIS_STORE__ = useSystemStore;
+}
