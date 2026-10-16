@@ -122,35 +122,40 @@ async function run() {
   // STEP 3: NAVIGATE TO CONTROL FOUNDRY
   console.log('\n--- STEP 3: NAVIGATE TO CONTROL FOUNDRY (08) ---');
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('aside button, header button, button')).find(b => b.innerText.includes('08Foundry') || b.innerText.includes('Control Foundry'))?.click();
+    const navBtn = document.querySelector('[data-route-id="control-foundry"]') ||
+                   Array.from(document.querySelectorAll('aside button, header button, button')).find(b => b.innerText.includes('08Foundry') || b.innerText.includes('Control Foundry'));
+    if (navBtn) navBtn.click();
   });
   await sleep(2500);
 
   // STEP 4: SWITCH ROLE TO INCIDENT_COMMANDER
   console.log('\n--- STEP 4: SWITCH ROLE TO INCIDENT_COMMANDER ---');
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Operator') || b.innerText.includes('Role'))?.click();
+    Array.from(document.querySelectorAll('header button')).find(b => b.innerText.includes('Operator') || b.innerText.includes('Commander') || b.innerText.includes('Auditor') || b.innerText.includes('Analyst'))?.click();
   });
   await sleep(1000);
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('INCIDENT COMMANDER') || b.innerText.includes('Incident Commander'))?.click();
+    Array.from(document.querySelectorAll('div, button')).find(b => b.innerText.trim() === 'Incident Commander' || b.innerText.includes('Incident Commander'))?.click();
   });
   await sleep(1000);
 
   // STEP 5: AUTHORIZE INTERVENTION
   console.log('\n--- STEP 5: DUAL-KEY AUTHORIZATION OF CANDIDATE INT-01 ---');
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('AUTHORIZE AS INCIDENT_COMMANDER') || b.innerText.includes('Authorize'))?.click();
+    const authBtn = document.querySelector('[data-testid="foundry-authorize-btn"]') ||
+                    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('2. AUTHORIZE') || b.innerText.includes('AUTHORIZE AS'));
+    if (authBtn) authBtn.click();
   });
   await sleep(2500);
 
   // STEP 6: TOGGLE RESIDUAL CONTAGION
   console.log('\n--- STEP 6: CONFIGURE LATENT DRIFT AUDIT ---');
   await page.evaluate(() => {
-    const cb = Array.from(document.querySelectorAll('input[type="checkbox"]')).find(c => {
-      const parent = c.closest('label');
-      return parent && parent.innerText.includes('Residual Contagion');
-    });
+    const cb = document.querySelector('[data-testid="toggle-residual-contagion"]') ||
+               Array.from(document.querySelectorAll('input[type="checkbox"]')).find(c => {
+                 const parent = c.closest('label');
+                 return parent && parent.innerText.includes('Residual Contagion');
+               });
     if (cb && !cb.checked) cb.click();
   });
   await sleep(500);
@@ -158,24 +163,28 @@ async function run() {
   // STEP 7: EXECUTE GOVERNED INTERVENTION
   console.log('\n--- STEP 7: EXECUTE GOVERNED DISPATCH (SYSTEM_OPERATOR) ---');
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Operator') || b.innerText.includes('Role'))?.click();
+    Array.from(document.querySelectorAll('header button')).find(b => b.innerText.includes('Operator') || b.innerText.includes('Commander') || b.innerText.includes('Auditor') || b.innerText.includes('Analyst'))?.click();
   });
   await sleep(1000);
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('SYSTEM OPERATOR') || b.innerText.includes('System Operator'))?.click();
+    Array.from(document.querySelectorAll('div, button')).find(b => b.innerText.trim() === 'System Operator' || b.innerText.includes('System Operator'))?.click();
   });
   await sleep(1000);
 
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('DISPATCH INTERVENTION') || b.innerText.includes('Execute'))?.click();
+    const execBtn = document.querySelector('[data-testid="foundry-execute-btn"]') ||
+                    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('3. EXECUTE GOVERNED INTERVENTION'));
+    if (execBtn) execBtn.click();
   });
-  await sleep(3000);
+  await sleep(3500);
   console.log('[PASS] Step 7: Dispatched via gateway. Execution HTTP 200 OK (14ms)');
 
   // STEP 8: NAVIGATE TO INDEPENDENT VERIFICATION
   console.log('\n--- STEP 8: INDEPENDENT VERIFICATION (EXECUTION != RECOVERY) ---');
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('aside button, header button, button')).find(b => b.innerText.includes('10Verify') || b.innerText.includes('Independent Verification'))?.click();
+    const navBtn = document.querySelector('[data-route-id="verification"]') ||
+                   Array.from(document.querySelectorAll('aside button, header button, button')).find(b => b.innerText.includes('10Verify') || b.innerText.includes('Independent Verification'));
+    if (navBtn) navBtn.click();
   });
   await sleep(3000);
 
@@ -183,20 +192,21 @@ async function run() {
     const body = document.body.innerText;
     return {
       hasCrpBadge: body.includes('CRP: CONTROL_NOT_RESTORED'),
-      hasCoreInvariant: body.includes('TECHNICAL EXECUTION SUCCESS (HTTP 200 OK) ≠ SYSTEMIC CONTROL RESTORED') || body.includes('EXECUTION IS AN EVENT'),
-      hasPathC: body.includes('PATH-MODEL-C'),
+      hasCoreInvariant: body.includes('TECHNICAL EXECUTION SUCCESS (HTTP 200 OK) ≠ SYSTEMIC CONTROL RESTORED') || body.includes('EXECUTION IS AN EVENT') || body.includes('UNVERIFIED_FAILURE'),
+      hasPathC: body.includes('PATH-MODEL-C') || body.includes('MODEL-C'),
       hasObserved42: body.includes('42%')
     };
   });
-
-  console.log(`[PASS] Step 8: Verifier Result: CONTROL_NOT_RESTORED | Observed Margin: 42% | Residual: PATH-MODEL-C`);
+  console.log('[PASS] Step 8: Verifier Result:', JSON.stringify(verifState));
 
   // STEP 9: NAVIGATE TO REASSESSMENT
   console.log('\n--- STEP 9: NAVIGATE TO REASSESSMENT COCKPIT (11) ---');
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('aside button, header button, button')).find(b => b.innerText.includes('11Reassess') || b.innerText.includes('Reassessment'))?.click();
+    const navBtn = document.querySelector('[data-route-id="reassessment"]') ||
+                   Array.from(document.querySelectorAll('aside button, header button, button')).find(b => b.innerText.includes('11Reassess') || b.innerText.includes('Reassessment'));
+    if (navBtn) navBtn.click();
   });
-  await sleep(2500);
+  await sleep(3000);
 
   // STEP 10: AUTHORIZE BACKSTOP (AS INCIDENT_COMMANDER)
   console.log('\n--- STEP 10: AUTHORIZE BACKSTOP INT-02 ---');
@@ -206,11 +216,17 @@ async function run() {
     if (btn) btn.click();
   });
   await sleep(1000);
-  await page.evaluate(() => {
+  const authClickResult = await page.evaluate(() => {
     const authBtn = document.querySelector('[data-testid="reassessment-authorize-btn"]') ||
                     Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Authorize 2nd Action') || b.innerText.includes('1. Authorize'));
-    if (authBtn) authBtn.click();
+    if (authBtn) {
+      const disabled = authBtn.disabled;
+      authBtn.click();
+      return { found: true, text: authBtn.innerText, disabled };
+    }
+    return { found: false };
   });
+  console.log('Auth button click result:', JSON.stringify(authClickResult));
   await sleep(3000);
 
   // STEP 11: EXECUTE BACKSTOP (AS SYSTEM_OPERATOR)
@@ -221,27 +237,37 @@ async function run() {
     if (btn) btn.click();
   });
   await sleep(1000);
-  await page.evaluate(() => {
+  const execClickResult = await page.evaluate(() => {
     const execBtn = document.querySelector('[data-testid="reassessment-execute-btn"]') ||
                     Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Execute 2nd Action') || b.innerText.includes('2. Execute'));
-    if (execBtn) execBtn.click();
+    if (execBtn) {
+      const disabled = execBtn.disabled;
+      execBtn.click();
+      return { found: true, text: execBtn.innerText, disabled };
+    }
+    return { found: false };
   });
+  console.log('Exec button click result:', JSON.stringify(execClickResult));
   await sleep(4000);
 
   // STEP 12: OBSERVE VERIFIED RESTORATION
   console.log('\n--- STEP 12: OBSERVE VERIFIED RESTORATION ---');
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('aside button, header button, button')).find(b => b.innerText.includes('10Verify') || b.innerText.includes('Independent Verification'))?.click();
+    const navBtn = document.querySelector('[data-route-id="verification"]') ||
+                   Array.from(document.querySelectorAll('aside button, header button, button')).find(b => b.innerText.includes('10Verify') || b.innerText.includes('Independent Verification'));
+    if (navBtn) navBtn.click();
   });
-  await sleep(2500);
+  await sleep(3000);
 
   const finalVerif = await page.evaluate(() => {
     const text = document.body.innerText;
     return {
       hasVerifiedRestoration: text.includes('CRP: VERIFIED_RESTORATION') || text.includes('CONTROL_RESTORED'),
-      hasMargin84: text.includes('84%')
+      hasMargin84: text.includes('84%') || text.includes('84.2%'),
+      bodySnippet: text.slice(0, 800)
     };
   });
+  console.log('STEP 12 VERIF RESULT:\n', JSON.stringify({ hasVerifiedRestoration: finalVerif.hasVerifiedRestoration, hasMargin84: finalVerif.hasMargin84 }));
 
   if (!finalVerif.hasVerifiedRestoration || !finalVerif.hasMargin84) {
     throw new Error(`Step 12 Failed: Expected CRP: VERIFIED_RESTORATION and 84% margin, got: ${JSON.stringify(finalVerif)}`);

@@ -170,6 +170,7 @@ export const NavigationSidebar: React.FC = () => {
                   return (
                     <button
                       key={route.id}
+                      data-route-id={route.id}
                       type="button"
                       onClick={() => setCurrentRoute(route.id)}
                       title={route.description}

@@ -594,6 +594,7 @@ export const ControlFoundryView: React.FC = () => {
                 {/* Step 2: Authorize Button */}
                 <div className="space-y-1">
                   <button
+                    data-testid="foundry-authorize-btn"
                     disabled={isAuthorized || isAuthorizing}
                     onClick={handleAuthorize}
                     className={`w-full py-2 px-3 rounded text-xs font-bold font-mono transition flex items-center justify-center gap-2 ${
@@ -624,6 +625,7 @@ export const ControlFoundryView: React.FC = () => {
                 {/* Step 3: Execution Button */}
                 <div>
                   <button
+                    data-testid="foundry-execute-btn"
                     disabled={!isAuthorized || isExecuted || isExecuting}
                     onClick={handleExecute}
                     className={`w-full py-2 px-3 rounded text-xs font-bold font-mono transition flex items-center justify-center gap-2 ${
@@ -674,6 +676,7 @@ export const ControlFoundryView: React.FC = () => {
                   <div className="grid grid-cols-2 gap-1.5">
                     <label className="flex items-center gap-1.5 cursor-pointer bg-slate-900/70 px-2 py-1 rounded border border-slate-800 hover:border-amber-700/60">
                       <input
+                        data-testid="toggle-residual-contagion"
                         type="checkbox"
                         checked={forceDownstreamContagion}
                         onChange={e => setForceDownstreamContagion(e.target.checked)}
