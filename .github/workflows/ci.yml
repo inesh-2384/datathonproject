@@ -1,0 +1,35 @@
+name: FIS CI & Production Verification
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  verify-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript & Production Build
+        run: npm run build
+
+      - name: Run CRP Contract Verification
+        run: node tests/test_crp_contract.cjs
+
+      - name: Run Phase 4 Closed Loop Master Suite
+        run: node tests/test_phase4_closed_loop_master.cjs
+
+      - name: Run All Phase 5 Assurance Tests
+        run: node tests/run_all_phase5_tests.cjs
