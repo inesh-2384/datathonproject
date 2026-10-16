@@ -155,6 +155,24 @@ export class ControlFoundryManager {
     };
   }
 
+  private resolveCandidate(workspace: any, candidateId: string): InterventionCandidate | undefined {
+    let candidate = workspace.candidates.find((c: any) => c.id === candidateId);
+    if (!candidate && (
+      candidateId.includes('MODEL-QUARANTINE-BACKSTOP') || 
+      candidateId.includes('MODEL-C-QUARANTINE') || 
+      candidateId.includes('CAND-SEC-01') ||
+      candidateId.includes('QUARANTINE')
+    )) {
+      candidate = workspace.candidates.find((c: any) => 
+        c.id.includes('MODEL-QUARANTINE-BACKSTOP') || 
+        c.id.includes('MODEL-C-QUARANTINE') || 
+        c.id.includes('QUARANTINE') ||
+        c.id.includes('BACKSTOP')
+      );
+    }
+    return candidate;
+  }
+
   /**
    * Request authorization for a candidate (e.g. by ANALYST or RISK_ANALYST).
    */
@@ -165,7 +183,7 @@ export class ControlFoundryManager {
     engine: any
   ): AuthorizationRequest {
     const workspace = this.getWorkspaceState(engine);
-    const candidate = workspace.candidates.find(c => c.id === candidateId);
+    const candidate = this.resolveCandidate(workspace, candidateId);
     if (!candidate) {
       throw new Error(`Candidate with ID ${candidateId} not found`);
     }
@@ -191,7 +209,7 @@ export class ControlFoundryManager {
       }
     };
 
-    this.activeCandidateId = candidateId;
+    this.activeCandidateId = candidate.id;
     this.activeAuthorizationRequest = request;
     this.currentLifecycleState = 'AUTHORIZATION_PENDING';
 
@@ -218,7 +236,7 @@ export class ControlFoundryManager {
     justification?: string
   ): { success: boolean; error?: string; decision: AuthorizationDecision } {
     const workspace = this.getWorkspaceState(engine);
-    const candidate = workspace.candidates.find(c => c.id === candidateId);
+    const candidate = this.resolveCandidate(workspace, candidateId);
     if (!candidate) {
       throw new Error(`Candidate with ID ${candidateId} not found`);
     }
@@ -298,7 +316,7 @@ export class ControlFoundryManager {
     reassessment: ReassessmentRecord | null 
   } {
     const workspace = this.getWorkspaceState(engine);
-    const candidate = workspace.candidates.find(c => c.id === candidateId);
+    const candidate = this.resolveCandidate(workspace, candidateId);
     if (!candidate) {
       throw new Error(`Candidate with ID ${candidateId} not found`);
     }

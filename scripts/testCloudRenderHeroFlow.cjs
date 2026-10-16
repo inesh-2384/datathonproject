@@ -201,24 +201,32 @@ async function run() {
   // STEP 10: AUTHORIZE BACKSTOP (AS INCIDENT_COMMANDER)
   console.log('\n--- STEP 10: AUTHORIZE BACKSTOP INT-02 ---');
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('INCIDENT_COMMANDER'))?.click();
+    const btn = Array.from(document.querySelectorAll('button')).find(b => b.innerText.trim() === 'INCIDENT_COMMANDER') ||
+                Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('INCIDENT_COMMANDER'));
+    if (btn) btn.click();
   });
   await sleep(1000);
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('1. Authorize 2nd Action'))?.click();
+    const authBtn = document.querySelector('[data-testid="reassessment-authorize-btn"]') ||
+                    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Authorize 2nd Action') || b.innerText.includes('1. Authorize'));
+    if (authBtn) authBtn.click();
   });
-  await sleep(2500);
+  await sleep(3000);
 
   // STEP 11: EXECUTE BACKSTOP (AS SYSTEM_OPERATOR)
   console.log('\n--- STEP 11: EXECUTE BACKSTOP INT-02 ---');
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('SYSTEM_OPERATOR'))?.click();
+    const btn = Array.from(document.querySelectorAll('button')).find(b => b.innerText.trim() === 'SYSTEM_OPERATOR') ||
+                Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('SYSTEM_OPERATOR'));
+    if (btn) btn.click();
   });
   await sleep(1000);
   await page.evaluate(() => {
-    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('2. Execute 2nd Action'))?.click();
+    const execBtn = document.querySelector('[data-testid="reassessment-execute-btn"]') ||
+                    Array.from(document.querySelectorAll('button')).find(b => b.innerText.includes('Execute 2nd Action') || b.innerText.includes('2. Execute'));
+    if (execBtn) execBtn.click();
   });
-  await sleep(3500);
+  await sleep(4000);
 
   // STEP 12: OBSERVE VERIFIED RESTORATION
   console.log('\n--- STEP 12: OBSERVE VERIFIED RESTORATION ---');

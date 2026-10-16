@@ -37,7 +37,10 @@ export const ReassessmentView: React.FC = () => {
   const clearGovernanceBlockNotice = useSystemStore(state => state.clearGovernanceBlockNotice);
 
   const [activeStep, setActiveStep] = useState<number>(3);
-  const [selectedSecCandidate, setSelectedSecCandidate] = useState<string>('CAND-SEC-01-MODEL-C-QUARANTINE');
+  const activeEscalatedCandidateId =
+    foundryState?.active_reassessment?.escalated_candidate_id ||
+    `CAND-${activeIncident?.incident_id || 'RN-2026-0041'}-MODEL-QUARANTINE-BACKSTOP`;
+  const [selectedSecCandidate, setSelectedSecCandidate] = useState<string>(activeEscalatedCandidateId);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [statusMessage, setStatusMessage] = useState<string>(
     'Secondary intervention candidate prepared for Separation-of-Duties authorization.'
@@ -66,10 +69,6 @@ export const ReassessmentView: React.FC = () => {
     controlState.control_margin_percent >= 84;
 
   const isEligibleForReassessment = isUnverifiedFailure || isRestored;
-
-  const activeEscalatedCandidateId =
-    foundryState?.active_reassessment?.escalated_candidate_id ||
-    `CAND-${activeIncident?.incident_id || 'RN-2026-0041'}-MODEL-QUARANTINE-BACKSTOP`;
 
   // Derive authorization and execution status from authoritative foundryState
   const isSecAuthorized = Boolean(
@@ -103,7 +102,7 @@ export const ReassessmentView: React.FC = () => {
 
   const secondaryCandidates = [
     {
-      id: 'CAND-SEC-01-MODEL-C-QUARANTINE',
+      id: activeEscalatedCandidateId,
       name: 'Enclave MODEL-C Quarantine & Parameter Clamp',
       target: 'AI Model Registry: MODEL-C',
       projMargin: '+42% (42% → 84%)',
@@ -141,7 +140,7 @@ export const ReassessmentView: React.FC = () => {
     setIsProcessing(true);
     clearGovernanceBlockNotice();
     try {
-      const targetId = selectedSecCandidate || activeEscalatedCandidateId;
+      const targetId = activeEscalatedCandidateId || selectedSecCandidate;
       const ok = await authorizeFoundryCandidate(
         targetId,
         `Authorized secondary backstop intervention from Reassessment Console (11) by [${currentRole}]`
@@ -171,7 +170,7 @@ export const ReassessmentView: React.FC = () => {
     setIsProcessing(true);
     clearGovernanceBlockNotice();
     try {
-      const targetId = selectedSecCandidate || activeEscalatedCandidateId;
+      const targetId = activeEscalatedCandidateId || selectedSecCandidate;
       const ok = await executeFoundryCandidate(targetId, {
         forceDownstreamContagion: false,
       });
