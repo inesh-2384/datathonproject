@@ -347,9 +347,6 @@ $$\longrightarrow \text{INDEPENDENT VERIFICATION} \longrightarrow \text{CONTINUO
 
 By transforming financial operations from perimeter alerting into closed-loop control intelligence, FIS provides institutions and supervisors with empirical evidence to know whether systemic control remains.
 
-## Team
-
-- **Inesh N** — Systems Architect, Lead Developer & Financial Resilience Researcher ([GitHub](https://github.com/inesh-2384))
 
 ## License & Acknowledgements
 
