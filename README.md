@@ -15,7 +15,10 @@
 **Public Prototype Demonstration:** [https://financial-immune-system-d9vz.onrender.com](https://financial-immune-system-d9vz.onrender.com)  
 **Operational Signature:** `FROM SIGNAL → TO CONTROL → TO VERIFIED RECOVERY`  
 **Core Question:** *"When an interconnected financial threat is evolving, do we still have enough effective control to influence the outcome — and how do we know?"*
-
+---
+### 🔗 Website: [..](https://studio--securexchange-b63do.us-central1.hosted.app)<br/>
+### 🎥 Demo Video: [Watch on YouTube](https://youtu.be/nhXzRiLlDXI)
+---
 ---
 
 ## Overview
