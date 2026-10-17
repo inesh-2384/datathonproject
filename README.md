@@ -23,36 +23,6 @@
 
 ---
 
-```
-FINANCIAL SYSTEMS & INTERCONNECTED ASSETS
-                    │  (live telemetry & order queue streams)
-                    ▼
-     REAL-TIME EVENT & DATA FABRIC
-                    │  (contextual feed coupling & latency shocks)
-                    ▼
-  FIS SYSTEMIC CONTROL INTELLIGENCE (6 DOMAINS)
-     ├── Real-Time Threat Assessment & Collective Decision Synchrony S(t)
-     ├── Multi-Hop Contagion & Propagation Graph Traversal
-     └── Control Margin Headroom M(t) & Minimum Effective Intervention (MEI)
-                    │
-                    ▼
-    DUAL-KEY GOVERNANCE & CRYPTOGRAPHIC AUTHORIZATION
-                    │  (Commander & Operator Dynamic Control Seal™)
-                    ▼
-   IBM Z / LINUXONE MAINFRAME SUBSTRATE (TARGET REALIZATION)
-     └── High-throughput execution & hardware-backed verification telemetry
-                    │
-                    ▼
-   INDEPENDENT VERIFIER (POST-ACTION TELEMETRY EVALUATION)
-     ├── Control Not Restored  ──► Governed Reassessment & Secondary Backstop
-     └── Verified Restoration ──► Attested Control Restoration Proof (CRP)
-```
-
-*FIS systemic-control architecture: real-time financial signals, AI-assisted assessment, propagation intelligence, governed intervention, independent verification, and continuous reassessment — architected for IBM Z / LinuxONE realization.*
-
-</div>
-
----
 
 ## Overview
 
