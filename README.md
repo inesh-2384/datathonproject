@@ -17,7 +17,7 @@
 *IBM Z Datathon 2026 · Real-Time AI for Critical Decisions · Financial AI / Systemic Control Intelligence*
 
 ---
-  <br>
+</div>
   
 ## Overview
 
