@@ -1,8 +1,6 @@
 # Financial Immune System
 
-### Systemic Financial Resilience & Control Intelligence
-
-> A systemic control-intelligence layer for interconnected financial ecosystems that detects evolving threats, models propagation, assesses control, governs intervention, and independently verifies whether control was restored.
+> Systemic Control Intelligence for AI-Driven Financial Decision Environments
 
 [![CI & Verification](https://github.com/inesh-2384/datathonproject/actions/workflows/ci.yml/badge.svg)](https://github.com/inesh-2384/datathonproject/actions/workflows/ci.yml)
 [![Live Prototype](https://img.shields.io/badge/Render-Live_Prototype-00C7B7.svg)](https://financial-immune-system-d9vz.onrender.com)
@@ -109,14 +107,14 @@ Algorithmic trading is **not** the business domain of FIS; it serves as the **fl
 
 When institutions deploy algorithmic models (`VOL-ARB-AI`, `MOM-MKT-AI`) dependent on a shared oracle (`DATA-X`), upstream feed degradation causes independent optimization routines to synchronize into identical risk-off liquidations. Individually rational micro-decisions produce catastrophic cascades. FIS detects this latent synchronization before market liquidity collapses.
 
-## Six Intelligence Domains
+## Core Intelligence Domains
 
-1. **Event & Evidence Intelligence:** Ingests queues, obligations, and telemetry into a tamper-evident ledger.
-2. **Dependency Intelligence:** Maps structural coupling across shared feeds, oracles, and clearing chokepoints.
-3. **Collective Decision Intelligence:** Tracks lockstep via **Decision Synchrony $S(t)$** and **Effective Decision Diversity $EDD(t)$** (*experimental indicators*).
-4. **Propagation Intelligence:** Traverses cascades across credit lines, behavioral contagion, and fire sales.
-5. **Control Intelligence:** Evaluates **Control Margin $M(t)$** (*supervisor intervention headroom*).
-6. **Intervention Intelligence (Control Foundry):** Generates backstops under **Minimum Effective Intervention (MEI)**.
+1. **Real-Time Threat Assessment:** Ingests live telemetry, queues, and obligations into an evidence-linked ledger to detect emerging anomalies.
+2. **Collective Decision Intelligence:** Quantifies algorithmic synchrony and herd behavior across institutions via Decision Synchrony $S(t)$ and Effective Decision Diversity $EDD(t)$ (*experimental indicators*).
+3. **Propagation Intelligence:** Traverses multi-hop contagion pathways across credit lines, behavioral feedback, and fire-sale liquidations.
+4. **Control Margin Assessment:** Evaluates remaining supervisor intervention capacity $M(t)$ before systemic controllability collapses.
+5. **Governed Intervention (Control Foundry):** Synthesizes candidate stabilizers under Minimum Effective Intervention (MEI) requiring dual-key human authorization.
+6. **Verified Restoration:** Evaluates post-action empirical telemetry via an Independent Verifier to mathematically attest whether control was restored.
 
 ## Execution ≠ Recovery
 
@@ -147,7 +145,21 @@ When an action fails to restore stability, the Independent Verifier records **`C
 - `RESIDUAL_HAZARD` / `CONFLICTED`: Secondary contagion active or feeds contradictory.
 
 ### Dynamic Control Seal™
-The **Dynamic Control Seal™** binds system state, incident context, human signatures, execution receipts, and verification proofs into an unbroken SHA-256 evidence chain across the crisis lifecycle.
+The **Dynamic Control Seal™** is an evidence and control-integrity mechanism. It cryptographically binds evolving system states, incident context, dual-key human authorizations, execution gateway receipts, and independent verification proofs into an unbroken, auditable SHA-256 evidence chain across the crisis lifecycle.
+
+## AI / Machine Learning Capabilities
+
+FIS replaces opaque black-box assertions with an interpretable, evidence-linked decision-support pipeline:
+
+- **Feature Construction & Real-Time Telemetry:** Ingests live order queue depths, latency variances ($\Delta t$), counterparty settlement exposures, and price divergence across institutions.
+- **Collective Decision Intelligence ($S(t)$ & $EDD(t)$):** Implements an interpretable baseline evaluating cross-agent correlation matrices to detect when independent trading agents synchronize into lockstep liquidations before market-wide liquidity evaporates.
+- **Topological Contagion Graph:** Graph traversal algorithms model multi-hop credit propagation and fire-sale exposure paths across counterparties.
+- **Control Margin Formulation ($M(t)$):** Operational indicator synthesizing remaining capital, liquidity headroom, and systemic coupling into a continuous metric:
+  $$M(t) = \max\left(0, \min\left(100, \left(1.0 - \text{Coupling}(t)\right) \times \frac{\text{Liquidity}(t)}{\text{TotalObligations}(t)} \times 100\right)\right)$$
+- **Evidence Lineage & Downstream Decision Support:** Every model assessment outputs explanatory drivers, confidence bounds, and causal dependency graphs, feeding candidate interventions into the Control Foundry while preserving strict human-in-the-loop governance.
+
+> [!NOTE]
+> **Implementation Status:** Current prototype ML logic operates as an interpretable real-time algorithmic assessment baseline within the simulation engine. Target production realization integrates deep foundation models and on-chip matrix acceleration on IBM Telum II processors with continuous governance via watsonx.governance.
 
 ## Architecture
 
@@ -200,7 +212,9 @@ Systemic financial intelligence requires enterprise-grade mainframe computing:
 
 $$\mathbf{IBM\ FOUNDATION} + \mathbf{FIS\ CONTROL\ INTELLIGENCE} = \mathbf{A\ COHERENT\ SYSTEMIC\ CONTROL\ ARCHITECTURE}$$
 
-## IBM Architectural Mapping
+## IBM Direction & Architectural Alignment
+
+FIS was independently formulated around the enterprise requirements increasingly vital to mission-critical financial AI: real-time streaming, contextual awareness, AI-assisted reasoning, governed intervention, trusted execution, and independent verification. The architecture aligns naturally with IBM's enterprise roadmap for financial infrastructure:
 
 | Capability | Component | Target Role |
 | :--- | :--- | :--- |
@@ -267,7 +281,7 @@ The frozen prototype is cloud-hosted with zero local dependencies:
 - **Health Endpoint:** [`https://financial-immune-system-d9vz.onrender.com/health`](https://financial-immune-system-d9vz.onrender.com/health)
 
 ### 60-Second Demonstration Walkthrough
-1. **Initialize:** Open URL $\to$ **ENTER CONTROL ENVIRONMENT** $\to$ **INITIALIZE ENCLAVE** ($M(t) = 91\%$).
+1. **Initialize:** Open URL $\to$ **ENTER CONTROL ENVIRONMENT** $\to$ **INITIALIZE CONTROL CORE** ($M(t) = 91\%$).
 2. **Inject Shock:** Header $\to$ **Inject Shock**; Incident `RN-2026-0041` opens ($M(t) = 34\%$).
 3. **Inspect Foundry:** Review Candidate `INT-01` in workspace (08).
 4. **Authorize:** Switch role to `INCIDENT_COMMANDER` $\to$ click **AUTHORIZE**.
@@ -301,7 +315,7 @@ financial-immune-system/
 ├── docs/                          # Architecture & governance specs
 ├── reports/                       # 85 forensic validation reports
 ├── scripts/                       # Cloud validation & replay suites
-├── server/                        # Backend Control Enclave & API
+├── server/                        # Backend Control Plane & API
 ├── shared/                        # Domain contracts & schemas
 ├── src/                           # Frontend React 18 cockpit
 ├── tests/                         # Master assurance suites
