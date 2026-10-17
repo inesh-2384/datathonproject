@@ -75,19 +75,9 @@ FIS is explicitly **not** a fraud engine, transaction firewall, automated execut
 
 FIS executes a governed closed-loop control lifecycle:
 
-```mermaid
-flowchart LR
-    Sense["1. SENSE"] --> Understand["2. UNDERSTAND"]
-    Understand --> Propagate["3. PROPAGATE"]
-    Propagate --> Assess["4. ASSESS CONTROL"]
-    Assess --> Intervene["5. INTERVENE"]
-    Intervene --> Authorize["6. AUTHORIZE"]
-    Authorize --> Execute["7. EXECUTE"]
-    Execute --> Verify["8. VERIFY"]
-    Verify -->|CONTROL_NOT_RESTORED| Reassess["9. REASSESS"]
-    Reassess --> Authorize
-    Verify -->|VERIFIED_RESTORATION| Stable["STABLE"]
-```
+<img width="867" height="552" alt="image" src="https://github.com/user-attachments/assets/ff6658ad-d6ad-4fa3-8adf-445e4f1fb527" />
+<img width="1060" height="682" alt="image" src="https://github.com/user-attachments/assets/e4726c76-64c3-4c52-9123-40d59a7db30a" />
+
 
 - **1. SENSE:** Ingest queues, obligations, and telemetry into evidence ledger.
 - **2. UNDERSTAND:** Map structural dependencies across network topology.
@@ -165,19 +155,8 @@ FIS replaces opaque black-box assertions with an interpretable, evidence-linked 
 ## Architecture
 
 The FIS architecture connects real-time financial events, enterprise computing, systemic control intelligence, and independent verification:
+![Uploading image.png…]()
 
-```mermaid
-graph TD
-    Mkt["Interconnected Financial Ecosystem"] --> Fabric["IBM Event / Data Fabric (Confluent & Data Gate)"]
-    Fabric --> ControlPlane["FIS Systemic Control Plane (6 Domains)"]
-    ControlPlane --> Governance["Governance & Dual-Key Authorization"]
-    Governance --> Exec["Governed Execution Gateway"]
-    Exec --> Foundation["IBM Z / LinuxONE Foundation (Target Architecture)"]
-    Foundation --> Core["Core Banking & Settlement Rails"]
-    Core --> Verifier["Independent Verifier (Post-Action Telemetry)"]
-    Verifier -->|CONTROL_NOT_RESTORED| ControlPlane
-    Verifier -->|VERIFIED_RESTORATION| Mkt
-```
 
 ### Architectural Causal Chain
 $$\text{REAL-TIME FINANCIAL EVENTS} \longrightarrow \text{IBM ENTERPRISE DATA FABRIC} \longrightarrow \text{FIS SYSTEMIC CONTEXT}$$
