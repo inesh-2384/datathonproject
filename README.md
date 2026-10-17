@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="docs/assets/fis_logo.png" alt="Financial Immune System Logo" width="160" />
-
 # FINANCIAL IMMUNE SYSTEM
 ### Systemic Financial Resilience & Control Intelligence
 **From Real-Time Signals → To Governed Control → To Verified Restoration**
