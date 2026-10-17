@@ -8,6 +8,7 @@
 import React from 'react';
 import { useSystemStore } from '../../store/useSystemStore';
 import { APPLICATION_ROUTES } from '@shared/constants/navigation';
+import { RealTimeDecisionContext } from './RealTimeDecisionContext';
 import { 
   Shield, 
   Clock, 
@@ -305,55 +306,8 @@ export const OperationalContextBar: React.FC = () => {
         </div>
       </div>
 
-      {/* Section 34: Presentation Mode Causal Story Strip (Live State-Derived) */}
-      {isDemoMode && (
-        <div className="pt-1.5 border-t border-indigo-900/50 grid grid-cols-7 gap-1.5 text-[10px] font-mono">
-          <button type="button" onClick={() => inspectEvent()} className="p-1.5 rounded bg-indigo-950/40 border border-indigo-800/50 text-left hover:border-indigo-500 transition-colors">
-            <div className="text-[8px] text-indigo-400 font-bold uppercase">1. WHAT HAPPENED?</div>
-            <div className="text-white font-bold truncate">{isAttack || isRestored ? 'DATA-X Oracle Poisoned' : 'Equilibrium Baseline'}</div>
-          </button>
-          <button type="button" onClick={() => setCurrentRoute('collective-intelligence')} className="p-1.5 rounded bg-indigo-950/40 border border-indigo-800/50 text-left hover:border-indigo-500 transition-colors">
-            <div className="text-[8px] text-indigo-400 font-bold uppercase">2. WHY IT MATTERS</div>
-            <div className="text-white font-bold truncate">{isAttack ? '91% AI Herd Synchrony' : 'Diversity Nominal (0.61)'}</div>
-          </button>
-          <button type="button" onClick={() => setCurrentRoute('control-margin')} className="p-1.5 rounded bg-indigo-950/40 border border-indigo-800/50 text-left hover:border-indigo-500 transition-colors">
-            <div className="text-[8px] text-indigo-400 font-bold uppercase">3. WHAT CONTROL REMAINS</div>
-            <div className="text-amber-300 font-bold truncate">M(t) = {margin}% ({controlState.intervention_window_seconds}s)</div>
-          </button>
-          <button type="button" onClick={() => setCurrentRoute('control-foundry')} className="p-1.5 rounded bg-indigo-950/40 border border-indigo-800/50 text-left hover:border-indigo-500 transition-colors">
-            <div className="text-[8px] text-indigo-400 font-bold uppercase">4. INTERVENTION CHOSEN</div>
-            <div className="text-cyan-300 font-bold truncate">{isResidual ? 'MODEL-C Backstop' : isAttack ? 'DATA-X Rail Isolation' : 'None Required'}</div>
-          </button>
-          <button type="button" onClick={() => setCurrentRoute('execution')} className="p-1.5 rounded bg-indigo-950/40 border border-indigo-800/50 text-left hover:border-indigo-500 transition-colors">
-            <div className="text-[8px] text-indigo-400 font-bold uppercase">5. WHO AUTHORIZED IT</div>
-            <div className="text-purple-300 font-bold truncate">{authorizedAudit ? authorizedAudit.actor_role : 'Awaiting Dual-Auth'}</div>
-          </button>
-          <button type="button" onClick={() => setCurrentRoute('execution')} className="p-1.5 rounded bg-indigo-950/40 border border-indigo-800/50 text-left hover:border-indigo-500 transition-colors">
-            <div className="text-[8px] text-indigo-400 font-bold uppercase">6. WHAT EXECUTED</div>
-            <div className="text-emerald-300 font-bold truncate">{latestExec ? `${latestExec.candidate_id.slice(-13)} (200 OK)` : 'No Dispatch Yet'}</div>
-          </button>
-          <button type="button" onClick={() => setCurrentRoute('verification')} className="p-1.5 rounded bg-indigo-950/40 border border-indigo-800/50 text-left hover:border-indigo-500 transition-colors">
-            <div className="text-[8px] text-indigo-400 font-bold uppercase">7. DID CONTROL RETURN?</div>
-            <div className={`font-bold truncate ${
-              latestVerif?.restoration_assessment?.restoration_state === 'VERIFIED_RESTORATION' || latestVerif?.verification_result === 'VERIFIED_EFFECTIVE'
-                ? 'text-emerald-400'
-                : latestVerif?.restoration_assessment?.restoration_state === 'CONTROL_NOT_RESTORED' || latestVerif?.verification_result === 'VERIFIED_FAILED'
-                ? 'text-red-400'
-                : 'text-slate-400'
-            }`}>
-              {latestVerif?.restoration_assessment
-                ? latestVerif.restoration_assessment.restoration_state === 'VERIFIED_RESTORATION'
-                  ? 'YES: VERIFIED RESTORATION (84%)'
-                  : 'NO: CONTROL NOT RESTORED (42%)'
-                : latestVerif?.verification_result === 'VERIFIED_FAILED'
-                  ? 'NO (42% - Reassess!)'
-                  : latestVerif?.verification_result === 'VERIFIED_EFFECTIVE'
-                  ? 'YES (84% Restored)'
-                  : 'Unverified / Pending'}
-            </div>
-          </button>
-        </div>
-      )}
+      {/* Real-Time Control Intelligence Context Layer (Theme: Real-Time AI for Critical Decisions) */}
+      <RealTimeDecisionContext />
     </div>
   );
 };
