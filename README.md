@@ -78,16 +78,6 @@ FIS executes a governed closed-loop control lifecycle:
 <img width="1563" height="1006" alt="Systemic Risk Control Feedback Loop" src="https://github.com/user-attachments/assets/826731dc-a44e-4a5a-aed0-51db1911e32e" />
 
 
-- **1. SENSE:** Ingest queues, obligations, and telemetry into evidence ledger.
-- **2. UNDERSTAND:** Map structural dependencies across network topology.
-- **3. PROPAGATE:** Traverse cascade pathways across institutions.
-- **4. ASSESS CONTROL:** Quantify intervention headroom (**Control Margin $M(t)$**).
-- **5. INTERVENE:** Synthesize backstops under **Minimum Effective Intervention (MEI)**.
-- **6. AUTHORIZE:** Dual-key human commander authorization.
-- **7. EXECUTE:** Dispatch interventions via governed gateways.
-- **8. VERIFY:** Independent post-action telemetry evaluation.
-- **9. REASSESS:** Evaluate residual hazards and trigger secondary backstops.
-
 > [!IMPORTANT]
 > **Human-in-the-Loop Governance:** AI proposes candidates, but **never** authorizes interventions or declares recovery. Humans authorize all transitions via cryptographic dual-key signatures.
 
