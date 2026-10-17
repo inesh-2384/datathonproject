@@ -1,3 +1,5 @@
+<div align="center">
+
 # FINANCIAL IMMUNE SYSTEM
 ### Systemic Financial Resilience & Control Intelligence
 **From Real-Time Signals → To Governed Control → To Verified Restoration**
@@ -16,7 +18,8 @@
 
 ---
 
-
+<div align="left">
+  
 ## Overview
 
 FIS extends real-time AI beyond isolated transaction decisions into systemic control intelligence—using live financial and operational signals to assess collective behaviour, remaining control, governed intervention, and verified recovery across interconnected financial ecosystems.
