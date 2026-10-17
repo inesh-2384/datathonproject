@@ -13,6 +13,7 @@
 
 ---
 
+**Theme:** Real-Time AI for Critical Decisions  
 **Public Prototype Demonstration:** [https://financial-immune-system-d9vz.onrender.com](https://financial-immune-system-d9vz.onrender.com)  
 **Operational Signature:** `FROM SIGNAL → TO CONTROL → TO VERIFIED RECOVERY`  
 **Core Question:** *"When an interconnected financial threat is evolving, do we still have enough effective control to influence the outcome — and how do we know?"*
@@ -21,9 +22,9 @@
 
 ## Overview
 
-Modern financial networks link institutions through shared feeds, cloud rails, and correlated models. Under stress, rational micro-algorithms synchronize into herd runs, draining liquidity before perimeter defenses detect danger.
+FIS extends real-time AI beyond isolated transaction decisions into systemic control intelligence—using live financial and operational signals to assess collective behaviour, remaining control, governed intervention, and verified recovery across interconnected financial ecosystems.
 
-Financial Immune System (FIS) operates above institutional perimeters as a supervisory control plane, maintaining dependency visibility, tracking algorithmic coupling, and computing supervisor intervention headroom.
+Modern financial networks link institutions through shared feeds and correlated models. Under stress, algorithms synchronize into herd runs, draining liquidity before perimeter tools alert. FIS operates as a supervisory control plane, maintaining network visibility and computing intervention headroom.
 
 Crucially, FIS enforces that **Execution is an event; Recovery is a claim that requires evidence.** Technical dispatch does not establish crisis resolution. Restoration is attested solely when an **Independent Verifier** evaluates post-action empirical telemetry and seals a **Control Restoration Proof (CRP)**:
 
@@ -34,7 +35,7 @@ Demonstrated via a simulation prototype on Render Cloud, the architecture is eng
 ## The Real-World Problem
 
 Traditional risk management asks: *"What is my balance-sheet exposure?"* In hyper-connected networks, that question comes too late. Systemic fragility arises from structural coupling across shared dependencies:
-- **Shared Oracles:** Common market feeds (e.g., `DATA-X`).
+- **Shared Oracles:** Common market feeds (`DATA-X`).
 - **Correlated AI Models:** Similar algorithmic strategies (`VOL-ARB`, `MOM-MKT`).
 - **Concentrated Rails:** Shared cloud compute, clearing chokepoints, and payment rails.
 - **Machine-Speed Feedback:** Algorithmic liquidations cascading across counterparties.
@@ -46,7 +47,7 @@ Shared Oracles (DATA-X) ──► Correlated Models (VOL-ARB & MOM-MKT)
 Liquidity Collapse (M(t) Falls) ◄── Algorithmic Herd Run (S(t) ↑, EDD(t) ↓)
 ```
 
-A minor feed disturbance can trigger widespread liquidations. Three operational questions arise:
+A minor feed disturbance triggers widespread liquidations. Three questions arise:
 1. *Has the network lost enough control that local decisions are no longer independent?*
 2. *What intervention restores control, and who holds authority to approve it?*
 3. *Did the action execute—and did it actually restore control?*
@@ -69,7 +70,7 @@ FIS operates **above** individual financial institutions as a supervisory contro
 $$\mathbf{ONE\ INCIDENT} \quad\bullet\quad \mathbf{ONE\ OPERATIONAL\ STATE} \quad\bullet\quad \mathbf{ONE\ EVIDENCE\ CHAIN} \quad\bullet\quad \mathbf{ONE\ GOVERNED\ ACTION\ HISTORY} \quad\bullet\quad \mathbf{ONE\ VERIFICATION\ STATE}$$
 
 ### Operational Scope (What FIS Is NOT)
-FIS is explicitly **not** a fraud detector, firewall, trading bot, HFT execution platform, stock price predictor, portfolio optimizer, or retail banking dashboard. It does not replace banks or clearinghouses; it provides systemic control intelligence to evaluate whether the ecosystem remains controllable under stress.
+FIS is explicitly **not** a fraud engine, transaction firewall, automated execution algorithm, high-frequency arbitrage platform, market price predictor, portfolio optimization tool, or retail banking interface. It does not replace banks or clearinghouses; it provides systemic control intelligence to evaluate whether the ecosystem remains controllable under stress.
 
 ## Core Control Loop
 
@@ -100,7 +101,7 @@ flowchart LR
 - **9. REASSESS:** Evaluate residual hazards and trigger secondary backstops.
 
 > [!IMPORTANT]
-> **Human-in-the-Loop Governance:** AI discovers anomalies and proposes backstops, but **never** authorizes interventions or declares recovery. Humans authorize all transitions via cryptographic dual-key signatures.
+> **Human-in-the-Loop Governance:** AI proposes candidates, but **never** authorizes interventions or declares recovery. Humans authorize all transitions via cryptographic dual-key signatures.
 
 ## Flagship Stress Environment
 
@@ -110,12 +111,12 @@ When institutions deploy algorithmic models (`VOL-ARB-AI`, `MOM-MKT-AI`) depende
 
 ## Six Intelligence Domains
 
-1. **Event & Evidence:** Ingests queues, obligations, and telemetry into a tamper-evident evidence ledger.
-2. **Dependency:** Maps structural coupling across shared feeds, oracles, and clearing chokepoints.
-3. **Collective Decision:** Tracks algorithmic lockstep via **Decision Synchrony $S(t)$** and **Effective Decision Diversity $EDD(t)$** (*experimental indicators*).
-4. **Propagation:** Traverses cascades across credit lines, behavioral contagion, and fire sales.
-5. **Control:** Evaluates **Control Margin $M(t)$** (*supervisor intervention headroom*).
-6. **Intervention (Control Foundry):** Generates backstops under **Minimum Effective Intervention (MEI)**—maximizing stability while minimizing operational disruption.
+1. **Event & Evidence Intelligence:** Ingests queues, obligations, and telemetry into a tamper-evident ledger.
+2. **Dependency Intelligence:** Maps structural coupling across shared feeds, oracles, and clearing chokepoints.
+3. **Collective Decision Intelligence:** Tracks lockstep via **Decision Synchrony $S(t)$** and **Effective Decision Diversity $EDD(t)$** (*experimental indicators*).
+4. **Propagation Intelligence:** Traverses cascades across credit lines, behavioral contagion, and fire sales.
+5. **Control Intelligence:** Evaluates **Control Margin $M(t)$** (*supervisor intervention headroom*).
+6. **Intervention Intelligence (Control Foundry):** Generates backstops under **Minimum Effective Intervention (MEI)**.
 
 ## Execution ≠ Recovery
 
@@ -125,9 +126,9 @@ The foundational engineering invariant of the Financial Immune System is:
 
 $$\text{RECOMMENDATION} \neq \text{AUTHORIZATION} \neq \text{EXECUTION} \neq \text{VERIFICATION} \neq \text{RECOVERY}$$
 
-An HTTP 200 response from an execution gateway proves dispatch. It does **not** prove that systemic control was restored.
+An HTTP 200 response proves gateway dispatch. It does **not** prove that systemic control was restored.
 
-In financial networks, an intervention can dispatch cleanly while contagion continues along secondary pathways, model drift persists, or queues remain locked. Treating execution confirmation as crisis resolution creates catastrophic false confidence. Recovery is an empirical claim that demands independent post-action evidence.
+In financial networks, an action can dispatch cleanly while contagion continues along secondary pathways, model drift persists, or queues remain locked. Treating execution as recovery creates false confidence. Recovery is an empirical claim demanding post-action evidence.
 
 ## Control Restoration Proof
 
@@ -137,7 +138,7 @@ The **Control Restoration Proof (CRP)** closes the control loop:
 
 $$\text{EXPECTED OUTCOME} \to \text{AUTHORIZED ACTION} \to \text{EXECUTION} \to \text{INDEPENDENT OBSERVATION} \to \text{COMPARISON} \to \text{RECOVERY / NON-RECOVERY} \to \text{REASSESSMENT}$$
 
-When an intervention fails to restore stability, the Independent Verifier records **`CONTROL_NOT_RESTORED`** and triggers mandatory reassessment. Only empirical post-action evidence attests **`VERIFIED_RESTORATION`**.
+When an action fails to restore stability, the Independent Verifier records **`CONTROL_NOT_RESTORED`** and triggers reassessment. Only post-action empirical evidence attests **`VERIFIED_RESTORATION`**.
 
 ### Formal Outcome Semantics
 - `EVENT_OBSERVED` / `NON_EVENT_OBSERVED`: Empirical signal verified vs expected breakdown absent.
@@ -192,10 +193,10 @@ FIS enforces regulatory governance principles aligned with BCBS 239 and DORA Art
 
 Systemic financial intelligence requires enterprise-grade mainframe computing:
 
-1. **Co-Location with Core Ledgers:** Global transactions and RTGS rails run on IBM Z. Hosting control intelligence adjacent to core ledgers eliminates cross-cloud latency and exposure during panics.
+1. **Co-Location with Core Ledgers:** Global transactions and RTGS rails run on IBM Z. Hosting control intelligence adjacent to core ledgers eliminates latency and exposure during panics.
 2. **Low-Latency Enterprise AI:** During liquidity runs, milliseconds matter. IBM Telum II provides on-chip AI acceleration directly alongside cores for in-transaction inference.
-3. **Confidential Multi-Tenant Computing:** Assessing cross-institution risk requires privacy. IBM Secure Execution for Linux provides hardware memory isolation without exposing individual books.
-4. **Hardware Cryptography & Continuous Assurance:** Sealing evidence ledgers requires CPACF and Crypto Express 8S silicon cryptography, paired with continuous assurance via watsonx.governance.
+3. **Confidential Multi-Tenant Computing:** Assessing cross-firm risk requires privacy. IBM Secure Execution for Linux provides hardware memory isolation without exposing trading books.
+4. **Hardware Cryptography & Continuous Assurance:** Sealing evidence ledgers requires CPACF and Crypto Express 8S silicon cryptography, paired with watsonx.governance.
 
 $$\mathbf{IBM\ FOUNDATION} + \mathbf{FIS\ CONTROL\ INTELLIGENCE} = \mathbf{A\ COHERENT\ SYSTEMIC\ CONTROL\ ARCHITECTURE}$$
 
@@ -204,12 +205,12 @@ $$\mathbf{IBM\ FOUNDATION} + \mathbf{FIS\ CONTROL\ INTELLIGENCE} = \mathbf{A\ CO
 | Capability | Component | Target Role |
 | :--- | :--- | :--- |
 | **Event Fabric** | **[IBM Confluent](https://www.ibm.com/products/event-automation) & [Data Gate](https://www.ibm.com/products/data-gate)** | Ingests z/OS transaction streams. |
-| **Low-Latency AI** | **[IBM z17 / Telum II](https://newsroom.ibm.com/2024-08-26-IBM-Unveils-Telum-II-Processor-and-Spyre-Accelerator-at-Hot-Chips-2024)** | On-chip AI for real-time risk scoring. |
-| **AI Assurance** | **[IBM watsonx.governance](https://www.ibm.com/products/watsonx-governance)** | Model drift monitoring and guardrails. |
-| **Operational Control** | **[IBM Concert](https://www.ibm.com/products/concert)** | Contextualizes systemic risk in IT ops. |
-| **Trusted Platform** | **[IBM LinuxONE / s390x](https://www.ibm.com/products/linuxone-4)** | Mainframe Linux substrate for control plane. |
-| **Confidentiality** | **[IBM Secure Execution](https://www.ibm.com/docs/en/linux-on-systems?topic=security-secure-execution-linux)** | Hardware enclaves for multi-firm analysis. |
-| **Hardware Crypto** | **CPACF & [Crypto Express 8S](https://www.ibm.com/products/z16)** | Silicon cryptographic signing for CRPs. |
+| **Low-Latency AI** | **[IBM z17 / Telum II](https://newsroom.ibm.com/2024-08-26-IBM-Unveils-Telum-II-Processor-and-Spyre-Accelerator-at-Hot-Chips-2024)** | On-chip real-time risk scoring. |
+| **AI Assurance** | **[IBM watsonx.governance](https://www.ibm.com/products/watsonx-governance)** | Model monitoring and guardrails. |
+| **Operational Control** | **[IBM Concert](https://www.ibm.com/products/concert)** | Contextualizes risk in IT operations. |
+| **Trusted Platform** | **[IBM LinuxONE / s390x](https://www.ibm.com/products/linuxone-4)** | Mainframe substrate for control plane. |
+| **Confidentiality** | **[IBM Secure Execution](https://www.ibm.com/docs/en/linux-on-systems?topic=security-secure-execution-linux)** | Hardware enclaves for multi-firm risk. |
+| **Hardware Crypto** | **CPACF & [Crypto Express 8S](https://www.ibm.com/products/z16)** | Silicon cryptographic CRP signing. |
 
 ## Current Implementation vs Target Architecture
 
@@ -244,7 +245,7 @@ The prototype deterministically demonstrates the closed-loop crisis lifecycle un
 
 ## Engineering Validation
 
-The codebase passed three formal forensic gates: Gate 1 (PASS), Gate 2 (PASS, 97.95/100, Grade A+), and Gate 3 (PASS, 98.5/100).
+The codebase passed three forensic gates: Gate 1 (PASS), Gate 2 (PASS, 97.95/100, Grade A+), and Gate 3 (PASS, 98.5/100).
 
 ### Automated Validation Summary
 
@@ -285,7 +286,7 @@ cd datathonproject
 npm install
 npm run dev
 
-# Run verification suites
+# Verification suites
 npm run build
 node tests/test_crp_contract.cjs
 node tests/test_phase4_closed_loop_master.cjs
@@ -329,7 +330,7 @@ $$\text{SYSTEMIC VISIBILITY} \longrightarrow \text{DEPENDENCY AWARENESS} \longri
 $$\longrightarrow \text{PROPAGATION AWARENESS} \longrightarrow \text{CONTROL ASSESSMENT} \longrightarrow \text{GOVERNED INTERVENTION}$$
 $$\longrightarrow \text{INDEPENDENT VERIFICATION} \longrightarrow \text{CONTINUOUS REASSESSMENT}$$
 
-By transforming financial operations from perimeter alerting into closed-loop control intelligence, FIS provides institutions and supervisors with the empirical evidence required to know whether systemic control remains.
+By transforming financial operations from perimeter alerting into closed-loop control intelligence, FIS provides institutions and supervisors with empirical evidence to know whether systemic control remains.
 
 ## Team
 
@@ -339,4 +340,4 @@ By transforming financial operations from perimeter alerting into closed-loop co
 
 Licensed under the [Apache License, Version 2.0](LICENSE).
 
-Developed for the **IBM Z Datathon 2026**. Special recognition to the IBM Z, LinuxONE, and open-source communities advancing trusted, verified enterprise computing.
+Developed for the **IBM Z Datathon 2026** (Theme: **Real-Time AI for Critical Decisions**). Special recognition to the IBM Z, LinuxONE, and open-source communities advancing verified computing.
