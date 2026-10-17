@@ -1,23 +1,58 @@
-# Financial Immune System
+<div align="center">
 
-> Systemic Control Intelligence for AI-Driven Financial Decision Environments
+# FINANCIAL IMMUNE SYSTEM
+### Systemic Financial Resilience & Control Intelligence
+**From Real-Time Signals → To Governed Control → To Verified Restoration**
 
-[![CI & Verification](https://github.com/inesh-2384/datathonproject/actions/workflows/ci.yml/badge.svg)](https://github.com/inesh-2384/datathonproject/actions/workflows/ci.yml)
-[![Live Prototype](https://img.shields.io/badge/Render-Live_Prototype-00C7B7.svg)](https://financial-immune-system-d9vz.onrender.com)
-[![Gate 3 Freeze](https://img.shields.io/badge/Gate_3-PASS_(98.5%2F100)-success.svg)](reports/gates/gate-3/gate_3_final_forensic_validation_report.md)
+[![Theme](https://img.shields.io/badge/Theme-Real--Time_AI_for_Critical_Decisions-8A2BE2.svg)](https://github.com/inesh-2384/datathonproject)
+[![Target Substrate](https://img.shields.io/badge/Target_Substrate-IBM_Z_%2F_LinuxONE-054ADA.svg)](docs/architecture/system-architecture.md)
 [![Release Status](https://img.shields.io/badge/Release-v2.4.0--frozen-blue.svg)](https://github.com/inesh-2384/datathonproject/releases/tag/v2.4.0-frozen)
-[![Target Substrate](https://img.shields.io/badge/Target-IBM_Z_%2F_LinuxONE-054ADA.svg)](docs/architecture/system-architecture.md)
+[![Gate 3 Freeze](https://img.shields.io/badge/Gate_3_Validation-PASS_(98.5%2F100)-success.svg)](reports/gates/gate-3/gate_3_final_forensic_validation_report.md)
+[![CI & Verification](https://github.com/inesh-2384/datathonproject/actions/workflows/ci.yml/badge.svg)](https://github.com/inesh-2384/datathonproject/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 ---
-### 🔗 Website: [..](https://studio--securexchange-b63do.us-central1.hosted.app)<br/>
-### 🎥 Demo Video: [Watch on YouTube](https://youtu.be/nhXzRiLlDXI)
+
+### 🔗 **Live Prototype**: [https://financial-immune-system-d9vz.onrender.com](https://financial-immune-system-d9vz.onrender.com)
+&nbsp;|&nbsp;
+🎥 **Technical Demonstration**: [Watch on YouTube (Demo Video)](https://youtu.be/nhXzRiLlDXI)
+&nbsp;|&nbsp;
+🌐 **Website**: [https://studio--securexchange-b63do.us-central1.hosted.app](https://studio--securexchange-b63do.us-central1.hosted.app)
+
+*IBM Z Datathon 2026 · Real-Time AI for Critical Decisions · Financial AI / Systemic Control Intelligence*
+
 ---
 
-**Theme:** Real-Time AI for Critical Decisions  
-**Public Prototype Demonstration:** [https://financial-immune-system-d9vz.onrender.com](https://financial-immune-system-d9vz.onrender.com)  
-**Operational Signature:** `FROM SIGNAL → TO CONTROL → TO VERIFIED RECOVERY`  
-**Core Question:** *"When an interconnected financial threat is evolving, do we still have enough effective control to influence the outcome — and how do we know?"*
+```
+FINANCIAL SYSTEMS & INTERCONNECTED ASSETS
+                    │  (live telemetry & order queue streams)
+                    ▼
+     REAL-TIME EVENT & DATA FABRIC
+                    │  (contextual feed coupling & latency shocks)
+                    ▼
+  FIS SYSTEMIC CONTROL INTELLIGENCE (6 DOMAINS)
+     ├── Real-Time Threat Assessment & Collective Decision Synchrony S(t)
+     ├── Multi-Hop Contagion & Propagation Graph Traversal
+     └── Control Margin Headroom M(t) & Minimum Effective Intervention (MEI)
+                    │
+                    ▼
+    DUAL-KEY GOVERNANCE & CRYPTOGRAPHIC AUTHORIZATION
+                    │  (Commander & Operator Dynamic Control Seal™)
+                    ▼
+   IBM Z / LINUXONE MAINFRAME SUBSTRATE (TARGET REALIZATION)
+     └── High-throughput execution & hardware-backed verification telemetry
+                    │
+                    ▼
+   INDEPENDENT VERIFIER (POST-ACTION TELEMETRY EVALUATION)
+     ├── Control Not Restored  ──► Governed Reassessment & Secondary Backstop
+     └── Verified Restoration ──► Attested Control Restoration Proof (CRP)
+```
+
+*FIS systemic-control architecture: real-time financial signals, AI-assisted assessment, propagation intelligence, governed intervention, independent verification, and continuous reassessment — architected for IBM Z / LinuxONE realization.*
+
+</div>
+
+---
 
 ## Overview
 
