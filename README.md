@@ -8,8 +8,6 @@
 [![Target Substrate](https://img.shields.io/badge/Target_Substrate-IBM_Z_%2F_LinuxONE-054ADA.svg)](docs/architecture/system-architecture.md)
 [![Release Status](https://img.shields.io/badge/Release-v2.4.0--frozen-blue.svg)](https://github.com/inesh-2384/datathonproject/releases/tag/v2.4.0-frozen)
 [![Gate 3 Freeze](https://img.shields.io/badge/Gate_3_Validation-PASS_(98.5%2F100)-success.svg)](reports/gates/gate-3/gate_3_final_forensic_validation_report.md)
-[![CI & Verification](https://github.com/inesh-2384/datathonproject/actions/workflows/ci.yml/badge.svg)](https://github.com/inesh-2384/datathonproject/actions/workflows/ci.yml)
-[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 ---
 
