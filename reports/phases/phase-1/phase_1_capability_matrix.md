@@ -1,0 +1,45 @@
+# FINANCIAL IMMUNE SYSTEM (FIS)
+# PHASE 1 — CAPABILITY INVENTORY MATRIX
+## Authoritative Mapping of System Capabilities, State Sources & Truth Classifications
+
+**Product:** Financial Immune System (FIS)  
+**Standard:** IBM Z Datathon 2026 Architectural Inventory  
+**Audit Date:** October 11, 2026  
+**Artifact ID:** `FIS-CAP-MAT-2026-1011`  
+
+---
+
+## 1. Complete Capability Inventory
+
+| # | Capability | Current Location | Current Implementation | User Entry Point | State Source | Event Source | Persistence | Cross-Screen Reflection | Truth Status | Test Coverage | Known Issue / Note | Phase Ownership |
+| :-: | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **01** | **3D Global Ecosystem Visualization** | `src/components/globe/FinancialGlobe.tsx` | WebGL / Three.js sphere with lat/lng arcs | Login Portal & System Map toggle | `server/src/simulation/baseline.ts` | Simulation Clock | In-Memory Graph | Yes (shares entities with System Map) | `IMPLEMENTED` / `SIMULATED` | `P1-14` | Requires WebGL support in browser | Phase 1 Foundation |
+| **02** | **Role Authentication & Governance Model** | `src/components/auth/LoginPortal.tsx`, `server/src/routes/api.ts` | 5 Role Personas + Enclave Token Issuance | Portal Step 2 & Header Role Badge | `shared/types/roles.ts` | `POST /api/auth/login` | Session Token | Yes (governs execution across all views) | `IMPLEMENTED` | `P1-02`, `P1-03`, `P1-04`, `test_user_journey.cjs` | Demonstration token, not production OAuth | Phase 1 Foundation |
+| **03** | **Enclave Boot Terminal Sequence** | `src/components/auth/LoginPortal.tsx` | 5-step terminal emulator verifying CPACF & SSE | Portal Step 3 (Initializing) | Local Client State | Client Timer | In-Memory | No (Portal transition only) | `IMPLEMENTED` | `P1-01` | Purely visual boot feedback | Phase 1 Foundation |
+| **04** | **Global Mission Control Shell** | `src/App.tsx`, `src/components/shell/` | Persistent Header, Sidebar, Stepper, Footer | Route Dispatcher | `useSystemStore.ts` | SSE Stream | In-Memory Zustand | Yes (wraps all 16 workspaces) | `IMPLEMENTED` | `P1-05`, `P1-06`, `P1-07` | Fixed viewport height (no body scroll) | Phase 1 Foundation |
+| **05** | **Guided Cybernetic Workflow Stepper** | `src/components/shell/OperationalContextBar.tsx` | 10-step horizontal stepper + Next Action button | Context Bar Header | `useSystemStore.ts` | Scenario State | In-Memory Zustand | Yes (visible on every screen) | `IMPLEMENTED` | `P1-08`, `test_user_journey.cjs` | Automatically highlights next incident step | Phase 1 Foundation |
+| **06** | **Deterministic Financial Topology Engine** | `server/src/simulation/engine.ts` | Directed graph with 20 banks, 102 rails, PRNG seed 42091 | Server Background Daemon | `baseline.ts` | `POST /api/simulation/step` | Disk (`server/data/`) | Yes (authoritative source for all views) | `IMPLEMENTED` / `SIMULATED` | `P1-10`, `test_phase2_invariants.cjs` | Stressed variables, not live DTCC | Phase 2 Living System |
+| **07** | **Multi-Scenario Injection Controls** | `src/components/shell/AppHeader.tsx`, `server/src/simulation/scenarios.ts` | Dropdown supporting Scenarios A, B, C, D | Header Bar Action Dropdown | Server Engine | `POST /api/simulation/scenario` | Engine State | Yes (broadcasts via SSE to all views) | `IMPLEMENTED` | `P1-23`, `P1-25`, `test_phase2_invariants.cjs` | Requires 2 ticks for multi-hop cascade | Phase 2 Living System |
+| **08** | **Sentinel Event Detection & Canonical Log** | `src/views/EventDetectionView.tsx` | Filterable table + CPACF SHA-256 JSON inspector | Module 03 (`/event-detection`) | `server/src/simulation/engine.ts` | Server Event Log | Disk JSON Log | Yes (mini-stream in Control Center) | `IMPLEMENTED` | `P1-13`, `test_user_journey.cjs` | Filterable by severity & entity | Phase 1 Foundation |
+| **09** | **Contextual Entity Inspector** | `src/components/entity/EntityInspector.tsx` | Slide-over drawer with liquidity & risk telemetry | Node click on Globe, Map, or Event Log | `server/src/routes/api.ts` (`/entities/:id`) | Node Select Event | In-Memory Zustand | Yes (accessible from any view) | `IMPLEMENTED` | `P1-12`, `P1-17` | Supports Banks, Oracles, Rails, AI | Phase 1 Foundation |
+| **10** | **Effective Decision Diversity (EDD)** | `src/components/intelligence/CollectiveDiversityWidget.tsx` | Entropy discount formula + Root-cause WHY modal | Module 05 (`/collective-intelligence`) | Server Intel Engine | `GET /api/intelligence/assessment` | State Store | Yes (preview in Control Center) | `EXPERIMENTAL` | `P1-22`, `test_phase3_intelligence.cjs` | Model EDD-0.1 prototype metric | Phase 3 Intelligence |
+| **11** | **Multi-Hop Contagion Propagation Tracker** | `src/views/PropagationView.tsx` | BFS cascade engine with play/pause/step controls | Module 06 (`/propagation`) | `server/src/simulation/propagation.ts` | Simulation Clock | State Store | Yes (cascade preview in Control Center) | `IMPLEMENTED` | `test_phase3_intelligence.cjs` | Cascade speed configurable (1x..5x) | Phase 3 Intelligence |
+| **12** | **Dynamic Control Margin Decomposition** | `src/views/ControlMarginView.tsx` | Reserve waterfall chart ($M(t) = M_0 + \sum \Delta M_i$) | Module 07 (`/control-margin`) | Server Intel Engine | Engine Recalculation | State Store | Yes (circular gauge in Control Center) | `SIMULATED_VARIABLE` / `EXPERIMENTAL` | `P1-19`, `test_phase3_intelligence.cjs` | Labeled CM-v0.3 | Phase 3 Intelligence |
+| **13** | **Control Foundry Intervention Synthesis** | `src/views/ControlFoundryView.tsx` | Candidate table + Counterfactuals + MEI recommendation | Module 08 (`/control-foundry`) | `server/src/foundry/` | `GET /api/foundry/workspace` | Foundry State | Yes (MEI recommendation box in CC) | `IMPLEMENTED` | `test_phase4_control_foundry.cjs` | 15s intervention window countdown | Phase 4 Foundry |
+| **14** | **Governed Multi-Sig Authorization Gate** | `src/views/ExecutionView.tsx` | Role check + CPACF cryptographic signing contract | Module 09 (`/execution`) | Server API Gateway | `POST /api/foundry/authorize` | Enclave Signatures | Yes (unlocks execution button) | `IMPLEMENTED` | `test_phase4_control_foundry.cjs`, `P5-01..P5-04` | Non-operators blocked with HTTP 403 | Phase 4 Foundry |
+| **15** | **Governed Enclave Action Dispatch** | `src/views/ExecutionView.tsx` | Network rail isolation packet dispatch + edge severing | Module 09 (`/execution`) | Server API Gateway | `POST /api/foundry/execute` | Engine State | Yes (severs graph edges in real time) | `IMPLEMENTED` | `test_phase4_control_foundry.cjs` | Latency 12ms | Phase 4 Foundry |
+| **16** | **Independent Enclave Verification Layer** | `src/views/VerificationView.tsx` | Verifier catching latent drift ($MODEL-C$) | Module 10 (`/verification`) | `server/src/foundry/independentVerifier.ts` | Verifier Audit | Verification Log | Yes (sets status to CONTROL_UNVERIFIED) | `IMPLEMENTED` | `test_phase4_control_foundry.cjs`, `P5-05..P5-06` | Execution success != recovery | Phase 4 Foundry |
+| **17** | **Closed-Loop Secondary Reassessment** | `src/views/ReassessmentView.tsx` | Residual contagion vector analysis + 2nd action synthesis | Module 11 (`/reassessment`) | Server Foundry Engine | `POST /api/foundry/reassess` | Foundry State | Yes (restores margin to 82%) | `IMPLEMENTED` | `test_phase4_control_foundry.cjs` | Neutralizes MODEL-C taint | Phase 4 Foundry |
+| **18** | **Deterministic Incident Replay Scrubber** | `src/views/ReplayView.tsx` | Microsecond timeline scrubber with SHA-256 frame hashes | Module 13 (`/replay`) | `server/src/simulation/replay.ts` | `POST /api/replay/scrub` | Disk Replay Buffer | Yes (resets state across all views) | `IMPLEMENTED` | `test_phase2_invariants.cjs` | Bit-for-bit hash equality verified | Phase 2 Living System |
+| **19** | **Cryptographic Evidence Audit Ledger** | `src/views/EvidenceView.tsx` | 9-stage tamper-evident SHA-256 audit chain | Module 14 (`/evidence`) | `server/src/assurance/evidenceEngine.ts` | Enclave Hashes | Immutable Ledger | Yes (trace ID persisted globally) | `IMPLEMENTED` | `test_phase5_assurance.cjs` | Trace ID: TRC-RN-2026-0041 | Phase 5 Assurance |
+| **20** | **Zero-Knowledge Privacy Boundary** | `src/views/PrivacyView.tsx` | Role-based data redaction (OBSERVER vs COMPLIANCE) | Module 15 (`/privacy`) | `server/src/assurance/privacyBoundary.ts` | Role Query | Privacy Filters | Yes (masks order books dynamically) | `IMPLEMENTED` | `P5-12`, `P5-13` | TRF-001..003 pipeline | Phase 5 Assurance |
+
+---
+
+## 2. Capability Distribution Summary by Phase
+
+- **Phase 1 (Foundation & Product Truth):** Capabilities 01, 02, 03, 04, 05, 08, 09 (7 capabilities established and locked).
+- **Phase 2 (Living System & State Flow):** Capabilities 06, 07, 18 (3 capabilities operational and verified).
+- **Phase 3 (Systemic Intelligence):** Capabilities 10, 11, 12 (3 capabilities operational and calibrated).
+- **Phase 4 (Foundry, Governance & Reassessment):** Capabilities 13, 14, 15, 16, 17 (5 capabilities operational and verified).
+- **Phase 5 (Assurance & Privacy):** Capabilities 19, 20 (2 capabilities operational and audited).

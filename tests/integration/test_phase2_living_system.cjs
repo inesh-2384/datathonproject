@@ -143,7 +143,8 @@ async function runPhase2AcceptanceTests() {
   // P2-04: Frontend consumes event
   // ==========================================================================
   console.log('\n[P2-04] Testing Frontend Consumes Event...');
-  const streamClientFile = fs.readFileSync(path.join(__dirname, 'src/services/stream.ts'), 'utf8');
+  const rootDir = path.resolve(__dirname, '../../');
+  const streamClientFile = fs.readFileSync(path.join(rootDir, 'src/services/stream.ts'), 'utf8');
   assert(streamClientFile.includes("store.applyServerSnapshot") && streamClientFile.includes("store.applyTick"), 'P2-04', 'Frontend stream client binds SSE to central state', 'StreamClient verified');
 
   // ==========================================================================
@@ -295,7 +296,7 @@ async function runPhase2AcceptanceTests() {
   // P2-20: No static primary action
   // ==========================================================================
   console.log('\n[P2-20] Testing State-Driven Dynamic Next Action...');
-  const contextBarCode = fs.readFileSync(path.join(__dirname, 'src/components/shell/OperationalContextBar.tsx'), 'utf8');
+  const contextBarCode = fs.readFileSync(path.join(rootDir, 'src/components/shell/OperationalContextBar.tsx'), 'utf8');
   assert(contextBarCode.includes("controlState.overall_status === 'STABLE'") && 
          contextBarCode.includes("simulationClock.tick === 0") &&
          contextBarCode.includes("RESIDUAL_RISK") &&
@@ -306,7 +307,7 @@ async function runPhase2AcceptanceTests() {
   // P2-21: No disconnected workspace state
   // ==========================================================================
   console.log('\n[P2-21] Testing All 16 Workspaces Connect to Central Store...');
-  const viewsDir = path.join(__dirname, 'src/views');
+  const viewsDir = path.join(rootDir, 'src/views');
   const viewFiles = fs.readdirSync(viewsDir).filter(f => f.endsWith('.tsx'));
   let connectedViewsCount = 0;
   for (const vf of viewFiles) {
@@ -362,7 +363,7 @@ async function runPhase2AcceptanceTests() {
   assert(trace.body.data.root_cause_id === 'DATA-X', 'P2-25', 'Golden Path: Multi-hop causal provenance resolved to DATA-X', 'DATA-X root cause');
   // Step 6: Propose and execute intervention
   const proposeRes = await post('/api/interventions', {
-    role: 'SYSTEM_OPERATOR',
+    role: 'INCIDENT_COMMANDER',
     intervention: { title: 'Quarantine DATA-X & Liquidity Backstop' }
   });
   const execRes = await post(`/api/interventions/${proposeRes.body.data.intervention_id}/execute`, { role: 'SYSTEM_OPERATOR' });

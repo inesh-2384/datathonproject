@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const viewsDir = 'src/views';
+const viewsDir = path.resolve(__dirname, '../../src/views');
 const files = fs.readdirSync(viewsDir).filter(f => f.endsWith('.tsx') && f !== 'ArchitectedViews.tsx');
 
 console.log('===================================================================');

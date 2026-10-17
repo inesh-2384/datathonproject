@@ -1,13 +1,31 @@
+# Dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# Build Outputs
 dist/
 dist-server/
+build/
+coverage/
+
+# Local Utilities & Binaries
 cloudflared.exe
 *.log
 .fis_state_snapshot.json
+tsconfig.tsbuildinfo
+
+# Environment & Secrets
 .env
 .env.local
-temp_user_prompt.txt
-full_user_prompt.txt
-tsconfig.tsbuildinfo
+.env.*.local
+
+# IDE & OS Metadata
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
+
+# Temporary Prompt Scratches
+temp_user_prompt.txt
+full_user_prompt.txt
