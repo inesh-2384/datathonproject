@@ -1,5 +1,3 @@
-<div align="center">
-
 # FINANCIAL IMMUNE SYSTEM
 ### Systemic Financial Resilience & Control Intelligence
 **From Real-Time Signals → To Governed Control → To Verified Restoration**
