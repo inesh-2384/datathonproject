@@ -15,9 +15,8 @@
 
 ### 🔗 **Live Prototype**: [https://financial-immune-system-d9vz.onrender.com](https://financial-immune-system-d9vz.onrender.com)
 &nbsp;|&nbsp;
-🎥 **Technical Demonstration**: [Watch on YouTube (Demo Video)](https://youtu.be/nhXzRiLlDXI)
+### 🎥 **Technical Demonstration**: [Watch on YouTube (Demo Video)](https://youtu.be/nhXzRiLlDXI)
 &nbsp;|&nbsp;
-🌐 **Website**: [https://studio--securexchange-b63do.us-central1.hosted.app](https://studio--securexchange-b63do.us-central1.hosted.app)
 
 *IBM Z Datathon 2026 · Real-Time AI for Critical Decisions · Financial AI / Systemic Control Intelligence*
 
