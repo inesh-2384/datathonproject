@@ -75,8 +75,7 @@ FIS is explicitly **not** a fraud engine, transaction firewall, automated execut
 
 FIS executes a governed closed-loop control lifecycle:
 
-<img width="867" height="552" alt="image" src="https://github.com/user-attachments/assets/ff6658ad-d6ad-4fa3-8adf-445e4f1fb527" />
-<img width="1060" height="682" alt="image" src="https://github.com/user-attachments/assets/e4726c76-64c3-4c52-9123-40d59a7db30a" />
+<img width="1563" height="1006" alt="Systemic Risk Control Feedback Loop" src="https://github.com/user-attachments/assets/826731dc-a44e-4a5a-aed0-51db1911e32e" />
 
 
 - **1. SENSE:** Ingest queues, obligations, and telemetry into evidence ledger.
@@ -155,7 +154,7 @@ FIS replaces opaque black-box assertions with an interpretable, evidence-linked 
 ## Architecture
 
 The FIS architecture connects real-time financial events, enterprise computing, systemic control intelligence, and independent verification:
-![Uploading image.png…]()
+<img width="2172" height="724" alt="Systemic Control Plane Lifecycle Infographic" src="https://github.com/user-attachments/assets/6701d67a-7c55-4d12-bc10-e1f39798e01e" />
 
 
 ### Architectural Causal Chain
