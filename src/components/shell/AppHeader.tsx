@@ -4,10 +4,10 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import fisLogo from '../../assets/fis_logo.png';
 import { useSystemStore } from '../../store/useSystemStore';
 import { ROLE_DEFINITIONS } from '@shared/types/roles';
 import { 
+  Shield,
   RotateCcw, 
   Zap, 
   User, 
@@ -51,32 +51,34 @@ export const AppHeader: React.FC = () => {
 
   return (
     <header className="h-[52px] border-b border-[#142036] bg-[#070c18] px-3 sm:px-5 flex items-center justify-between select-none z-30 sticky top-0 shrink-0 overflow-x-hidden flex-nowrap">
-      {/* 1. Zone Left: [FIS LOGO] | FINANCIAL IMMUNE SYSTEM | MISSION CONTROL */}
+      {/* 1. Zone Left: Shield Icon + System Title & Substrate Badge (Matching Image 2) */}
       <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
         <button
           type="button"
           onClick={() => setCurrentRoute('control-center')}
-          className="flex items-center gap-2 text-left group"
+          className="flex items-center gap-2.5 text-left group"
           title="Return to Main Command Center"
         >
-          {/* Authoritative FIS Logo Asset */}
-          <div className="h-7 w-auto shrink-0 flex items-center justify-center">
-            <img 
-              src={fisLogo} 
-              alt="Financial Immune System" 
-              className="h-7 w-auto object-contain" 
-            />
+          {/* Vector Shield Icon */}
+          <Shield className="w-5 h-5 text-blue-400 shrink-0 group-hover:text-blue-300 transition-colors" />
+
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+              <h1 className="font-extrabold tracking-tight text-white text-xs sm:text-sm font-sans uppercase group-hover:text-blue-300 transition-colors">
+                FINANCIAL IMMUNE SYSTEM
+              </h1>
+              <span className="hidden sm:inline-block px-1.5 py-0.2 rounded bg-blue-950/80 text-blue-400 border border-blue-700/50 text-[9px] font-mono font-bold tracking-wider">
+                SOVEREIGN ENCLAVE
+              </span>
+            </div>
+            <div className="text-[9px] font-mono tracking-wider text-slate-400 uppercase hidden sm:block">
+              SYSTEMIC CONTROL INTELLIGENCE // IBM Z ARCHITECTURE
+            </div>
           </div>
 
-          <div className="h-4 w-[1px] bg-slate-700/80 mx-0.5" />
+          <div className="h-4 w-[1px] bg-slate-700/80 mx-1 hidden md:block" />
 
-          <h1 className="font-extrabold tracking-tight text-white text-xs sm:text-sm font-sans group-hover:text-blue-300 transition-colors uppercase">
-            FINANCIAL IMMUNE SYSTEM
-          </h1>
-
-          <div className="h-3.5 w-[1px] bg-slate-700/80 mx-0.5" />
-
-          <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider hidden sm:inline">
+          <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider hidden md:inline">
             MISSION CONTROL
           </span>
         </button>
