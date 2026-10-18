@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import fisLogo from '../../assets/fis_logo.png';
 import { useSystemStore } from '../../store/useSystemStore';
 import { ROLE_DEFINITIONS } from '@shared/types/roles';
 import { 
@@ -59,8 +60,14 @@ export const AppHeader: React.FC = () => {
           className="flex items-center gap-2.5 text-left group"
           title="Return to Main Command Center"
         >
-          {/* Vector Shield Icon */}
-          <Shield className="w-5 h-5 text-blue-400 shrink-0 group-hover:text-blue-300 transition-colors" />
+          {/* Authoritative FIS Logo Asset */}
+          <div className="h-7 w-auto shrink-0 flex items-center justify-center">
+            <img 
+              src={fisLogo} 
+              alt="Financial Immune System" 
+              className="h-7 w-auto object-contain" 
+            />
+          </div>
 
           <div className="flex flex-col">
             <div className="flex items-center gap-2">
