@@ -51,111 +51,86 @@ export const AppHeader: React.FC = () => {
 
   return (
     <header className="h-[52px] border-b border-[#142036] bg-[#070c18] px-3 sm:px-5 flex items-center justify-between select-none z-30 sticky top-0 shrink-0 overflow-x-hidden flex-nowrap">
-      {/* 1. Zone Left: Official FIS Logo & Brand Identity (Ref 3) */}
-      <div className="flex items-center gap-3 shrink-0">
+      {/* 1. Zone Left: [FIS LOGO] | FINANCIAL IMMUNE SYSTEM | MISSION CONTROL */}
+      <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
         <button
           type="button"
           onClick={() => setCurrentRoute('control-center')}
-          className="flex items-center gap-2.5 text-left group"
+          className="flex items-center gap-2 text-left group"
           title="Return to Main Command Center"
         >
-          {/* Official FIS Logo */}
-          <div className="relative h-7 w-auto shrink-0 flex items-center justify-center">
-            <div className="absolute inset-0 bg-blue-500/25 blur-md rounded-full pointer-events-none" />
+          {/* Authoritative FIS Logo Asset */}
+          <div className="h-7 w-auto shrink-0 flex items-center justify-center">
             <img 
               src={fisLogo} 
               alt="Financial Immune System" 
-              className="h-7 w-auto object-contain relative z-10 drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]" 
+              className="h-7 w-auto object-contain" 
             />
           </div>
 
           <div className="h-4 w-[1px] bg-slate-700/80 mx-0.5" />
 
-          <div className="flex items-baseline gap-2">
-            <h1 className="font-bold tracking-tight text-white text-sm sm:text-base font-sans group-hover:text-blue-300 transition-colors uppercase">
-              FINANCIAL IMMUNE SYSTEM
-            </h1>
-            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest hidden md:inline">
-              MISSION CONTROL
-            </span>
-          </div>
+          <h1 className="font-extrabold tracking-tight text-white text-xs sm:text-sm font-sans group-hover:text-blue-300 transition-colors uppercase">
+            FINANCIAL IMMUNE SYSTEM
+          </h1>
+
+          <div className="h-3.5 w-[1px] bg-slate-700/80 mx-0.5" />
+
+          <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider hidden sm:inline">
+            MISSION CONTROL
+          </span>
         </button>
       </div>
 
-      {/* 2. Zone Center: Restrained Live Status Pill & Live Clock */}
-      <div className="hidden md:flex items-center gap-2.5 shrink-0">
-        {/* Status indicator */}
-        <div className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono border whitespace-nowrap shrink-0 ${
-          isAttack
-            ? 'bg-red-950/70 text-red-300 border-red-700/60 shadow-glow-red animate-pulse'
-            : 'bg-emerald-950/40 text-emerald-300 border-emerald-700/40'
-        }`}>
-          <span className={`w-1.5 h-1.5 rounded-full ${isAttack ? 'bg-red-400 animate-pulse' : 'bg-emerald-400'}`} />
-          <span className="font-semibold">{isAttack ? 'INCIDENT ACTIVE: RN-2026-0041' : 'LIVE'}</span>
+      {/* 2. Zone Right: Restrained Live Status & Operational Controls */}
+      <div className="flex items-center gap-3 shrink-0">
+        {/* Status indicator: ● LIVE SYSTEM */}
+        <div className="flex items-center gap-1.5 text-xs font-mono text-emerald-400 font-medium whitespace-nowrap">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>{isAttack ? 'LIVE SYSTEM • INCIDENT ACTIVE: RN-2026-0041' : 'LIVE SYSTEM'}</span>
+          {!isAttack && (
+            <span className="text-emerald-500/80 text-[10px] hidden md:inline">&bull; NOMINAL</span>
+          )}
         </div>
 
-        {/* UTC Clock */}
-        <div className="hidden xl:flex text-[11px] font-mono text-slate-400 px-2 py-0.5 bg-[#091122] rounded border border-[#14223b] items-center gap-1.5 whitespace-nowrap shrink-0">
-          <Clock className="w-3 h-3 text-slate-500 shrink-0" />
-          <span>{utcTime || 'Oct 12 • 21:30:00 UTC'}</span>
-        </div>
-      </div>
-
-      {/* 3. Zone Right: Role Badge & Scenario Controls */}
-      <div className="flex items-center gap-2 shrink-0">
-        {/* Operator Role Pill */}
-        <button
-          type="button"
-          data-testid="header-role-pill"
-          onClick={() => setRoleModalOpen(true)}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0b1428] border border-blue-500/30 text-xs font-mono text-blue-200 hover:border-blue-400 transition-colors"
-          title="Switch Operational Role / Dual-Auth Signer"
-        >
-          <User className="w-3.5 h-3.5 text-blue-400" />
-          <span className="font-medium text-[11px] hidden lg:inline">{roleMeta.title}</span>
-          <span className="lg:hidden">{currentRole === 'SYSTEM_OPERATOR' ? 'OPERATOR' : 'AUDITOR'}</span>
-          <span className="text-[10px] text-slate-400 ml-0.5">▼</span>
-        </button>
-
-        {/* Scenario Selection Dropdown */}
-        <div className="hidden xl:flex items-center">
-          <select
-            value={selectedScenario}
-            onChange={(e) => setSelectedScenario(e.target.value)}
-            className="bg-[#091122] border border-[#1a2d4e] text-slate-200 text-xs font-mono px-2 py-1 rounded focus:outline-none focus:border-blue-500"
-            title="Select Scenario Injection"
-          >
-            <option value="SCENARIO_A">A: Common Data (DATA-X)</option>
-            <option value="SCENARIO_B">B: Rail Outage (RTGS/CCP)</option>
-            <option value="SCENARIO_C">C: Latent Contagion (MODEL-C)</option>
-            <option value="SCENARIO_D">D: AI Herding Convergence</option>
-          </select>
-        </div>
-
-        {/* Action Buttons: Inject vs Reset */}
+        {/* Minimal Controls */}
         <div className="flex items-center gap-1.5">
+          {/* Operator Role Pill */}
+          <button
+            type="button"
+            data-testid="header-role-pill"
+            onClick={() => setRoleModalOpen(true)}
+            className="flex items-center gap-1 px-2 py-0.5 rounded bg-[#0b1428] border border-blue-500/20 text-[11px] font-mono text-slate-300 hover:text-blue-200 hover:border-blue-400 transition-colors"
+            title="Switch Operational Role / Dual-Auth Signer"
+          >
+            <User className="w-3 h-3 text-blue-400" />
+            <span className="hidden lg:inline">{roleMeta.title}</span>
+            <span className="text-[9px] text-slate-500">▼</span>
+          </button>
+
+          {/* Action Buttons: Inject Shock & Reset */}
           <button
             type="button"
             onClick={handleTriggerScenario}
-            className={`px-3 py-1 rounded text-xs font-mono font-bold flex items-center gap-1.5 shadow transition-all ${
+            className={`px-2.5 py-0.5 rounded text-[11px] font-mono font-bold flex items-center gap-1 transition-all ${
               isAttack
                 ? 'bg-red-700 text-white ring-1 ring-red-400 animate-pulse'
-                : 'bg-red-600 hover:bg-red-500 text-white shadow-red-600/30'
+                : 'bg-red-950/80 text-red-300 border border-red-800/60 hover:bg-red-900'
             }`}
             title="Inject Stress Shock into Living State"
           >
-            <Zap className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">{isAttack ? 'Attack Active' : 'Inject Shock'}</span>
+            <Zap className="w-3 h-3" />
+            <span>{isAttack ? 'Attack Active' : 'Inject Shock'}</span>
           </button>
 
           <button
             type="button"
             onClick={resetScenario}
-            className="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono font-bold flex items-center gap-1 shadow-md shadow-blue-600/30 transition-all"
+            className="px-2 py-0.5 rounded bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-700 text-[11px] font-mono font-bold flex items-center gap-1 transition-all"
             title="Reset to Deterministic Nominal Baseline (Seed: 42091)"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Reset</span>
+            <RotateCcw className="w-3 h-3 text-slate-400" />
+            <span>Reset</span>
           </button>
         </div>
       </div>

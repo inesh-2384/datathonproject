@@ -175,36 +175,34 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
   return (
     <div className="fixed inset-0 z-50 bg-[#060a12] flex flex-col justify-between overflow-hidden select-none font-sans text-slate-100">
       {/* 1. Global Navigation Top Bar */}
-      <header className="relative z-20 h-[52px] px-4 sm:px-6 flex items-center justify-between border-b border-[#142036] bg-[#070c18]/95 backdrop-blur-md shrink-0">
-        <div className="flex items-center gap-3">
-          {/* Official FIS Logo */}
-          <div className="relative h-7 w-auto shrink-0 flex items-center justify-center">
-            <div className="absolute inset-0 bg-blue-500/25 blur-md rounded-full pointer-events-none" />
+      <header className="relative z-20 h-[52px] px-3 sm:px-5 flex items-center justify-between border-b border-[#142036] bg-[#070c18] backdrop-blur-md shrink-0 select-none">
+        <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+          {/* Authoritative FIS Logo Asset */}
+          <div className="h-7 w-auto shrink-0 flex items-center justify-center">
             <img 
               src={fisLogo} 
               alt="Financial Immune System" 
-              className="h-7 w-auto object-contain relative z-10 drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]" 
+              className="h-7 w-auto object-contain" 
             />
           </div>
           
-          {/* Subtle vertical divider */}
-          <div className="h-4 w-[1px] bg-slate-700/80" />
+          <div className="h-4 w-[1px] bg-slate-700/80 mx-0.5" />
 
-          {/* Title & Mission Control */}
-          <div className="flex items-center gap-2">
-            <span className="font-extrabold tracking-tight text-white text-xs sm:text-sm uppercase">
-              FINANCIAL IMMUNE SYSTEM
-            </span>
-            <span className="text-slate-400 text-[11px] font-mono tracking-wider">
-              | MISSION CONTROL
-            </span>
-          </div>
+          <h1 className="font-extrabold tracking-tight text-white text-xs sm:text-sm font-sans uppercase">
+            FINANCIAL IMMUNE SYSTEM
+          </h1>
+
+          <div className="h-3.5 w-[1px] bg-slate-700/80 mx-0.5" />
+
+          <span className="text-[11px] font-mono text-slate-400 uppercase tracking-wider hidden sm:inline">
+            MISSION CONTROL
+          </span>
         </div>
 
         <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-          <span className="flex items-center gap-1.5 text-emerald-400 font-medium">
+          <span className="flex items-center gap-1.5 text-emerald-400 font-medium whitespace-nowrap">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            LIVE SYSTEM
+            <span>LIVE SYSTEM</span>
           </span>
         </div>
       </header>
@@ -239,12 +237,11 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
             </div>
 
             {/* 2. Central FIS Logo */}
-            <div className="relative flex justify-center items-center py-0.5">
-              <div className="absolute w-28 h-28 bg-blue-500/20 blur-2xl rounded-full pointer-events-none" />
+            <div className="relative flex justify-center items-center py-1">
               <img 
                 src={fisLogo} 
                 alt="Financial Immune System" 
-                className="h-20 sm:h-24 w-auto object-contain relative z-10 drop-shadow-[0_0_35px_rgba(59,130,246,0.45)]" 
+                className="h-24 sm:h-28 w-auto object-contain relative z-10 drop-shadow-[0_0_25px_rgba(56,189,248,0.35)]" 
               />
             </div>
 
