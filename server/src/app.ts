@@ -65,6 +65,39 @@ app.get('/api/health', (req, res) => {
 });
 
 // Mount API routers under /api as canonical prefix
+// Serverless Session State Middleware:
+// Synchronizes active shock state across isolated serverless lambda containers using standard HTTP session cookie or header
+app.use((req, res, next) => {
+  let activeShock: string | null = null;
+  if (req.headers['x-fis-shock']) {
+    activeShock = String(req.headers['x-fis-shock']);
+  } else if (req.headers.cookie) {
+    const cookies = req.headers.cookie.split(';');
+    for (const c of cookies) {
+      const [key, val] = c.trim().split('=');
+      if (key === 'fis_shock' && val) {
+        activeShock = decodeURIComponent(val);
+        break;
+      }
+    }
+  }
+
+  if (activeShock && activeShock !== 'NORMAL' && activeShock !== 'RESET') {
+    const [scenarioId, tickStr] = activeShock.split(':');
+    const targetTick = tickStr ? parseInt(tickStr, 10) : 0;
+    if (globalSimulationEngine.scenarioState === 'NORMAL') {
+      if (['SCENARIO_A', 'SCENARIO_B', 'SCENARIO_C', 'SCENARIO_D'].includes(scenarioId)) {
+        globalSimulationEngine.startScenario(scenarioId as any);
+        while (globalSimulationEngine.clock.tick < targetTick && globalSimulationEngine.clock.tick < 10) {
+          globalSimulationEngine.step();
+        }
+      }
+    }
+  }
+
+  next();
+});
+
 app.use('/api', apiRouter);
 app.use('/api', streamRouter);
 

@@ -6027,6 +6027,7 @@ router.post("/simulation/scenario", (req, res) => {
       new_state_summary: `Overall status: ${globalSimulationEngine.controlState.overall_status}, Margin: ${globalSimulationEngine.controlState.control_margin_percent}%`,
       affected_entity_ids: globalSimulationEngine.incidents[0]?.affected_node_ids || [SCENARIO_DESCRIPTORS[targetScenario].primary_target]
     });
+    res.setHeader("Set-Cookie", `fis_shock=${targetScenario}:0; Path=/; SameSite=Lax; Max-Age=86400`);
     res.json({
       success: true,
       operation: completedOp,
@@ -6162,6 +6163,7 @@ router.post("/simulation/reset", (req, res) => {
     const completedOp = globalOperationManager.completeOperation(op.operation_id, {
       new_state_summary: `Reset to baseline Tick 0, Seed ${seed}, Margin: 91% STABLE`
     });
+    res.setHeader("Set-Cookie", "fis_shock=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0");
     res.json({
       success: true,
       isExplicitReset: true,
@@ -6209,6 +6211,9 @@ router.post("/simulation/step", (req, res) => {
         new_state_summary: `Advanced to Tick ${globalSimulationEngine.clock.tick}, Margin: ${globalSimulationEngine.controlState.control_margin_percent}%`,
         status: globalSimulationEngine.controlState.overall_status === "RESIDUAL_RISK" ? "REASSESSMENT_REQUIRED" : "COMPLETED"
       });
+    }
+    if (globalSimulationEngine.scenarioState === "ATTACK_TRIGGERED") {
+      res.setHeader("Set-Cookie", `fis_shock=${globalSimulationEngine.activeScenarioId}:${globalSimulationEngine.clock.tick}; Path=/; SameSite=Lax; Max-Age=86400`);
     }
     res.json({
       success: true,
@@ -6781,6 +6786,34 @@ app.get("/api/health", (req, res) => {
     simulation_clock: globalSimulationEngine.getClock(),
     timestamp: (/* @__PURE__ */ new Date()).toISOString()
   });
+});
+app.use((req, res, next) => {
+  let activeShock = null;
+  if (req.headers["x-fis-shock"]) {
+    activeShock = String(req.headers["x-fis-shock"]);
+  } else if (req.headers.cookie) {
+    const cookies = req.headers.cookie.split(";");
+    for (const c of cookies) {
+      const [key, val] = c.trim().split("=");
+      if (key === "fis_shock" && val) {
+        activeShock = decodeURIComponent(val);
+        break;
+      }
+    }
+  }
+  if (activeShock && activeShock !== "NORMAL" && activeShock !== "RESET") {
+    const [scenarioId, tickStr] = activeShock.split(":");
+    const targetTick = tickStr ? parseInt(tickStr, 10) : 0;
+    if (globalSimulationEngine.scenarioState === "NORMAL") {
+      if (["SCENARIO_A", "SCENARIO_B", "SCENARIO_C", "SCENARIO_D"].includes(scenarioId)) {
+        globalSimulationEngine.startScenario(scenarioId);
+        while (globalSimulationEngine.clock.tick < targetTick && globalSimulationEngine.clock.tick < 10) {
+          globalSimulationEngine.step();
+        }
+      }
+    }
+  }
+  next();
 });
 app.use("/api", api_default);
 app.use("/api", stream_default);

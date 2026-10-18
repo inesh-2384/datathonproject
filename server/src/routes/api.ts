@@ -243,6 +243,7 @@ router.post('/simulation/scenario', (req: Request, res: Response) => {
       affected_entity_ids: globalSimulationEngine.incidents[0]?.affected_node_ids || [SCENARIO_DESCRIPTORS[targetScenario].primary_target]
     });
 
+    res.setHeader('Set-Cookie', `fis_shock=${targetScenario}:0; Path=/; SameSite=Lax; Max-Age=86400`);
     res.json({
       success: true,
       operation: completedOp,
@@ -408,6 +409,7 @@ router.post('/simulation/reset', (req: Request, res: Response) => {
       new_state_summary: `Reset to baseline Tick 0, Seed ${seed}, Margin: 91% STABLE`
     });
 
+    res.setHeader('Set-Cookie', 'fis_shock=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0');
     res.json({
       success: true,
       isExplicitReset: true,
@@ -465,6 +467,10 @@ router.post('/simulation/step', (req: Request, res: Response) => {
         new_state_summary: `Advanced to Tick ${globalSimulationEngine.clock.tick}, Margin: ${globalSimulationEngine.controlState.control_margin_percent}%`,
         status: globalSimulationEngine.controlState.overall_status === 'RESIDUAL_RISK' ? 'REASSESSMENT_REQUIRED' : 'COMPLETED'
       });
+    }
+
+    if (globalSimulationEngine.scenarioState === 'ATTACK_TRIGGERED') {
+      res.setHeader('Set-Cookie', `fis_shock=${globalSimulationEngine.activeScenarioId}:${globalSimulationEngine.clock.tick}; Path=/; SameSite=Lax; Max-Age=86400`);
     }
 
     res.json({

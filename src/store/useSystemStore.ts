@@ -601,6 +601,7 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
     try {
       if (typeof window !== 'undefined') {
         sessionStorage.setItem('fis_active_shock', scenarioId);
+        document.cookie = `fis_shock=${scenarioId}:0; Path=/; SameSite=Lax`;
       }
       const res = await fetch('/api/simulation/scenario', {
         method: 'POST',
@@ -682,6 +683,7 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
     try {
       if (typeof window !== 'undefined') {
         sessionStorage.removeItem('fis_active_shock');
+        document.cookie = 'fis_shock=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; Max-Age=0';
       }
       const res = await fetch('/api/simulation/reset', {
         method: 'POST',
@@ -753,6 +755,9 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
           simulationClock: data.clock,
           controlState: data.control_state
         }));
+        if (get().scenarioState === 'ATTACK_TRIGGERED' && typeof window !== 'undefined') {
+          document.cookie = `fis_shock=${get().activeScenarioId}:${data.clock.tick}; Path=/; SameSite=Lax`;
+        }
         const stateRes = await fetch('/api/state');
         const stateData = await stateRes.json();
         if (stateData.success) {
