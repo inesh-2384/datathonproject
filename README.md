@@ -306,18 +306,8 @@ node tests/run_all_phase5_tests.cjs
 ## Technology Stack
 
 The Financial Immune System prototype is built on an enterprise TypeScript architecture with strict Separation of Concerns (SoC) between frontend visualization, backend state execution, intelligence scoring, and verification contracts:
+<img width="1390" height="1132" alt="Tech Stack Infographic Poster" src="https://github.com/user-attachments/assets/ef0b0143-22bd-46b3-a9e9-7f9a784fd591" />
 
-| Layer | Technologies & Frameworks | Role in Financial Immune System |
-| :--- | :--- | :--- |
-| **Frontend Cockpit** | **React 18**, **TypeScript 5.7**, **Vite 6**, **Tailwind CSS 3.4** | High-performance operational command wall, real-time crisis cockpit, and interactive dual-key governance interface |
-| **3D Topology & Geo-Spatial** | **Three.js (WebGL)**, **Lucide React** | Real-time 3D global financial network visualization, counterparty exposure graphs, and propagation path rendering |
-| **State Management & Streaming** | **Zustand 5**, **Server-Sent Events (SSE)** | Unidirectional living state synchronization, real-time telemetry streaming, and reactive control margin updates |
-| **Backend & Execution Plane** | **Node.js (LTS)**, **Express 4.21**, **TSX** | Deterministic simulation runtime, REST & SSE telemetry APIs, Control Foundry, and Governed Execution Gateway |
-| **Intelligence & Modeling** | **TypeScript Algorithmic Engines** | Interpretable baselines for Decision Synchrony $S(t)$, Effective Decision Diversity $EDD(t)$, and Control Margin $M(t)$ |
-| **Assurance & Forensics** | **SHA-256 Hashing**, **Deterministic PRNG (Mulberry32)** | Tamper-evident ledger, Dynamic Control Seal™ cryptographic binding, and bit-for-bit reproducible scenario replays |
-| **Independent Verification** | **CommonJS Master Verification Suites**, **Puppeteer** | Contract validation (`test_crp_contract.cjs`), closed-loop lifecycle assertions, and headless browser automation |
-| **Deployment Substrate** | **Docker**, **Render Cloud** *(Live Prototype)* | Containerized demonstration runtime, automated GitHub CI/CD integration, and zero-dependency cloud hosting |
-| **Target Production Realization** | **Red Hat OpenShift on IBM LinuxONE (s390x)** | High-throughput enterprise substrate, Telum II on-chip AI acceleration, CPACF silicon crypto, and watsonx.governance |
 
 ## Repository Structure
 
