@@ -12,7 +12,7 @@
 ---
 
 ### 🔗 **Live Prototype**: [https://financial-immune-system-d9vz.onrender.com](https://financial-immune-system-d9vz.onrender.com)
-      NOTE: For Prototype to start ,please wait for some seconds ,we have cold start problem ,this will be rectified soon.THANK YOU
+
 ### 🎥 **Technical Demonstration**: [Watch on YouTube (Demo Video)](https://youtu.be/nhXzRiLlDXI)
 
 *IBM Z Datathon 2026 · Real-Time AI for Critical Decisions · Financial AI / Systemic Control Intelligence*
@@ -44,10 +44,11 @@ Demonstrated via a simulation prototype on Render Cloud, the architecture is eng
 | **AI / ML Intelligence** | Real-time threat detection, Decision Synchrony $S(t)$, Effective Decision Diversity $EDD(t)$, Control Margin $M(t)$ |
 | **Governance** | Strict Separation of Duties (SoD) with dual-key cryptographic authorization (`INCIDENT_COMMANDER` & `SYSTEM_OPERATOR`) |
 | **Proof & Integrity** | **Control Restoration Proof (CRP)** via Independent Verifier and tamper-evident **Dynamic Control Seal™** (SHA-256) |
-| **Current Prototype** | Deterministic software simulation on Render Cloud (PRNG Seed `42091`) with live web cockpit |
 | **Target Architecture** | **IBM Z / LinuxONE (s390x)**, IBM Data Gate, IBM Confluent, Telum II AI on-chip acceleration, CPACF, watsonx.governance |
 
 ## The Real-World Problem
+
+*Interconnected financial systems can lose effective control when shared data, models, infrastructure and automated decisions cause individually rational behaviours to become collectively coupled, allowing localized stress to propagate faster than fragmented risk systems can understand, govern and verify.*
 
 Traditional risk management asks: *"What is my balance-sheet exposure?"* In hyper-connected networks, that question comes too late. Systemic fragility arises from structural coupling across shared dependencies:
 - **Shared Oracles:** Common market feeds (`DATA-X`).
@@ -79,6 +80,16 @@ $$\text{EVENT} \to \text{EVIDENCE} \to \text{DEPENDENCY} \to \text{COLLECTIVE BE
 $$\to \text{INTERVENTION} \to \text{AUTHORIZATION} \to \text{EXECUTION} \to \text{VERIFICATION} \to \text{OUTCOME} \to \text{REASSESSMENT}$$
 
 ## What FIS Does
+
+### FROM TRANSACTION INTELLIGENCE TO SYSTEMIC CONTROL
+
+**Traditional financial AI** asks:
+
+> *“What should happen to this transaction?”*
+
+**Financial Immune System** asks:
+
+FIS extends real-time AI beyond isolated financial decisions into **systemic control intelligence**—reasoning across shared dependencies, collective decision behaviour, plausible propagation pathways, intervention capacity, governed action and independently verified outcomes.
 
 FIS operates **above** individual financial institutions as a supervisory control plane, maintaining:
 
@@ -221,6 +232,20 @@ FIS was independently formulated around the enterprise requirements increasingly
 | **Trusted Platform** | **[IBM LinuxONE / s390x](https://www.ibm.com/products/linuxone-4)** | Mainframe substrate for control plane. |
 | **Confidentiality** | **[IBM Secure Execution](https://www.ibm.com/docs/en/linux-on-systems?topic=security-secure-execution-linux)** | Hardware enclaves for multi-firm risk. |
 | **Hardware Crypto** | **CPACF & [Crypto Express 8S](https://www.ibm.com/products/z16)** | Silicon cryptographic CRP signing. |
+
+
+### FIS AND IBM CONCERT
+
+**FIS is complementary to IBM Concert, not a replacement for it.**
+
+IBM Concert provides enterprise operational intelligence across applications, infrastructure and hybrid environments, connecting operational signals, context and coordinated action. FIS applies that intelligence to a different domain boundary: **systemic control across interconnected financial decision ecosystems**.
+
+FIS reasons across shared financial data, models, market infrastructure, dependencies and automated decision behaviour to assess collective coupling, remaining control, evidence-backed intervention options, and whether control was independently restored.
+
+**IBM Concert → Enterprise Operational Intelligence**  
+**FIS → Financial-Domain Systemic-Control Intelligence**
+
+**IBM provides the trusted enterprise foundation. FIS provides the financial-domain systemic-control intelligence built on that foundation.**
 
 ## Current Implementation vs Target Architecture
 
