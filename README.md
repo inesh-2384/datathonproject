@@ -306,8 +306,7 @@ node tests/run_all_phase5_tests.cjs
 ## Technology Stack
 
 The Financial Immune System prototype is built on an enterprise TypeScript architecture with strict Separation of Concerns (SoC) between frontend visualization, backend state execution, intelligence scoring, and verification contracts:
-<img width="1390" height="1132" alt="Tech Stack Infographic Poster" src="https://github.com/user-attachments/assets/ef0b0143-22bd-46b3-a9e9-7f9a784fd591" />
-
+<img width="1390" height="929" alt="Tech Stack Infographic Poster" src="https://github.com/user-attachments/assets/1c0e2f25-9592-47a1-ab63-f18a5366fe06" />
 
 ## Repository Structure
 
