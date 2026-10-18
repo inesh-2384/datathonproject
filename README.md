@@ -32,6 +32,21 @@ $$\text{RECOMMENDATION} \neq \text{AUTHORIZATION} \neq \text{EXECUTION} \neq \te
 
 Demonstrated via a simulation prototype on Render Cloud, the architecture is engineered for **IBM Z and LinuxONE** enterprise mainframes—the trusted foundation for core banking ledgers, low-latency AI inference, confidential computing, and continuous governance.
 
+## At a Glance
+
+| Dimension | Financial Immune System (FIS) |
+| :--- | :--- |
+| **Domain** | Systemic Financial Resilience & Control Intelligence |
+| **Theme** | **Real-Time AI for Critical Decisions** (IBM Z Datathon 2026) |
+| **The Core Problem** | Systemic loss of control and cascade contagion across interconnected, AI-driven financial ecosystems |
+| **Operational Paradigm** | Closed-loop supervisory control: $\text{Sense} \to \text{Understand} \to \text{Propagate} \to \text{Assess} \to \text{Intervene} \to \text{Verify} \to \text{Reassess}$ |
+| **Core Invariant** | **Execution ≠ Recovery** ($\text{Recommendation} \neq \text{Authorization} \neq \text{Execution} \neq \text{Verification} \neq \text{Recovery}$) |
+| **AI / ML Intelligence** | Real-time threat detection, Decision Synchrony $S(t)$, Effective Decision Diversity $EDD(t)$, Control Margin $M(t)$ |
+| **Governance** | Strict Separation of Duties (SoD) with dual-key cryptographic authorization (`INCIDENT_COMMANDER` & `SYSTEM_OPERATOR`) |
+| **Proof & Integrity** | **Control Restoration Proof (CRP)** via Independent Verifier and tamper-evident **Dynamic Control Seal™** (SHA-256) |
+| **Current Prototype** | Deterministic software simulation on Render Cloud (PRNG Seed `42091`) with live web cockpit |
+| **Target Architecture** | **IBM Z / LinuxONE (s390x)**, IBM Data Gate, IBM Confluent, Telum II AI on-chip acceleration, CPACF, watsonx.governance |
+
 ## The Real-World Problem
 
 Traditional risk management asks: *"What is my balance-sheet exposure?"* In hyper-connected networks, that question comes too late. Systemic fragility arises from structural coupling across shared dependencies:
@@ -71,6 +86,17 @@ $$\mathbf{ONE\ INCIDENT} \quad\bullet\quad \mathbf{ONE\ OPERATIONAL\ STATE} \qua
 
 ### Operational Scope (What FIS Is NOT)
 FIS is explicitly **not** a fraud engine, transaction firewall, automated execution algorithm, high-frequency arbitrage platform, market price predictor, portfolio optimization tool, or retail banking interface. It does not replace banks or clearinghouses; it provides systemic control intelligence to evaluate whether the ecosystem remains controllable under stress.
+
+## Solution Overview
+
+| Intelligence Layer | Operational Purpose |
+| :--- | :--- |
+| **Real-Time Threat Assessment** | Detect emerging systemic anomalies across shared dependencies, oracles, and rails |
+| **Collective Decision Intelligence** | Detect and quantify synchronized algorithmic behaviour via Decision Synchrony $S(t)$ and Diversity $EDD(t)$ |
+| **Propagation Intelligence** | Traverse multi-hop contagion pathways across credit lines, fire sales, and behavioral feedback |
+| **Control Margin Assessment** | Quantify remaining intervention headroom $M(t)$ before systemic controllability collapses |
+| **Governed Intervention (Control Foundry)** | Synthesize candidate stabilizers under Minimum Effective Intervention (MEI) requiring dual-key authorization |
+| **Verified Restoration (CRP)** | Independently evaluate post-action empirical telemetry to attest whether systemic control was restored |
 
 ## Core Control Loop
 
