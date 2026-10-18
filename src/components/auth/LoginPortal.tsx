@@ -230,36 +230,89 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
             ========================================================================= */}
         {stage === 'LANDING' && (
           <div className="space-y-3.5 sm:space-y-4 max-w-4xl w-full my-auto animate-fade-in flex flex-col items-center">
-            {/* 1. Hero Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0a1426]/90 border border-blue-500/30 text-[10px] sm:text-[11px] font-mono text-cyan-400 font-semibold tracking-wider uppercase shadow-inner">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              <span>SYSTEMIC CONTROL INTELLIGENCE FOR AI-ENABLED FINANCIAL ECOSYSTEMS</span>
-            </div>
-
-            {/* 2. Central FIS Logo */}
+            {/* 1. Hero Brand Identity: Official FIS Logo */}
             <div className="relative flex justify-center items-center py-1">
               <img 
                 src={fisLogo} 
                 alt="Financial Immune System" 
-                className="h-24 sm:h-28 w-auto object-contain relative z-10 drop-shadow-[0_0_25px_rgba(56,189,248,0.35)]" 
+                className="h-20 sm:h-24 w-auto object-contain relative z-10 drop-shadow-[0_0_20px_rgba(56,189,248,0.35)]" 
               />
             </div>
 
-            {/* 3. Main Title & Core Statements */}
-            <div className="space-y-1.5 text-center">
+            {/* 2. Main Product Title & Subtitle */}
+            <div className="space-y-1 text-center">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-none uppercase">
                 FINANCIAL IMMUNE SYSTEM
               </h1>
-              <div className="text-xs sm:text-sm md:text-base font-mono font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-300 to-cyan-400 uppercase pt-0.5">
-                &ldquo;DON&apos;T JUST PREDICT SYSTEMIC RISK. PRESERVE THE ABILITY TO CONTROL IT.&rdquo;
+              <div className="text-xs sm:text-sm font-mono font-semibold tracking-wider text-cyan-400 uppercase pt-0.5">
+                SYSTEMIC CONTROL INTELLIGENCE FOR AI-ENABLED FINANCIAL ECOSYSTEMS
               </div>
-              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed font-sans pt-0.5">
-                An operational control environment for interconnected financial ecosystems &mdash; detecting systemic fragility, evaluating effective interventions, and independently verifying whether control is restored.
+              <div className="text-xs sm:text-sm font-mono font-bold text-slate-200 uppercase pt-1">
+                PRESERVE THE ABILITY TO CONTROL INTERCONNECTED FINANCIAL SYSTEMS AS CONDITIONS CHANGE.
+              </div>
+              <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed font-sans pt-0.5">
+                Detect systemic fragility, evaluate governed interventions, and independently verify whether control is restored.
               </p>
             </div>
 
-            {/* 4. Top Information Cards (Section 9) */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 w-full text-left pt-1">
+            {/* 3. Core System Flow: SENSE → UNDERSTAND → INTERVENE → VERIFY */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-2.5 w-full text-left pt-1">
+              {/* Stage 1: SENSE */}
+              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-cyan-500/40 transition-colors">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-cyan-400 font-mono text-xs font-bold">
+                    <Activity className="w-3.5 h-3.5" />
+                    <span>01. SENSE</span>
+                  </div>
+                  <span className="hidden md:inline text-slate-600 font-mono text-xs">→</span>
+                </div>
+                <div className="text-[11px] text-slate-300 font-sans leading-snug">
+                  Real-time telemetry and event intelligence.
+                </div>
+              </div>
+
+              {/* Stage 2: UNDERSTAND */}
+              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-blue-500/40 transition-colors">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-blue-400 font-mono text-xs font-bold">
+                    <GitBranch className="w-3.5 h-3.5" />
+                    <span>02. UNDERSTAND</span>
+                  </div>
+                  <span className="hidden md:inline text-slate-600 font-mono text-xs">→</span>
+                </div>
+                <div className="text-[11px] text-slate-300 font-sans leading-snug">
+                  Systemic dependencies, propagation and control-state analysis.
+                </div>
+              </div>
+
+              {/* Stage 3: INTERVENE */}
+              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-amber-500/40 transition-colors">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-amber-400 font-mono text-xs font-bold">
+                    <Zap className="w-3.5 h-3.5" />
+                    <span>03. INTERVENE</span>
+                  </div>
+                  <span className="hidden md:inline text-slate-600 font-mono text-xs">→</span>
+                </div>
+                <div className="text-[11px] text-slate-300 font-sans leading-snug">
+                  Governed intervention evaluation.
+                </div>
+              </div>
+
+              {/* Stage 4: VERIFY */}
+              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-emerald-500/40 transition-colors">
+                <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-xs font-bold">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>04. VERIFY</span>
+                </div>
+                <div className="text-[11px] text-slate-300 font-sans leading-snug">
+                  Independent verification of restored control.
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Summary / Capability Cards (Section 12) */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 w-full text-left">
               {/* Card 1: ECOSYSTEM NODES */}
               <div className="p-2.5 rounded-lg bg-[#070e1c]/90 border border-slate-800/90 hover:border-slate-700/80 transition-all shadow-sm">
                 <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center justify-between">
@@ -269,8 +322,8 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
                 <div className="mt-1 font-mono font-bold text-xs sm:text-sm text-white">
                   {institutions.length || 20} Institutions &amp; Hubs
                 </div>
-                <div className="text-[10px] sm:text-[11px] text-slate-400 font-mono mt-0.5">
-                  {dependencies.length || 102} Interbank Dependency Edges
+                <div className="text-[10px] text-slate-500 font-mono mt-0.5">
+                  {dependencies.length || 102} Interbank Rails
                 </div>
               </div>
 
@@ -283,11 +336,11 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
                 <div className="mt-1 font-mono font-bold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
                   <span>{controlState?.control_margin_percent ?? 91}%</span>
                   <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-800/60 font-semibold">
-                    STABLE
+                    Stable
                   </span>
                 </div>
-                <div className="text-[10px] sm:text-[11px] text-slate-400 font-mono mt-0.5">
-                  Baseline Reserve Headroom
+                <div className="text-[10px] text-slate-500 font-mono mt-0.5">
+                  Reserve Headroom
                 </div>
               </div>
 
@@ -300,7 +353,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
                 <div className="mt-1 font-mono font-bold text-xs sm:text-sm text-white truncate">
                   Sense → Understand
                 </div>
-                <div className="text-[10px] sm:text-[11px] text-slate-400 font-mono mt-0.5 truncate">
+                <div className="text-[10px] text-slate-500 font-mono mt-0.5 truncate">
                   → Intervene → Verify
                 </div>
               </div>
@@ -315,69 +368,13 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
                   <span>{controlState?.overall_status === 'STABLE' ? 'NOMINAL' : controlState?.overall_status || 'NOMINAL'}</span>
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 </div>
-                <div className="text-[10px] sm:text-[11px] text-slate-400 font-mono mt-0.5">
-                  Closed-Loop Monitoring Active
+                <div className="text-[10px] text-slate-500 font-mono mt-0.5">
+                  Monitoring Active
                 </div>
               </div>
             </div>
 
-            {/* 5. Four-Stage Control Flow Cards (Section 10) */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-2.5 w-full text-left">
-              {/* Stage 1: SENSE */}
-              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-cyan-500/40 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-cyan-400 font-mono text-xs font-bold">
-                    <Activity className="w-3.5 h-3.5" />
-                    <span>01. SENSE</span>
-                  </div>
-                  <span className="hidden md:inline text-slate-600 font-mono text-xs">→</span>
-                </div>
-                <div className="text-[11px] text-slate-300 font-sans leading-snug">
-                  Real-time telemetry ingestion &amp; anomaly detection across interbank rails.
-                </div>
-              </div>
-
-              {/* Stage 2: UNDERSTAND */}
-              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-blue-500/40 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-blue-400 font-mono text-xs font-bold">
-                    <GitBranch className="w-3.5 h-3.5" />
-                    <span>02. UNDERSTAND</span>
-                  </div>
-                  <span className="hidden md:inline text-slate-600 font-mono text-xs">→</span>
-                </div>
-                <div className="text-[11px] text-slate-300 font-sans leading-snug">
-                  Multi-hop cascade depth, chokepoint saturation &amp; decision diversity analysis.
-                </div>
-              </div>
-
-              {/* Stage 3: INTERVENE */}
-              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-amber-500/40 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-amber-400 font-mono text-xs font-bold">
-                    <Zap className="w-3.5 h-3.5" />
-                    <span>03. INTERVENE</span>
-                  </div>
-                  <span className="hidden md:inline text-slate-600 font-mono text-xs">→</span>
-                </div>
-                <div className="text-[11px] text-slate-300 font-sans leading-snug">
-                  Governed counterfactual evaluation finding Minimum Effective Interventions.
-                </div>
-              </div>
-
-              {/* Stage 4: VERIFY */}
-              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-emerald-500/40 transition-colors">
-                <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-xs font-bold">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>04. VERIFY</span>
-                </div>
-                <div className="text-[11px] text-slate-300 font-sans leading-snug">
-                  Independent closed-loop verification catching latent contagion drift.
-                </div>
-              </div>
-            </div>
-
-            {/* 6. Landing Page CTAs (Section 11) */}
+            {/* 5. Primary CTAs (Section 13) */}
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
               <button
                 type="button"
