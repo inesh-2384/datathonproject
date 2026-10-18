@@ -12,7 +12,7 @@
 ---
 
 ### 🔗 **Live Prototype**: [https://financeimmunesystem.vercel.app](https://financeimmunesystem.vercel.app)
-### 🎥 **Technical Demonstration**: [Watch on YouTube (Demo Video)](https://youtu.be/nhXzRiLlDXI)
+### 🎥 **Technical Demonstration**: [Watch on YouTube (Demo Video)](https://youtu.be/Os5SiEWIoqY)
 
 *IBM Z Datathon 2026 · Real-Time AI for Critical Decisions · Financial AI / Systemic Control Intelligence*
 
