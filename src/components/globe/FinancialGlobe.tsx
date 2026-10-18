@@ -24,6 +24,7 @@ interface FinancialGlobeProps {
   onSelectEntity?: (entityId: string) => void;
   interactive?: boolean;
   autoRotateSpeed?: number;
+  showOverlay?: boolean;
   className?: string;
 }
 
@@ -46,6 +47,7 @@ export const FinancialGlobe: React.FC<FinancialGlobeProps> = ({
   onSelectEntity,
   interactive = true,
   autoRotateSpeed = 0.0015,
+  showOverlay = true,
   className = ''
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -326,6 +328,18 @@ export const FinancialGlobe: React.FC<FinancialGlobeProps> = ({
     window.addEventListener('mousemove', onMouseMove);
     window.addEventListener('mouseup', onMouseUp);
 
+    // Check user preference for reduced motion
+    const prefersReducedMotion = typeof window !== 'undefined' && 
+      window.matchMedia && 
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Calculate smooth continuous rotation: 1 revolution (~2*PI) per 30 seconds
+    const rotationRate = prefersReducedMotion 
+      ? 0 
+      : autoRotateSpeed > 0 
+        ? ((2 * Math.PI) / 30) * (autoRotateSpeed / 0.0015) 
+        : 0;
+
     // Animation Loop
     let animationFrameId: number;
     let clock = new THREE.Clock();
@@ -335,9 +349,9 @@ export const FinancialGlobe: React.FC<FinancialGlobeProps> = ({
 
       const delta = clock.getDelta();
 
-      // Smooth auto rotation when not dragging
-      if (!isDragging && autoRotateSpeed > 0) {
-        globeGroup.rotation.y += autoRotateSpeed;
+      // Smooth auto rotation around vertical axis when not dragging
+      if (!isDragging && rotationRate > 0) {
+        globeGroup.rotation.y += rotationRate * delta;
       }
 
       renderer.render(scene, camera);
@@ -398,10 +412,12 @@ export const FinancialGlobe: React.FC<FinancialGlobeProps> = ({
       )}
 
       {/* Subtle Globe Overlay Info */}
-      <div className="absolute bottom-4 left-4 pointer-events-none text-xs font-mono text-slate-500 bg-slate-950/70 p-2 rounded border border-slate-800">
-        <div>PROJECTION: WGS-84 TOPOLOGICAL SPHERE</div>
-        <div className="text-slate-400">HUBS: {institutions.length} | CHANNELS: {dependencies.length}</div>
-      </div>
+      {showOverlay && (
+        <div className="absolute bottom-4 left-4 pointer-events-none text-xs font-mono text-slate-500 bg-slate-950/70 p-2 rounded border border-slate-800">
+          <div>PROJECTION: WGS-84 TOPOLOGICAL SPHERE</div>
+          <div className="text-slate-400">HUBS: {institutions.length} | CHANNELS: {dependencies.length}</div>
+        </div>
+      )}
     </div>
   );
 };

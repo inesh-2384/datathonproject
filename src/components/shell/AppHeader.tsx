@@ -60,8 +60,13 @@ export const AppHeader: React.FC = () => {
           title="Return to Main Command Center"
         >
           {/* Official FIS Logo */}
-          <div className="h-6 w-auto shrink-0 flex items-center">
-            <img src={fisLogo} alt="Financial Immune System" className="h-6 w-auto object-contain" />
+          <div className="relative h-7 w-auto shrink-0 flex items-center justify-center">
+            <div className="absolute inset-0 bg-blue-500/25 blur-md rounded-full pointer-events-none" />
+            <img 
+              src={fisLogo} 
+              alt="Financial Immune System" 
+              className="h-7 w-auto object-contain relative z-10 drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]" 
+            />
           </div>
 
           <div className="h-4 w-[1px] bg-slate-700/80 mx-0.5" />
