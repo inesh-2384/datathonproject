@@ -171,7 +171,7 @@ export const OperationalContextBar: React.FC = () => {
   const latestVerif = foundryState?.latest_verification;
 
   return (
-    <div className="bg-[#080e1a] border-b border-[#142036] px-4 sm:px-6 py-2 select-none shrink-0 z-20">
+    <div className="bg-[#070c18] border-b border-[#142036] px-4 py-1.5 select-none shrink-0 z-10">
       <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
         {/* Left: Current Location & Incident Badge */}
         <div className="flex items-center gap-3">
@@ -241,34 +241,6 @@ export const OperationalContextBar: React.FC = () => {
               </div>
             </div>
           )}
-        </div>
-
-        {/* Center: Interactive Incident Lifecycle Stepper */}
-        <div className="hidden xl:flex items-center gap-1 bg-[#050914] p-1 rounded border border-[#101928] text-[10px]">
-          <span className="text-slate-500 font-bold px-1.5 text-[9px] uppercase tracking-wider">CYBERNETIC LOOP:</span>
-          {workflowSteps.map((ws, idx) => {
-            const isCurrent = currentRouteId === ws.id;
-            return (
-              <React.Fragment key={ws.id}>
-                <button
-                  type="button"
-                  onClick={() => setCurrentRoute(ws.id)}
-                  className={`px-1.5 py-0.5 rounded transition-all ${
-                    isCurrent
-                      ? 'bg-blue-600 text-white font-bold shadow-sm shadow-blue-500/40'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-                  }`}
-                  title={`Navigate to Module ${ws.step} (${ws.label})`}
-                >
-                  <span className="text-[8px] text-slate-500 mr-1">{ws.step}</span>
-                  <span>{ws.label}</span>
-                </button>
-                {idx < workflowSteps.length - 1 && (
-                  <span className="text-slate-700 text-[9px]">→</span>
-                )}
-              </React.Fragment>
-            );
-          })}
         </div>
 
         {/* Right: Key Telemetry Metrics & Dynamic Next Action Pill */}

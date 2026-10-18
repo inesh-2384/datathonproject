@@ -50,8 +50,8 @@ export const AppHeader: React.FC = () => {
   const roleMeta = ROLE_DEFINITIONS.find(r => r.role === currentRole) || ROLE_DEFINITIONS[0];
 
   return (
-    <header className="h-14 border-b border-[#15233c] bg-[#070c18] px-3 sm:px-5 flex items-center justify-between select-none z-30 sticky top-0 shrink-0 overflow-x-hidden flex-nowrap">
-      {/* 1. Zone Left: Official FIS Logo & Brand Identity */}
+    <header className="h-[52px] border-b border-[#142036] bg-[#070c18] px-3 sm:px-5 flex items-center justify-between select-none z-30 sticky top-0 shrink-0 overflow-x-hidden flex-nowrap">
+      {/* 1. Zone Left: Official FIS Logo & Brand Identity (Ref 3) */}
       <div className="flex items-center gap-3 shrink-0">
         <button
           type="button"
@@ -60,44 +60,37 @@ export const AppHeader: React.FC = () => {
           title="Return to Main Command Center"
         >
           {/* Official FIS Logo */}
-          <div className="h-7 w-auto shrink-0 flex items-center">
-            <img src={fisLogo} alt="Financial Immune System" className="h-7 w-auto object-contain" />
+          <div className="h-6 w-auto shrink-0 flex items-center">
+            <img src={fisLogo} alt="Financial Immune System" className="h-6 w-auto object-contain" />
           </div>
 
-          <div className="border-l border-[#1a2b48] pl-2.5 flex items-center gap-2">
-            <h1 className="font-extrabold tracking-tight text-white text-sm sm:text-base font-sans group-hover:text-blue-300 transition-colors">
+          <div className="h-4 w-[1px] bg-slate-700/80 mx-0.5" />
+
+          <div className="flex items-baseline gap-2">
+            <h1 className="font-bold tracking-tight text-white text-sm sm:text-base font-sans group-hover:text-blue-300 transition-colors uppercase">
               FINANCIAL IMMUNE SYSTEM
             </h1>
-            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-wider hidden md:inline">
-              | MISSION CONTROL
+            <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest hidden md:inline">
+              MISSION CONTROL
             </span>
           </div>
         </button>
       </div>
 
-      {/* 2. Zone Center: Active Threat Status Pill & Live Clock */}
+      {/* 2. Zone Center: Restrained Live Status Pill & Live Clock */}
       <div className="hidden md:flex items-center gap-2.5 shrink-0">
         {/* Status indicator */}
-        <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono border whitespace-nowrap shrink-0 ${
+        <div className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono border whitespace-nowrap shrink-0 ${
           isAttack
-            ? 'bg-red-950/80 text-red-300 border-red-700 shadow-glow-red animate-pulse'
-            : 'bg-emerald-950/60 text-emerald-300 border-emerald-700/60 shadow-glow-emerald'
+            ? 'bg-red-950/70 text-red-300 border-red-700/60 shadow-glow-red animate-pulse'
+            : 'bg-emerald-950/40 text-emerald-300 border-emerald-700/40'
         }`}>
-          {isAttack ? (
-            <>
-              <AlertTriangle className="w-3.5 h-3.5 text-red-400 shrink-0" />
-              <span className="font-bold">INCIDENT ACTIVE: RN-2026-0041</span>
-            </>
-          ) : (
-            <>
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <span className="font-bold">EQUILIBRIUM: ALL CHANNELS NOMINAL</span>
-            </>
-          )}
+          <span className={`w-1.5 h-1.5 rounded-full ${isAttack ? 'bg-red-400 animate-pulse' : 'bg-emerald-400'}`} />
+          <span className="font-semibold">{isAttack ? 'INCIDENT ACTIVE: RN-2026-0041' : 'LIVE'}</span>
         </div>
 
         {/* UTC Clock */}
-        <div className="hidden xl:flex text-[11px] font-mono text-slate-400 px-2.5 py-1 bg-[#091122] rounded border border-[#14223b] items-center gap-1.5 whitespace-nowrap shrink-0">
+        <div className="hidden xl:flex text-[11px] font-mono text-slate-400 px-2 py-0.5 bg-[#091122] rounded border border-[#14223b] items-center gap-1.5 whitespace-nowrap shrink-0">
           <Clock className="w-3 h-3 text-slate-500 shrink-0" />
           <span>{utcTime || 'Oct 12 • 21:30:00 UTC'}</span>
         </div>
@@ -110,12 +103,13 @@ export const AppHeader: React.FC = () => {
           type="button"
           data-testid="header-role-pill"
           onClick={() => setRoleModalOpen(true)}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0b1428] border border-blue-500/40 text-xs font-mono text-blue-300 hover:border-blue-400 transition-colors"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0b1428] border border-blue-500/30 text-xs font-mono text-blue-200 hover:border-blue-400 transition-colors"
           title="Switch Operational Role / Dual-Auth Signer"
         >
           <User className="w-3.5 h-3.5 text-blue-400" />
-          <span className="font-semibold hidden lg:inline">{roleMeta.title}</span>
+          <span className="font-medium text-[11px] hidden lg:inline">{roleMeta.title}</span>
           <span className="lg:hidden">{currentRole === 'SYSTEM_OPERATOR' ? 'OPERATOR' : 'AUDITOR'}</span>
+          <span className="text-[10px] text-slate-400 ml-0.5">▼</span>
         </button>
 
         {/* Scenario Selection Dropdown */}

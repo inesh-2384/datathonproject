@@ -95,15 +95,17 @@ export const App: React.FC = () => {
       {/* 1. Global Command Header with Multi-Scenario Injection Controls */}
       <AppHeader />
 
-      {/* 2. Interactive Operator Guided Lifecycle Stepper & Context Banner */}
-      <OperationalContextBar />
-
-      {/* 3. Primary Workspace Area with Persistent Left Sidebar */}
+      {/* 2. Primary Workspace Area: Sidebar begins directly below Header */}
       <div className="flex flex-1 overflow-hidden relative min-h-0">
         <NavigationSidebar />
-        <main className="flex-1 overflow-y-auto bg-[#050811] relative min-h-0">
-          {renderCurrentView()}
-        </main>
+
+        {/* Main Content Column */}
+        <div className="flex-1 flex flex-col overflow-hidden relative min-h-0 bg-[#050811]">
+          <OperationalContextBar />
+          <main className="flex-1 overflow-y-auto relative min-h-0">
+            {renderCurrentView()}
+          </main>
+        </div>
 
         {/* Contextual Entity Inspector Slide-Over */}
         <EntityInspector />

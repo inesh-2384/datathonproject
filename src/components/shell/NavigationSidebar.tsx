@@ -87,83 +87,56 @@ export const NavigationSidebar: React.FC = () => {
 
   return (
     <aside 
-      className={`border-r border-[#15233c] bg-[#070c16] flex flex-col justify-between select-none shrink-0 transition-all duration-200 z-20 ${
+      className={`border-r border-[#142036] bg-[#070c18] flex flex-col justify-between select-none shrink-0 transition-all duration-200 z-20 ${
         isCollapsed ? 'w-16' : 'w-64'
       }`}
     >
-      {/* 1. Header: Operator Profile & Collapse Toggle */}
-      <div className="p-3 border-b border-[#15233c] bg-[#091120] space-y-2">
+      {/* 1. Header: Collapse Toggle & Minimal Section Title */}
+      <div className="px-3 py-2 border-b border-[#142036] bg-[#08101e] flex items-center justify-between shrink-0">
         {!isCollapsed ? (
           <>
-            <div className="flex items-center justify-between">
-              <button
-                type="button"
-                onClick={() => setRoleModalOpen(true)}
-                className="flex items-center gap-2.5 px-2 py-1.5 rounded hover:bg-[#101b30] transition-colors text-left w-full group"
-                title="Click to Switch Role / Authority"
-              >
-                <div className="w-7 h-7 rounded bg-blue-950/80 border border-blue-500/40 flex items-center justify-center text-blue-400 group-hover:border-blue-400">
-                  <User className="w-4 h-4" />
-                </div>
-                <div className="truncate">
-                  <div className="text-[11px] font-bold text-white tracking-wide truncate group-hover:text-blue-300">
-                    {roleMeta.title}
-                  </div>
-                  <div className="text-[9px] font-mono text-cyan-400/90 tracking-wider uppercase">
-                    {currentRole === 'INCIDENT_COMMANDER' ? 'AUTHORIZE SIGNER (SOD)' : currentRole === 'SYSTEM_OPERATOR' ? 'EXECUTION AUTHORITY (SOD)' : 'SWITCH ROLE ▾'}
-                  </div>
-                </div>
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsCollapsed(true)}
-                className="p-1 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/60 ml-1"
-                title="Collapse sidebar"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* Active Incident Alert Banner in Sidebar */}
-            {isAttack && (
-              <button
-                type="button"
-                onClick={() => inspectEvent()}
-                className="w-full p-2 rounded bg-red-950/80 border border-red-700 hover:bg-red-900 transition-colors text-left font-mono"
-              >
-                <div className="flex items-center gap-1.5 text-red-400 text-[10px] font-bold animate-pulse">
-                  <AlertTriangle className="w-3.5 h-3.5" />
-                  <span>INCIDENT ACTIVE</span>
-                </div>
-                <div className="text-[9px] text-slate-300 truncate mt-0.5">
-                  RN-2026-0041 • DATA-X
-                </div>
-              </button>
-            )}
-          </>
-        ) : (
-          <div className="flex flex-col items-center gap-2 py-1">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold">
+              NAVIGATION
+            </span>
             <button
               type="button"
-              onClick={() => setIsCollapsed(false)}
-              className="p-1.5 rounded hover:bg-[#101b30] text-slate-400 hover:text-blue-400"
-              title="Expand sidebar"
+              onClick={() => setIsCollapsed(true)}
+              className="p-1 rounded text-slate-500 hover:text-slate-300 hover:bg-slate-800/60"
+              title="Collapse sidebar"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronLeft className="w-3.5 h-3.5" />
             </button>
-            {isAttack && (
-              <button
-                type="button"
-                onClick={() => inspectEvent()}
-                className="w-8 h-8 rounded bg-red-950 border border-red-700 flex items-center justify-center text-red-400 animate-pulse"
-                title="Active Incident: RN-2026-0041"
-              >
-                <AlertTriangle className="w-4 h-4" />
-              </button>
-            )}
-          </div>
+          </>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setIsCollapsed(false)}
+            className="p-1 rounded hover:bg-[#101b30] text-slate-400 hover:text-blue-400 mx-auto"
+            title="Expand sidebar"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
         )}
       </div>
+
+      {/* Active Incident Alert Banner in Sidebar (if attack active) */}
+      {!isCollapsed && isAttack && (
+        <div className="px-2 pt-2 shrink-0">
+          <button
+            type="button"
+            onClick={() => inspectEvent()}
+            className="w-full p-2 rounded bg-red-950/80 border border-red-700 hover:bg-red-900 transition-colors text-left font-mono"
+          >
+            <div className="flex items-center gap-1.5 text-red-400 text-[10px] font-bold animate-pulse">
+              <AlertTriangle className="w-3.5 h-3.5" />
+              <span>INCIDENT ACTIVE</span>
+            </div>
+            <div className="text-[9px] text-slate-300 truncate mt-0.5">
+              RN-2026-0041 • DATA-X
+            </div>
+          </button>
+        </div>
+      )}
 
       {/* 2. Grouped Operational Modules Navigation */}
       <div className="flex-1 overflow-y-auto py-2 space-y-3">

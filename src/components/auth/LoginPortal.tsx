@@ -175,30 +175,37 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
   return (
     <div className="fixed inset-0 z-50 bg-[#060a12] flex flex-col justify-between overflow-hidden select-none font-sans text-slate-100">
       {/* 1. Global Navigation Top Bar */}
-      <header className="relative z-20 px-6 py-4 flex items-center justify-between border-b border-[#142036] bg-[#070c16]/90 backdrop-blur-md shrink-0">
+      <header className="relative z-20 h-[52px] px-4 sm:px-6 flex items-center justify-between border-b border-[#142036] bg-[#070c16]/95 backdrop-blur-md shrink-0">
         <div className="flex items-center gap-3">
           {/* Official FIS Logo */}
           <div className="h-7 w-auto shrink-0 flex items-center">
             <img src={fisLogo} alt="Financial Immune System" className="h-7 w-auto object-contain" />
           </div>
-          <div className="border-l border-slate-800 pl-3">
-            <span className="font-extrabold tracking-tight text-white text-sm">
+          
+          {/* Subtle vertical divider */}
+          <div className="h-4 w-[1px] bg-slate-700/80" />
+
+          {/* Title & Mission Control */}
+          <div className="flex items-center gap-2">
+            <span className="font-extrabold tracking-tight text-white text-xs sm:text-sm uppercase">
               FINANCIAL IMMUNE SYSTEM
             </span>
-            <span className="text-slate-500 text-xs ml-2 font-mono">| MISSION CONTROL GATEWAY</span>
+            <span className="text-slate-400 text-[11px] font-mono tracking-wider">
+              | MISSION CONTROL
+            </span>
           </div>
         </div>
 
         <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-          <span className="flex items-center gap-1.5 text-emerald-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="flex items-center gap-1.5 text-emerald-400 font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             LIVE SYSTEM
           </span>
         </div>
       </header>
 
       {/* 2. Interactive Backdrop: 3D Financial Globe */}
-      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none flex items-center justify-center">
+      <div className="absolute inset-0 z-0 opacity-25 pointer-events-none flex items-center justify-center">
         <FinancialGlobe
           institutions={institutions}
           dependencies={dependencies}
@@ -211,78 +218,55 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
       </div>
 
       {/* 3. Stage Dispatcher */}
-      <main className="relative z-10 flex-1 flex flex-col items-center justify-center p-4 sm:p-6 text-center max-w-6xl mx-auto w-full overflow-y-auto">
+      <main className="relative z-10 flex-1 flex flex-col items-center justify-center p-4 sm:p-6 text-center max-w-5xl mx-auto w-full overflow-y-auto">
         
         {/* =========================================================================
             STAGE A: LANDING / ENTRY SCREEN ("The Ecosystem Before You Enter It")
             ========================================================================= */}
         {stage === 'LANDING' && (
-          <div className="space-y-8 max-w-3xl w-full my-auto animate-fade-in flex flex-col items-center">
+          <div className="space-y-6 max-w-2xl w-full my-auto animate-fade-in flex flex-col items-center">
             {/* FIS Logo & Brand Identity */}
-            <div className="space-y-4 text-center">
-              <div className="flex justify-center">
+            <div className="space-y-3 text-center flex flex-col items-center">
+              <div className="relative flex justify-center py-2">
+                <div className="absolute inset-0 bg-blue-500/10 blur-2xl rounded-full pointer-events-none" />
                 <img 
                   src={fisLogo} 
                   alt="Financial Immune System" 
-                  className="h-20 w-auto object-contain drop-shadow-[0_0_24px_rgba(59,130,246,0.35)]" 
+                  className="h-20 sm:h-24 w-auto object-contain relative z-10 drop-shadow-[0_0_30px_rgba(59,130,246,0.35)]" 
                 />
               </div>
 
-              <div className="space-y-2">
-                <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+              <div className="space-y-1.5">
+                <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight uppercase">
                   FINANCIAL IMMUNE SYSTEM
                 </h1>
-                <p className="text-xs sm:text-sm font-mono text-cyan-300 font-semibold tracking-wider uppercase max-w-xl mx-auto">
+                <p className="text-xs sm:text-sm font-mono text-cyan-400 font-semibold tracking-wider uppercase max-w-xl mx-auto">
                   SYSTEMIC CONTROL INTELLIGENCE FOR AI-ENABLED FINANCIAL ECOSYSTEMS
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed pt-1">
-                An authoritative mission-control environment designed to detect informational and infrastructural fragility, compute counterfactual minimum effective interventions, and enforce independent closed-loop verification across interconnected financial ecosystems.
+              <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto leading-relaxed pt-1 font-sans">
+                Preserve the ability to control interconnected financial systems as conditions change.
               </p>
             </div>
 
-            {/* 4 Cybernetic Loop Pillars */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full text-left">
-              <div className="p-3 rounded-lg bg-[#070d18]/90 border border-slate-800 space-y-1">
-                <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs font-bold">
-                  <Activity className="w-3.5 h-3.5" />
-                  <span>1. SENSE</span>
-                </div>
-                <div className="text-[11px] text-slate-300 leading-snug">
-                  Real-time telemetry ingestion & sentinel anomaly detection across interbank rails.
-                </div>
-              </div>
-
-              <div className="p-3 rounded-lg bg-[#070d18]/90 border border-slate-800 space-y-1">
-                <div className="flex items-center gap-2 text-blue-400 font-mono text-xs font-bold">
-                  <GitBranch className="w-3.5 h-3.5" />
-                  <span>2. UNDERSTAND</span>
-                </div>
-                <div className="text-[11px] text-slate-300 leading-snug">
-                  Causal multi-hop propagation, chokepoint saturation & decision diversity analysis.
-                </div>
-              </div>
-
-              <div className="p-3 rounded-lg bg-[#070d18]/90 border border-slate-800 space-y-1">
-                <div className="flex items-center gap-2 text-amber-400 font-mono text-xs font-bold">
-                  <Zap className="w-3.5 h-3.5" />
-                  <span>3. INTERVENE</span>
-                </div>
-                <div className="text-[11px] text-slate-300 leading-snug">
-                  Counterfactual Control Foundry evaluating Minimum Effective Interventions.
-                </div>
-              </div>
-
-              <div className="p-3 rounded-lg bg-[#070d18]/90 border border-slate-800 space-y-1">
-                <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-bold">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>4. VERIFY</span>
-                </div>
-                <div className="text-[11px] text-slate-300 leading-snug">
-                  Independent Enclave verification catching latent drift with closed-loop reassessment.
-                </div>
-              </div>
+            {/* Cybernetic Loop Sequence Pill */}
+            <div className="inline-flex items-center flex-wrap justify-center gap-2 sm:gap-3 px-4 py-2 rounded-full bg-[#08101e]/90 border border-[#162544] text-[11px] font-mono text-slate-300 tracking-wider shadow-inner">
+              <span className="text-cyan-400 font-semibold flex items-center gap-1.5">
+                <Activity className="w-3.5 h-3.5" /> SENSE
+              </span>
+              <span className="text-slate-600">→</span>
+              <span className="text-blue-400 font-semibold flex items-center gap-1.5">
+                <GitBranch className="w-3.5 h-3.5" /> UNDERSTAND
+              </span>
+              <span className="text-slate-600">→</span>
+              <span className="text-amber-400 font-semibold flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5" /> INTERVENE
+              </span>
+              <span className="text-slate-600">→</span>
+              <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5" /> VERIFY
+              </span>
             </div>
 
             {/* Action Buttons */}
@@ -290,7 +274,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
               <button
                 type="button"
                 onClick={() => setStage('ROLE_SELECT')}
-                className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-mono text-sm font-bold shadow-xl shadow-blue-600/30 transition-all hover:scale-[1.02] flex items-center gap-2"
+                className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-mono text-sm font-bold shadow-xl shadow-blue-600/35 transition-all hover:scale-[1.02] flex items-center gap-2 cursor-pointer"
               >
                 <span>ENTER CONTROL ENVIRONMENT</span>
                 <ArrowRight className="w-4 h-4" />
@@ -299,19 +283,10 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
               <button
                 type="button"
                 onClick={() => setShowArchModal(true)}
-                className="px-6 py-3 rounded-lg bg-[#0c1527] hover:bg-[#121f38] text-slate-300 border border-slate-700 font-mono text-xs font-bold transition-all flex items-center gap-2"
+                className="px-5 py-3 rounded-lg bg-[#0b1324]/80 hover:bg-[#111e38] text-slate-300 border border-slate-700/80 font-mono text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer"
               >
-                <Server className="w-4 h-4 text-blue-400" />
-                <span>VIEW SYSTEM ARCHITECTURE</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={handleQuickDemo}
-                className="px-6 py-3 rounded-lg bg-[#0c1527] hover:bg-[#121f38] text-emerald-400 border border-emerald-800 font-mono text-xs font-bold transition-all flex items-center gap-2"
-              >
-                <Play className="w-4 h-4 text-emerald-400" />
-                <span>DEMONSTRATION MODE</span>
+                <Server className="w-3.5 h-3.5 text-blue-400" />
+                <span>System Architecture</span>
               </button>
             </div>
           </div>
@@ -429,7 +404,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
               <div className="flex items-center justify-between pb-3 border-b border-slate-800">
                 <div className="flex items-center gap-2 text-cyan-400 font-bold">
                   <Terminal className="w-4 h-4 animate-pulse" />
-                  <span>IBM Z ENCLAVE INITIALIZATION HANDSHAKE</span>
+                  <span>CONTROL ENVIRONMENT INITIALIZATION</span>
                 </div>
                 <span className="text-[10px] text-slate-400">SESSION: #ENC-{Date.now().toString(36).toUpperCase()}</span>
               </div>
@@ -471,7 +446,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
                 <button
                   type="button"
                   onClick={onComplete}
-                  className="text-blue-400 hover:text-white underline"
+                  className="text-blue-400 hover:text-white underline cursor-pointer"
                 >
                   Skip Animation →
                 </button>
@@ -488,7 +463,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
             <button
               type="button"
               onClick={() => setShowArchModal(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-900 border border-slate-700"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-900 border border-slate-700 cursor-pointer"
             >
               ✕ CLOSE
             </button>
@@ -499,7 +474,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
                 Financial Immune System — 4-Plane Architecture Dossier
               </h3>
               <p className="text-[11px] text-slate-400 font-sans mt-0.5">
-                Technical Blueprint & IBM Z / LinuxONE Substrate Co-Location
+                Technical Blueprint & Secure Execution Substrate
               </p>
             </div>
 
@@ -540,11 +515,11 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
               {/* Plane 4 */}
               <div className="p-3.5 rounded bg-slate-950 border border-slate-800 space-y-1">
                 <div className="flex items-center justify-between text-purple-400 font-bold">
-                  <span>PLANE 4: ASSURANCE, PRIVACY & IBM Z RUNTIME PLANE</span>
+                  <span>PLANE 4: ASSURANCE, PRIVACY & CONTROL VERIFICATION PLANE</span>
                   <span className="text-[9px] px-1.5 py-0.2 rounded bg-indigo-950 text-indigo-400 border border-indigo-800">ARCHITECTED / SIMULATED</span>
                 </div>
                 <p className="text-slate-300 text-[11px] font-sans">
-                  Houses Independent Enclave Verification to detect false recoveries, seals 9-step tamper-evident SHA-256 evidence packages under CPACF hardware acceleration, and enforces zero-knowledge role privacy boundaries.
+                  Houses Independent Verification to detect false recoveries, seals 9-step tamper-evident SHA-256 evidence packages under cryptographic acceleration, and enforces zero-knowledge role privacy boundaries.
                 </p>
               </div>
             </div>
