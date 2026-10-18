@@ -106,6 +106,14 @@ class StreamClient {
 
 
       case 'RESET':
+        fetch('/api/state')
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) store.applyServerSnapshot(data.data, { isExplicitReset: true });
+          })
+          .catch(err => console.error('Error syncing post-reset state:', err));
+        break;
+
       case 'SCENARIO_STARTED':
       case 'ATTACK_INJECTED':
       case 'REPLAY_SCRUB':

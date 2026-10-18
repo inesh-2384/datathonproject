@@ -531,6 +531,37 @@ export class SimulationEngine {
     };
   }
 
+  /**
+   * Hydrates engine state from a persistent snapshot.
+   */
+  public hydrate(snapshot: any): void {
+    if (!snapshot) return;
+    if (Array.isArray(snapshot.institutions)) this.institutions = snapshot.institutions;
+    if (Array.isArray(snapshot.dependencies)) this.dependencies = snapshot.dependencies;
+    if (Array.isArray(snapshot.aiModels)) this.aiModels = snapshot.aiModels;
+    if (Array.isArray(snapshot.assets)) this.assets = snapshot.assets;
+    if (Array.isArray(snapshot.dataProviders)) this.dataProviders = snapshot.dataProviders;
+    if (Array.isArray(snapshot.infrastructureNodes)) this.infrastructureNodes = snapshot.infrastructureNodes;
+    if (Array.isArray(snapshot.incidents)) this.incidents = snapshot.incidents;
+    if (snapshot.controlState) this.controlState = snapshot.controlState;
+    if (Array.isArray(snapshot.systemicEvents)) this.systemicEvents = snapshot.systemicEvents;
+    if (Array.isArray(snapshot.decisionEvents)) this.decisionEvents = snapshot.decisionEvents;
+    if (Array.isArray(snapshot.authoritativeEvents)) this.authoritativeEvents = snapshot.authoritativeEvents;
+    if (snapshot.activeScenarioId) this.activeScenarioId = snapshot.activeScenarioId;
+    if (Array.isArray(snapshot.evidenceRecords)) this.evidenceRecords = snapshot.evidenceRecords;
+    if (Array.isArray(snapshot.interventions)) this.interventions = snapshot.interventions;
+    if (snapshot.simulationClock) this.clock = { ...this.clock, ...snapshot.simulationClock };
+    if (snapshot.simulationConfig) this.config = { ...this.config, ...snapshot.simulationConfig };
+    if (snapshot.scenarioState) {
+      this.scenarioState = snapshot.scenarioState;
+    } else if (this.incidents && this.incidents.length > 0) {
+      this.scenarioState = 'ATTACK_TRIGGERED';
+    }
+    if (typeof snapshot.scenarioStageIndex === 'number') {
+      this.scenarioStageIndex = snapshot.scenarioStageIndex;
+    }
+  }
+
   public getClock(): SimulationClock {
     return { ...this.clock };
   }

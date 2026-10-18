@@ -28,6 +28,8 @@ export interface FullSystemSnapshot {
   decisionEvents: any[];
   authoritativeEvents: any[];
   activeScenarioId: string;
+  scenarioState: 'NORMAL' | 'ATTACK_TRIGGERED';
+  scenarioStageIndex: number;
   evidenceRecords: any[];
   interventions: any[];
   simulationClock: any;
@@ -36,10 +38,38 @@ export interface FullSystemSnapshot {
 }
 
 export class SystemStateStore {
+  constructor() {
+    this.loadFromDisk();
+  }
+
+  /**
+   * Loads state snapshot from disk into the globalSimulationEngine if present.
+   */
+  public loadFromDisk(): boolean {
+    try {
+      if (fs.existsSync(PERSISTENCE_FILE)) {
+        const raw = fs.readFileSync(PERSISTENCE_FILE, 'utf-8');
+        const data = JSON.parse(raw);
+        if (data) {
+          globalSimulationEngine.hydrate(data);
+          return true;
+        }
+      }
+    } catch (err) {
+      console.error('Failed to load FIS state from disk:', err);
+    }
+    return false;
+  }
+
   /**
    * Returns current consolidated system state.
    */
   public getState(): FullSystemSnapshot {
+    // If in-memory engine is at default baseline but a persisted state exists on disk, load it
+    if (globalSimulationEngine.scenarioState === 'NORMAL' && fs.existsSync(PERSISTENCE_FILE)) {
+      this.loadFromDisk();
+    }
+
     return {
       institutions: globalSimulationEngine.institutions,
       dependencies: globalSimulationEngine.dependencies,
@@ -53,6 +83,8 @@ export class SystemStateStore {
       decisionEvents: globalSimulationEngine.decisionEvents,
       authoritativeEvents: globalSimulationEngine.authoritativeEvents,
       activeScenarioId: globalSimulationEngine.activeScenarioId,
+      scenarioState: globalSimulationEngine.scenarioState,
+      scenarioStageIndex: globalSimulationEngine.scenarioStageIndex,
       evidenceRecords: globalSimulationEngine.evidenceRecords,
       interventions: globalSimulationEngine.interventions,
       simulationClock: globalSimulationEngine.getClock(),

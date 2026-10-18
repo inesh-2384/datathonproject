@@ -402,7 +402,7 @@ router.post('/simulation/reset', (req: Request, res: Response) => {
   try {
     globalOperationManager.transitionProcessing(op.operation_id);
     globalSimulationEngine.reset(seed);
-    systemStateStore.persistToDisk();
+    systemStateStore.clearPersistence();
 
     const completedOp = globalOperationManager.completeOperation(op.operation_id, {
       new_state_summary: `Reset to baseline Tick 0, Seed ${seed}, Margin: 91% STABLE`
@@ -410,6 +410,7 @@ router.post('/simulation/reset', (req: Request, res: Response) => {
 
     res.json({
       success: true,
+      isExplicitReset: true,
       operation: completedOp,
       message: `System simulation reset to deterministic baseline (Normal State, Seed ${seed}).`,
       snapshot: globalSimulationEngine.getSnapshot(),

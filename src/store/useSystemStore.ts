@@ -171,7 +171,7 @@ interface SystemStore {
   
   // Real-time sync mutators
   setConnectionState: (state: TransportConnectionState, latency?: number) => void;
-  applyServerSnapshot: (data: any) => void;
+  applyServerSnapshot: (data: any, options?: { isExplicitReset?: boolean }) => void;
   applyTick: (tick: number, controlState?: Partial<SystemControlState>) => void;
   prependAuthoritativeEvents: (events: AuthoritativeEvent[]) => void;
   
@@ -199,6 +199,7 @@ interface SystemStore {
 const initialRole: UserRole = (localStorage.getItem('fis_role') as UserRole) || 'SYSTEM_OPERATOR';
 const storedToken = localStorage.getItem('fis_token');
 const isInitiallyAuth = !!storedToken;
+const savedShock = typeof window !== 'undefined' ? sessionStorage.getItem('fis_active_shock') : null;
 
 export const useSystemStore = create<SystemStore>((set, get) => ({
   isAuthenticated: isInitiallyAuth,
@@ -251,8 +252,8 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
   authoritativeEvents: [],
   evidenceRecords: [],
   interventions: [],
-  activeScenarioId: 'SCENARIO_A',
-  scenarioState: 'NORMAL',
+  activeScenarioId: (savedShock as ScenarioId) || 'SCENARIO_A',
+  scenarioState: savedShock ? 'ATTACK_TRIGGERED' : 'NORMAL',
   replayTimeline: [],
   causalTraceData: null,
   activeOperation: null,
@@ -470,7 +471,40 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
     }));
   },
 
-  applyServerSnapshot: (data: any) => {
+  applyServerSnapshot: (data: any, options?: { isExplicitReset?: boolean }) => {
+    if (!data) return;
+    const current = get();
+    const isShockActive = current.scenarioState === 'ATTACK_TRIGGERED' || (current.activeIncident !== null && current.activeIncident.status !== 'RESOLVED');
+    const incomingIsPristineBaseline = 
+      (!data.incidents || data.incidents.length === 0) &&
+      (!data.interventions || data.interventions.length === 0) &&
+      (data.scenarioState === 'NORMAL' || !data.scenarioState) &&
+      data.controlState?.overall_status === 'STABLE';
+
+    // Invariant: Do NOT allow unhydrated / cold server baseline snapshot to overwrite an active shock!
+    if (isShockActive && incomingIsPristineBaseline && !options?.isExplicitReset && !data.isExplicitReset) {
+      console.warn('[FIS-STATE] Invariant Protected: Rejecting automatic baseline overwrite while shock is active.');
+      // Re-hydrate cold serverless instance in background if needed
+      if (typeof fetch === 'function' && current.activeScenarioId) {
+        fetch('/api/simulation/scenario', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ scenario_id: current.activeScenarioId })
+        }).catch(() => {});
+      }
+      return;
+    }
+
+    const nextScenarioState = (options?.isExplicitReset || data.isExplicitReset)
+      ? 'NORMAL'
+      : (data.scenarioState || (data.incidents && data.incidents.length > 0 ? 'ATTACK_TRIGGERED' : current.scenarioState));
+
+    if (nextScenarioState === 'ATTACK_TRIGGERED' && typeof window !== 'undefined') {
+      sessionStorage.setItem('fis_active_shock', data.activeScenarioId || current.activeScenarioId);
+    } else if ((options?.isExplicitReset || data.isExplicitReset) && typeof window !== 'undefined') {
+      sessionStorage.removeItem('fis_active_shock');
+    }
+
     set({
       institutions: data.institutions || [],
       dependencies: data.dependencies || [],
@@ -487,7 +521,7 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
       activeScenarioId: data.activeScenarioId || get().activeScenarioId,
       evidenceRecords: data.evidenceRecords || [],
       interventions: data.interventions || [],
-      scenarioState: data.scenarioState || (data.incidents && data.incidents.length > 0 ? 'ATTACK_TRIGGERED' : 'NORMAL'),
+      scenarioState: nextScenarioState,
       simulationClock: data.simulationClock || get().simulationClock,
       simulationConfig: data.simulationConfig || get().simulationConfig,
       intelligenceAssessment: data.controlState?.intelligence || get().intelligenceAssessment,
@@ -565,6 +599,9 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
 
   startScenario: async (scenarioId: ScenarioId) => {
     try {
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('fis_active_shock', scenarioId);
+      }
       const res = await fetch('/api/simulation/scenario', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -643,6 +680,9 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
 
   resetScenario: async () => {
     try {
+      if (typeof window !== 'undefined') {
+        sessionStorage.removeItem('fis_active_shock');
+      }
       const res = await fetch('/api/simulation/reset', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -660,12 +700,14 @@ export const useSystemStore = create<SystemStore>((set, get) => ({
           governanceBlockNotice: null,
           causalTraceData: null,
           activeOperation: null,
-          authoritativeEvents: []
+          authoritativeEvents: [],
+          scenarioState: 'NORMAL',
+          activeIncident: null
         });
         const stateRes = await fetch('/api/state');
         const stateData = await stateRes.json();
         if (stateData.success) {
-          get().applyServerSnapshot(stateData.data);
+          get().applyServerSnapshot(stateData.data, { isExplicitReset: true });
         }
         await Promise.all([
           get().fetchFoundryState(),
