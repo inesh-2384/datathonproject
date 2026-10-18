@@ -229,168 +229,67 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
             STAGE A: LANDING / ENTRY SCREEN ("The Ecosystem Before You Enter It")
             ========================================================================= */}
         {stage === 'LANDING' && (
-          <div className="space-y-3.5 sm:space-y-4 max-w-4xl w-full my-auto animate-fade-in flex flex-col items-center">
-            {/* 1. Hero Brand Identity: Official FIS Logo */}
-            <div className="relative flex justify-center items-center py-1">
-              <img 
-                src={fisLogo} 
-                alt="Financial Immune System" 
-                className="h-20 sm:h-24 w-auto object-contain relative z-10 drop-shadow-[0_0_20px_rgba(56,189,248,0.35)]" 
-              />
-            </div>
+          <div className="space-y-6 max-w-2xl w-full my-auto animate-fade-in flex flex-col items-center">
+            {/* FIS Logo & Brand Identity */}
+            <div className="space-y-3 text-center flex flex-col items-center">
+              <div className="relative flex justify-center py-2">
+                <div className="absolute inset-0 bg-blue-500/10 blur-2xl rounded-full pointer-events-none" />
+                <img 
+                  src={fisLogo} 
+                  alt="Financial Immune System" 
+                  className="h-20 sm:h-24 w-auto object-contain relative z-10 drop-shadow-[0_0_30px_rgba(59,130,246,0.35)]" 
+                />
+              </div>
 
-            {/* 2. Main Product Title & Subtitle */}
-            <div className="space-y-1 text-center">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-none uppercase">
-                FINANCIAL IMMUNE SYSTEM
-              </h1>
-              <div className="text-xs sm:text-sm font-mono font-semibold tracking-wider text-cyan-400 uppercase pt-0.5">
-                SYSTEMIC CONTROL INTELLIGENCE FOR AI-ENABLED FINANCIAL ECOSYSTEMS
+              <div className="space-y-1.5">
+                <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-tight uppercase">
+                  FINANCIAL IMMUNE SYSTEM
+                </h1>
+                <p className="text-xs sm:text-sm font-mono text-cyan-400 font-semibold tracking-wider uppercase max-w-xl mx-auto">
+                  SYSTEMIC CONTROL INTELLIGENCE FOR AI-ENABLED FINANCIAL ECOSYSTEMS
+                </p>
               </div>
-              <div className="text-xs sm:text-sm font-mono font-bold text-slate-200 uppercase pt-1">
-                PRESERVE THE ABILITY TO CONTROL INTERCONNECTED FINANCIAL SYSTEMS AS CONDITIONS CHANGE.
-              </div>
-              <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed font-sans pt-0.5">
-                Detect systemic fragility, evaluate governed interventions, and independently verify whether control is restored.
+
+              <p className="text-xs sm:text-sm text-slate-300 max-w-lg mx-auto leading-relaxed pt-1 font-sans">
+                Preserve the ability to control interconnected financial systems as conditions change.
               </p>
             </div>
 
-            {/* 3. Core System Flow: SENSE → UNDERSTAND → INTERVENE → VERIFY */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-2.5 w-full text-left pt-1">
-              {/* Stage 1: SENSE */}
-              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-cyan-500/40 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-cyan-400 font-mono text-xs font-bold">
-                    <Activity className="w-3.5 h-3.5" />
-                    <span>01. SENSE</span>
-                  </div>
-                  <span className="hidden md:inline text-slate-600 font-mono text-xs">→</span>
-                </div>
-                <div className="text-[11px] text-slate-300 font-sans leading-snug">
-                  Real-time telemetry and event intelligence.
-                </div>
-              </div>
-
-              {/* Stage 2: UNDERSTAND */}
-              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-blue-500/40 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-blue-400 font-mono text-xs font-bold">
-                    <GitBranch className="w-3.5 h-3.5" />
-                    <span>02. UNDERSTAND</span>
-                  </div>
-                  <span className="hidden md:inline text-slate-600 font-mono text-xs">→</span>
-                </div>
-                <div className="text-[11px] text-slate-300 font-sans leading-snug">
-                  Systemic dependencies, propagation and control-state analysis.
-                </div>
-              </div>
-
-              {/* Stage 3: INTERVENE */}
-              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-amber-500/40 transition-colors">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-amber-400 font-mono text-xs font-bold">
-                    <Zap className="w-3.5 h-3.5" />
-                    <span>03. INTERVENE</span>
-                  </div>
-                  <span className="hidden md:inline text-slate-600 font-mono text-xs">→</span>
-                </div>
-                <div className="text-[11px] text-slate-300 font-sans leading-snug">
-                  Governed intervention evaluation.
-                </div>
-              </div>
-
-              {/* Stage 4: VERIFY */}
-              <div className="p-2.5 rounded-lg bg-[#070d18]/90 border border-slate-800/90 space-y-1 relative group hover:border-emerald-500/40 transition-colors">
-                <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-xs font-bold">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>04. VERIFY</span>
-                </div>
-                <div className="text-[11px] text-slate-300 font-sans leading-snug">
-                  Independent verification of restored control.
-                </div>
-              </div>
+            {/* Cybernetic Loop Sequence Pill */}
+            <div className="inline-flex items-center flex-wrap justify-center gap-2 sm:gap-3 px-4 py-2 rounded-full bg-[#08101e]/90 border border-[#162544] text-[11px] font-mono text-slate-300 tracking-wider shadow-inner">
+              <span className="text-cyan-400 font-semibold flex items-center gap-1.5">
+                <Activity className="w-3.5 h-3.5" /> SENSE
+              </span>
+              <span className="text-slate-600">→</span>
+              <span className="text-blue-400 font-semibold flex items-center gap-1.5">
+                <GitBranch className="w-3.5 h-3.5" /> UNDERSTAND
+              </span>
+              <span className="text-slate-600">→</span>
+              <span className="text-amber-400 font-semibold flex items-center gap-1.5">
+                <Zap className="w-3.5 h-3.5" /> INTERVENE
+              </span>
+              <span className="text-slate-600">→</span>
+              <span className="text-emerald-400 font-semibold flex items-center gap-1.5">
+                <CheckCircle2 className="w-3.5 h-3.5" /> VERIFY
+              </span>
             </div>
 
-            {/* 4. Summary / Capability Cards (Section 12) */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2.5 w-full text-left">
-              {/* Card 1: ECOSYSTEM NODES */}
-              <div className="p-2.5 rounded-lg bg-[#070e1c]/90 border border-slate-800/90 hover:border-slate-700/80 transition-all shadow-sm">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center justify-between">
-                  <span>ECOSYSTEM NODES</span>
-                  <Share2 className="w-3.5 h-3.5 text-blue-400" />
-                </div>
-                <div className="mt-1 font-mono font-bold text-xs sm:text-sm text-white">
-                  {institutions.length || 20} Institutions &amp; Hubs
-                </div>
-                <div className="text-[10px] text-slate-500 font-mono mt-0.5">
-                  {dependencies.length || 102} Interbank Rails
-                </div>
-              </div>
-
-              {/* Card 2: CONTROL MARGIN */}
-              <div className="p-2.5 rounded-lg bg-[#070e1c]/90 border border-slate-800/90 hover:border-slate-700/80 transition-all shadow-sm">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center justify-between">
-                  <span>CONTROL MARGIN</span>
-                  <Activity className="w-3.5 h-3.5 text-cyan-400" />
-                </div>
-                <div className="mt-1 font-mono font-bold text-xs sm:text-sm text-emerald-400 flex items-center gap-1.5">
-                  <span>{controlState?.control_margin_percent ?? 91}%</span>
-                  <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950/80 text-emerald-300 border border-emerald-800/60 font-semibold">
-                    Stable
-                  </span>
-                </div>
-                <div className="text-[10px] text-slate-500 font-mono mt-0.5">
-                  Reserve Headroom
-                </div>
-              </div>
-
-              {/* Card 3: CONTROL MODEL */}
-              <div className="p-2.5 rounded-lg bg-[#070e1c]/90 border border-slate-800/90 hover:border-slate-700/80 transition-all shadow-sm">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center justify-between">
-                  <span>CONTROL MODEL</span>
-                  <Cpu className="w-3.5 h-3.5 text-amber-400" />
-                </div>
-                <div className="mt-1 font-mono font-bold text-xs sm:text-sm text-white truncate">
-                  Sense → Understand
-                </div>
-                <div className="text-[10px] text-slate-500 font-mono mt-0.5 truncate">
-                  → Intervene → Verify
-                </div>
-              </div>
-
-              {/* Card 4: SYSTEM STATE */}
-              <div className="p-2.5 rounded-lg bg-[#070e1c]/90 border border-slate-800/90 hover:border-slate-700/80 transition-all shadow-sm">
-                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-bold flex items-center justify-between">
-                  <span>SYSTEM STATE</span>
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                </div>
-                <div className="mt-1 font-mono font-bold text-xs sm:text-sm text-white flex items-center gap-1.5">
-                  <span>{controlState?.overall_status === 'STABLE' ? 'NOMINAL' : controlState?.overall_status || 'NOMINAL'}</span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                </div>
-                <div className="text-[10px] text-slate-500 font-mono mt-0.5">
-                  Monitoring Active
-                </div>
-              </div>
-            </div>
-
-            {/* 5. Primary CTAs (Section 13) */}
+            {/* Action Buttons */}
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
               <button
                 type="button"
                 onClick={() => setStage('ROLE_SELECT')}
-                className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-mono text-sm font-bold shadow-xl shadow-blue-600/35 transition-all hover:scale-[1.02] flex items-center gap-2 cursor-pointer border border-blue-400/30"
+                className="px-6 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-mono text-xs font-bold tracking-wider uppercase transition-all shadow-lg shadow-blue-900/40 hover:shadow-blue-600/30 flex items-center gap-2 cursor-pointer border border-blue-400/30"
               >
                 <span>ENTER CONTROL ENVIRONMENT</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
-
               <button
                 type="button"
                 onClick={() => setShowArchModal(true)}
-                className="px-6 py-3 rounded-lg bg-[#0b1324]/80 hover:bg-[#111e38] text-slate-300 border border-slate-700/80 font-mono text-xs font-semibold transition-all flex items-center gap-2 cursor-pointer"
+                className="px-5 py-3 rounded-lg bg-[#0c1527] hover:bg-[#13203c] text-slate-300 hover:text-white font-mono text-xs font-semibold tracking-wider uppercase transition-all border border-[#1e3256] flex items-center gap-2 cursor-pointer"
               >
-                <Server className="w-3.5 h-3.5 text-blue-400" />
+                <Server className="w-4 h-4 text-slate-400" />
                 <span>VIEW SYSTEM ARCHITECTURE</span>
               </button>
             </div>
