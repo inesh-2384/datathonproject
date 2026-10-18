@@ -65,7 +65,24 @@ export const NavigationSidebar: React.FC = () => {
   const isAttack = (scenarioState === 'ATTACK_TRIGGERED' || (activeIncident !== null && activeIncident.status !== 'RESOLVED')) && controlState.overall_status !== 'STABLE';
 
   const roleMeta = ROLE_DEFINITIONS.find(r => r.role === currentRole) || ROLE_DEFINITIONS[0];
-  const categories = ['CONTROL', 'DECISION', 'ASSURANCE', 'RUNTIME'] as const;
+  const NAV_SECTIONS = [
+    {
+      category: 'CONTROL',
+      routeIds: ['control-center', 'event-detection', 'propagation', 'control-margin']
+    },
+    {
+      category: 'INTELLIGENCE',
+      routeIds: ['system-map', 'collective-intelligence']
+    },
+    {
+      category: 'OPERATIONS',
+      routeIds: ['control-foundry', 'execution', 'verification', 'reassessment']
+    },
+    {
+      category: 'GOVERNANCE',
+      routeIds: ['evidence', 'replay', 'privacy', 'ibm-runtime', 'benchmark']
+    }
+  ];
   const canonicalPath = ['control-center', 'event-detection', 'system-map', 'collective-intelligence', 'propagation', 'control-margin', 'control-foundry', 'verification', 'reassessment'];
 
   return (
@@ -149,22 +166,24 @@ export const NavigationSidebar: React.FC = () => {
       </div>
 
       {/* 2. Grouped Operational Modules Navigation */}
-      <div className="flex-1 overflow-y-auto p-2 space-y-4">
-        {categories.map((cat) => {
-          const routesInCat = APPLICATION_ROUTES.filter(r => r.category === cat);
-          if (routesInCat.length === 0) return null;
+      <div className="flex-1 overflow-y-auto py-2 space-y-3">
+        {NAV_SECTIONS.map((section) => {
+          const routesInSection = section.routeIds
+            .map(id => APPLICATION_ROUTES.find(r => r.id === id))
+            .filter((r): r is typeof APPLICATION_ROUTES[0] => Boolean(r));
+
+          if (routesInSection.length === 0) return null;
 
           return (
-            <div key={cat} className="space-y-1">
+            <div key={section.category} className="space-y-0.5">
               {!isCollapsed && (
-                <div className="px-2.5 py-1 text-[9px] font-mono uppercase tracking-widest text-slate-500 font-bold border-b border-[#111c30]">
-                  {cat}
+                <div className="px-3 pt-2 pb-1 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">
+                  {section.category}
                 </div>
               )}
               <div className="space-y-0.5">
-                {routesInCat.map((route) => {
+                {routesInSection.map((route) => {
                   const isActive = currentRouteId === route.id;
-
                   const isCanonical = isDemoMode && canonicalPath.includes(route.id);
 
                   return (
@@ -174,26 +193,24 @@ export const NavigationSidebar: React.FC = () => {
                       type="button"
                       onClick={() => setCurrentRoute(route.id)}
                       title={route.description}
-                      className={`w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded text-xs transition-all font-mono text-left relative ${
+                      className={`w-full flex items-center gap-2.5 px-3 py-1.5 text-xs transition-all font-sans text-left relative group ${
                         isActive
-                          ? 'bg-blue-600/20 text-blue-300 border border-blue-500/50 shadow-[0_0_12px_rgba(59,130,246,0.15)] font-semibold'
-                          : isCanonical
-                          ? 'text-slate-300 hover:text-white hover:bg-[#0c1527] border border-indigo-900/40'
-                          : 'text-slate-400 hover:text-slate-100 hover:bg-[#0c1527] border border-transparent'
+                          ? 'bg-blue-500/10 text-white font-medium border-l-2 border-cyan-400'
+                          : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40 border-l-2 border-transparent'
                       }`}
                     >
-                      <span className={`shrink-0 ${isActive ? 'text-blue-400' : isCanonical ? 'text-indigo-400' : 'text-slate-500'}`}>
+                      <span className={`shrink-0 transition-colors ${isActive ? 'text-cyan-400' : 'text-slate-500 group-hover:text-slate-300'}`}>
                         {ICON_MAP[route.iconName] || <Activity className="w-4 h-4" />}
                       </span>
 
                       {!isCollapsed && (
                         <div className="flex items-center justify-between w-full truncate">
-                          <span className="truncate text-[11px] font-sans flex items-center gap-1.5">
-                            {route.name}
-                            {isCanonical && <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" title="Golden Path Step" />}
+                          <span className="truncate text-xs flex items-center gap-1.5">
+                            {route.id === 'control-foundry' ? 'Control Foundry' : route.name}
+                            {isCanonical && <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" title="Recommended Next Step" />}
                           </span>
                           {route.moduleNumber && (
-                            <span className="text-[9px] font-mono text-slate-500 ml-1.5">
+                            <span className={`text-[9px] font-mono ml-1.5 ${isActive ? 'text-cyan-400/80 font-bold' : 'text-slate-600'}`}>
                               {route.moduleNumber}
                             </span>
                           )}
@@ -236,12 +253,6 @@ export const NavigationSidebar: React.FC = () => {
                   Evidence Chain
                 </span>
                 <span className="text-cyan-400 font-bold">ACTIVE</span>
-              </div>
-              <div className="flex items-center justify-between text-slate-400 pt-1 border-t border-slate-800/80">
-                <span className="text-indigo-400">IBM Runtime:</span>
-                <span className="px-1.5 py-0.2 rounded bg-indigo-950/80 text-indigo-300 border border-indigo-700/50 text-[9px]">
-                  ARCHITECTED
-                </span>
               </div>
             </div>
           </>

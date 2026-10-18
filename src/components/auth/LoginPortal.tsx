@@ -15,6 +15,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import fisLogo from '../../assets/fis_logo.png';
 import { useSystemStore } from '../../store/useSystemStore';
 import { FinancialGlobe } from '../globe/FinancialGlobe';
 import { UserRole, ROLE_DEFINITIONS } from '@shared/types/roles';
@@ -176,11 +177,9 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
       {/* 1. Global Navigation Top Bar */}
       <header className="relative z-20 px-6 py-4 flex items-center justify-between border-b border-[#142036] bg-[#070c16]/90 backdrop-blur-md shrink-0">
         <div className="flex items-center gap-3">
-          {/* IBM 8-Bar SVG Mark */}
-          <div className="flex flex-col justify-between h-6 w-9 text-blue-500 font-extrabold select-none">
-            <svg viewBox="0 0 100 40" className="h-full w-full fill-blue-500">
-              <path d="M0,0 H10 V40 H0 Z M15,0 H25 V40 H15 Z M30,0 H55 V10 H40 V15 H50 V25 H40 V30 H55 V40 H30 Z M60,0 H70 V40 H60 Z M75,0 H85 V40 H75 Z M90,0 H100 V40 H90 Z" />
-            </svg>
+          {/* Official FIS Logo */}
+          <div className="h-7 w-auto shrink-0 flex items-center">
+            <img src={fisLogo} alt="Financial Immune System" className="h-7 w-auto object-contain" />
           </div>
           <div className="border-l border-slate-800 pl-3">
             <span className="font-extrabold tracking-tight text-white text-sm">
@@ -190,15 +189,11 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 text-xs font-mono text-slate-400">
+        <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
           <span className="flex items-center gap-1.5 text-emerald-400">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            LIVE SIMULATION
+            LIVE SYSTEM
           </span>
-          <span className="text-slate-600">|</span>
-          <span>LINUXONE III</span>
-          <span className="text-slate-600">|</span>
-          <span className="text-blue-400">CPACF ACTIVE</span>
         </div>
       </header>
 
@@ -222,77 +217,54 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
             STAGE A: LANDING / ENTRY SCREEN ("The Ecosystem Before You Enter It")
             ========================================================================= */}
         {stage === 'LANDING' && (
-          <div className="space-y-6 max-w-4xl w-full my-auto animate-fade-in">
-            {/* Tagline & Identity Hero */}
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0d1628] border border-blue-500/40 text-blue-300 text-xs font-mono shadow-inner mb-2">
-                <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
-                <span>SYSTEMIC CONTROL INTELLIGENCE FOR AI-ENABLED FINANCIAL ECOSYSTEMS</span>
+          <div className="space-y-8 max-w-3xl w-full my-auto animate-fade-in flex flex-col items-center">
+            {/* FIS Logo & Brand Identity */}
+            <div className="space-y-4 text-center">
+              <div className="flex justify-center">
+                <img 
+                  src={fisLogo} 
+                  alt="Financial Immune System" 
+                  className="h-20 w-auto object-contain drop-shadow-[0_0_24px_rgba(59,130,246,0.35)]" 
+                />
               </div>
 
-              <h1 className="text-4xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-                FINANCIAL IMMUNE SYSTEM
-              </h1>
-
-              <div className="text-lg sm:text-xl font-mono text-cyan-300 font-bold tracking-wide">
-                “DON'T JUST PREDICT SYSTEMIC RISK. PRESERVE THE ABILITY TO CONTROL IT.”
+              <div className="space-y-2">
+                <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+                  FINANCIAL IMMUNE SYSTEM
+                </h1>
+                <p className="text-xs sm:text-sm font-mono text-cyan-300 font-semibold tracking-wider uppercase max-w-xl mx-auto">
+                  SYSTEMIC CONTROL INTELLIGENCE FOR AI-ENABLED FINANCIAL ECOSYSTEMS
+                </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed pt-1">
                 An authoritative mission-control environment designed to detect informational and infrastructural fragility, compute counterfactual minimum effective interventions, and enforce independent closed-loop verification across interconnected financial ecosystems.
               </p>
             </div>
 
-            {/* Subtle Live Ecosystem Telemetry Bar */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto font-mono text-xs">
-              <div className="fis-panel p-3 bg-[#080e1a]/80 border border-[#16233b] text-center">
-                <span className="text-[10px] text-slate-400 uppercase block">Ecosystem Nodes</span>
-                <span className="text-base font-bold text-white mt-0.5 block">20 G-SIBs & Hubs</span>
-                <span className="text-[10px] text-slate-500">102 Interbank Rails</span>
-              </div>
-
-              <div className="fis-panel p-3 bg-[#080e1a]/80 border border-[#16233b] text-center">
-                <span className="text-[10px] text-slate-400 uppercase block">Control Margin</span>
-                <span className="text-base font-bold text-emerald-400 mt-0.5 block">89% STABLE</span>
-                <span className="text-[10px] text-slate-500">Baseline Reserve Headroom</span>
-              </div>
-
-              <div className="fis-panel p-3 bg-[#080e1a]/80 border border-[#16233b] text-center">
-                <span className="text-[10px] text-slate-400 uppercase block">Hardware Substrate</span>
-                <span className="text-base font-bold text-blue-300 mt-0.5 block">LinuxONE III</span>
-                <span className="text-[10px] text-indigo-400 font-bold">ARCHITECTED</span>
-              </div>
-
-              <div className="fis-panel p-3 bg-[#080e1a]/80 border border-[#16233b] text-center">
-                <span className="text-[10px] text-slate-400 uppercase block">Cryptoprocessor</span>
-                <span className="text-base font-bold text-cyan-300 mt-0.5 block">CPACF SHA-256</span>
-                <span className="text-[10px] text-cyan-400 font-bold">SIMULATED</span>
-              </div>
-            </div>
-
             {/* 4 Cybernetic Loop Pillars */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto text-left">
-              <div className="p-3 rounded-lg bg-[#070d18]/80 border border-slate-800 space-y-1">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full text-left">
+              <div className="p-3 rounded-lg bg-[#070d18]/90 border border-slate-800 space-y-1">
                 <div className="flex items-center gap-2 text-cyan-400 font-mono text-xs font-bold">
                   <Activity className="w-3.5 h-3.5" />
                   <span>1. SENSE</span>
                 </div>
                 <div className="text-[11px] text-slate-300 leading-snug">
-                  Real-time telemetry ingestion & sentinel anomaly detection across 842 ev/s.
+                  Real-time telemetry ingestion & sentinel anomaly detection across interbank rails.
                 </div>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#070d18]/80 border border-slate-800 space-y-1">
+              <div className="p-3 rounded-lg bg-[#070d18]/90 border border-slate-800 space-y-1">
                 <div className="flex items-center gap-2 text-blue-400 font-mono text-xs font-bold">
                   <GitBranch className="w-3.5 h-3.5" />
                   <span>2. UNDERSTAND</span>
                 </div>
                 <div className="text-[11px] text-slate-300 leading-snug">
-                  Causal multi-hop propagation, chokepoint saturation & effective diversity.
+                  Causal multi-hop propagation, chokepoint saturation & decision diversity analysis.
                 </div>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#070d18]/80 border border-slate-800 space-y-1">
+              <div className="p-3 rounded-lg bg-[#070d18]/90 border border-slate-800 space-y-1">
                 <div className="flex items-center gap-2 text-amber-400 font-mono text-xs font-bold">
                   <Zap className="w-3.5 h-3.5" />
                   <span>3. INTERVENE</span>
@@ -302,7 +274,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
                 </div>
               </div>
 
-              <div className="p-3 rounded-lg bg-[#070d18]/80 border border-slate-800 space-y-1">
+              <div className="p-3 rounded-lg bg-[#070d18]/90 border border-slate-800 space-y-1">
                 <div className="flex items-center gap-2 text-emerald-400 font-mono text-xs font-bold">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   <span>4. VERIFY</span>
@@ -313,7 +285,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
               </div>
             </div>
 
-            {/* 3 Entry Action Buttons */}
+            {/* Action Buttons */}
             <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
               <button
                 type="button"
@@ -595,7 +567,7 @@ export const LoginPortal: React.FC<LoginPortalProps> = ({ onComplete }) => {
 
       {/* 5. Persistent Footer */}
       <footer className="relative z-20 px-6 py-3 border-t border-[#142036] bg-[#070c16]/90 text-center text-xs font-mono text-slate-500 shrink-0">
-        IBM Z &amp; LinuxONE [TARGET] • Confidential Computing [ARCHITECTED] • CPACF Acceleration [TARGET] • DORA Art 14 &amp; BCBS 239 Alignment [ARCHITECTED]
+        REAL-TIME AI FOR CRITICAL DECISIONS
       </footer>
     </div>
   );

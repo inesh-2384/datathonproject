@@ -17,14 +17,21 @@ import { globalOperationManager } from '../simulation/operations';
 
 const router = Router();
 
-router.get('/events/stream', (req: Request, res: Response) => {
+router.get(['/events/stream', '/api/events/stream'], (req: Request, res: Response) => {
   // Set headers for SSE
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache',
+    'Cache-Control': 'no-cache, no-transform',
     'Connection': 'keep-alive',
+    'X-Accel-Buffering': 'no',
     'Access-Control-Allow-Origin': '*'
   });
+
+  const flush = () => {
+    if (typeof (res as any).flush === 'function') {
+      (res as any).flush();
+    }
+  };
 
   // Send immediate initial handshake and current state snapshot
   const initialPayload = {
@@ -33,6 +40,7 @@ router.get('/events/stream', (req: Request, res: Response) => {
     state: systemStateStore.getState()
   };
   res.write(`data: ${JSON.stringify(initialPayload)}\n\n`);
+  flush();
 
   // Subscribe to simulation engine events
   const unsubscribeEngine = globalSimulationEngine.subscribe((eventType, payload) => {
@@ -42,6 +50,7 @@ router.get('/events/stream', (req: Request, res: Response) => {
       payload
     };
     res.write(`data: ${JSON.stringify(packet)}\n\n`);
+    flush();
   });
 
   // Subscribe to operation lifecycle events
@@ -52,6 +61,7 @@ router.get('/events/stream', (req: Request, res: Response) => {
       payload: operation
     };
     res.write(`data: ${JSON.stringify(packet)}\n\n`);
+    flush();
   });
 
   // Heartbeat interval (every 3 seconds) to maintain connection and measure ping
@@ -63,6 +73,7 @@ router.get('/events/stream', (req: Request, res: Response) => {
       control_margin: globalSimulationEngine.controlState.control_margin_percent
     };
     res.write(`data: ${JSON.stringify(pingPacket)}\n\n`);
+    flush();
   }, 3000);
 
   // Clean up on client disconnect

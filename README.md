@@ -11,8 +11,7 @@
 
 ---
 
-### 🔗 **Live Prototype**: [https://financial-immune-system-d9vz.onrender.com](https://financial-immune-system-d9vz.onrender.com)
-
+### 🔗 **Live Prototype**: [https://financeimmunesystem.vercel.app](https://financeimmunesystem.vercel.app)
 ### 🎥 **Technical Demonstration**: [Watch on YouTube (Demo Video)](https://youtu.be/nhXzRiLlDXI)
 
 *IBM Z Datathon 2026 · Real-Time AI for Critical Decisions · Financial AI / Systemic Control Intelligence*
@@ -298,8 +297,8 @@ The codebase passed three forensic gates: Gate 1 (PASS), Gate 2 (PASS, 97.95/100
 
 ### Live Prototype
 The frozen prototype is cloud-hosted with zero local dependencies:
-- **Demonstration URL:** [https://financial-immune-system-d9vz.onrender.com](https://financial-immune-system-d9vz.onrender.com)
-- **Health Endpoint:** [`https://financial-immune-system-d9vz.onrender.com/health`](https://financial-immune-system-d9vz.onrender.com/health)
+- **Demonstration URL:** [https://financeimmunesystem.vercel.app](https://financeimmunesystem.vercel.app)
+- **Health Endpoint:** [`https://financeimmunesystem.vercel.app/api/health`](https://financeimmunesystem.vercel.app/api/health)
 
 ### 60-Second Demonstration Walkthrough
 1. **Initialize:** Open URL $\to$ **ENTER CONTROL ENVIRONMENT** $\to$ **INITIALIZE CONTROL CORE** ($M(t) = 91\%$).

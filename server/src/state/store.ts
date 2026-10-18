@@ -8,9 +8,12 @@
 
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { globalSimulationEngine } from '../simulation/engine';
 
-const PERSISTENCE_FILE = path.resolve(process.cwd(), '.fis_state_snapshot.json');
+const PERSISTENCE_FILE = process.env.VERCEL
+  ? path.resolve(os.tmpdir(), '.fis_state_snapshot.json')
+  : path.resolve(process.cwd(), '.fis_state_snapshot.json');
 
 export interface FullSystemSnapshot {
   institutions: any[];

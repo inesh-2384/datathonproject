@@ -8,7 +8,6 @@
 import React from 'react';
 import { useSystemStore } from '../../store/useSystemStore';
 import { APPLICATION_ROUTES } from '@shared/constants/navigation';
-import { RealTimeDecisionContext } from './RealTimeDecisionContext';
 import { 
   Shield, 
   Clock, 
@@ -172,7 +171,7 @@ export const OperationalContextBar: React.FC = () => {
   const latestVerif = foundryState?.latest_verification;
 
   return (
-    <div className="bg-[#080e1a] border-b border-[#142036] px-4 sm:px-6 py-2 select-none shrink-0 z-20 space-y-1.5">
+    <div className="bg-[#080e1a] border-b border-[#142036] px-4 sm:px-6 py-2 select-none shrink-0 z-20">
       <div className="flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
         {/* Left: Current Location & Incident Badge */}
         <div className="flex items-center gap-3">
@@ -305,9 +304,6 @@ export const OperationalContextBar: React.FC = () => {
           </button>
         </div>
       </div>
-
-      {/* Real-Time Control Intelligence Context Layer (Theme: Real-Time AI for Critical Decisions) */}
-      <RealTimeDecisionContext />
     </div>
   );
 };

@@ -29,3 +29,4 @@ Thumbs.db
 # Temporary Prompt Scratches
 temp_user_prompt.txt
 full_user_prompt.txt
+.vercel

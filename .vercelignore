@@ -1,0 +1,29 @@
+# Build outputs
+dist/
+dist-server/
+build/
+coverage/
+.vercel/
+node_modules/
+
+# Test directories and validation artifacts
+tests/
+reports/
+docs/
+scripts/
+
+# Local Utilities & Binaries
+cloudflared.exe
+*.log
+.fis_state_snapshot.json
+tsconfig.tsbuildinfo
+
+# Git and GitHub
+.git/
+.github/
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
