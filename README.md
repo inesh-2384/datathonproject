@@ -364,13 +364,54 @@ $$\mathbf{FROM\ PROTOTYPE} \longrightarrow \mathbf{TO\ PRODUCTION\text{-}GRADE\ 
 
 ## Impact
 
-FIS establishes a new paradigm for systemic financial resilience:
+## AI for Good — Preserving Control in Financial Infrastructure
 
-$$\text{SYSTEMIC VISIBILITY} \longrightarrow \text{DEPENDENCY AWARENESS} \longrightarrow \text{COLLECTIVE DECISION INTELLIGENCE}$$
-$$\longrightarrow \text{PROPAGATION AWARENESS} \longrightarrow \text{CONTROL ASSESSMENT} \longrightarrow \text{GOVERNED INTERVENTION}$$
-$$\longrightarrow \text{INDEPENDENT VERIFICATION} \longrightarrow \text{CONTINUOUS REASSESSMENT}$$
+Financial infrastructure underpins payments, liquidity, credit, markets, and economic activity, making its resilience a matter of broader societal and economic continuity. Because these systems are deeply interconnected, a localized disruption can propagate across dependencies and create consequences far beyond the original event.
 
-By transforming financial operations from perimeter alerting into closed-loop control intelligence, FIS provides institutions and supervisors with empirical evidence to know whether systemic control remains.
+The **Financial Immune System (FIS)** is designed around a simple principle:
+
+> **Protecting financial infrastructure means preserving the ability to control it when conditions deteriorate.**
+
+FIS transforms distributed financial-system telemetry into a continuously evolving control state, combining **real-time intelligence, machine learning, dependency and propagation analysis, control-margin assessment, governed intervention, and independent post-action verification**.
+
+Its closed loop is:
+
+**SENSE → UNDERSTAND → ASSESS CONTROL → INTERVENE → VERIFY → REASSESS**
+
+This creates a critical distinction:
+
+> **Execution ≠ Recovery**
+
+An intervention can execute successfully while systemic control remains degraded. FIS therefore does not declare recovery merely because an action completed. It uses independent evidence to determine whether relevant control conditions actually improved.
+
+### Social & Economic Value
+
+FIS is designed to strengthen the resilience of financial infrastructure by helping operators:
+
+- detect systemic degradation earlier;
+- understand how stress can propagate through interconnected dependencies;
+- prioritize interventions based on system-level control conditions;
+- maintain human authorization over critical actions;
+- distinguish successful execution from actual recovery; and
+- verify whether intervention produced measurable improvement.
+
+The goal is not to predict every failure or eliminate financial risk. It is to provide an intelligence and assurance layer that helps answer a more consequential question:
+
+> **When systemic conditions deteriorate, do we still have the ability to control the system — and can we prove when that control has been restored?**
+
+### Responsible AI for Critical Decisions
+
+FIS deliberately separates intelligence from authority:
+
+**AI assists reasoning.  
+Rules govern critical state transitions.  
+Humans authorize critical actions.  
+Evidence determines whether recovery can be claimed.**
+
+By combining real-time AI, systemic dependency intelligence, governed intervention, and independent verification with an architecture designed for **IBM Z and LinuxONE-class enterprise environments**, FIS moves financial resilience beyond passive detection toward **measurable, continuously reassessed control**.
+
+> **Not just predicting systemic risk.  
+> Preserving the ability to control it.**
 
 
 ## License & Acknowledgements
