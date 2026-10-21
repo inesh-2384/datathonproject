@@ -19,6 +19,48 @@ Note: please watch the yt video in 0.8x speed
 
 ---
 </div>
+
+---
+
+## Table of Contents
+
+<details open>
+<summary><strong>Explore FIS — Systemic Control Intelligence</strong></summary>
+
+<br>
+
+| | Section | What you'll find |
+|:---:|---|---|
+| **01** | [Overview](#overview) | What FIS is and the control problem it addresses |
+| **02** | [At a Glance](#at-a-glance) | Core capabilities, invariants, governance, and target architecture |
+| **03** | [The Real-World Problem](#the-real-world-problem) | Systemic coupling, propagation, and loss of control |
+| **04** | [Why Existing Systems Are Not Enough](#why-existing-systems-are-not-enough) | The gap between isolated monitoring and systemic control |
+| **05** | [What FIS Does](#what-fis-does) | The supervisory control-plane model and operational boundary |
+| **06** | [Solution Overview](#solution-overview) | Six intelligence domains from detection to verified restoration |
+| **07** | [Core Control Loop](#core-control-loop) | Sense → Understand → Assess → Intervene → Verify → Reassess |
+| **08** | [Flagship Stress Environment](#flagship-stress-environment) | Algorithmic trading as the machine-speed stress environment |
+| **09** | [Core Intelligence Domains](#core-intelligence-domains) | Threat, collective behaviour, propagation, control margin, intervention, verification |
+| **10** | [Execution ≠ Recovery](#execution--recovery) | The foundational FIS engineering invariant |
+| **11** | [Control Restoration Proof](#control-restoration-proof) | Evidence-bound recovery, outcome semantics, and Dynamic Control Seal™ |
+| **12** | [AI / Machine Learning Capabilities](#ai--machine-learning-capabilities) | Telemetry, ML, graph intelligence, control-margin assessment, and decision support |
+| **13** | [Architecture](#architecture) | End-to-end systemic control architecture and causal chain |
+| **14** | [Security & Governance](#security--governance) | Separation of Duties, RBAC, deterministic replay, and evidence integrity |
+| **15** | [Why IBM Z / LinuxONE](#why-ibm-z--linuxone) | Enterprise mainframe foundation, AI acceleration, security, and cryptography |
+| **16** | [IBM Direction & Architectural Alignment](#ibm-direction--architectural-alignment) | How FIS maps to IBM enterprise capabilities |
+| **17** | [FIS and IBM Concert](#fis-and-ibm-concert) | Financial-domain systemic control intelligence alongside enterprise operations |
+| **18** | [Current Implementation vs Target Architecture](#current-implementation-vs-target-architecture) | What is verified today vs. the target production realization |
+| **19** | [Prototype Proof](#prototype-proof) | Deterministic closed-loop crisis scenario and verified restoration |
+| **20** | [Engineering Validation](#engineering-validation) | Automated tests, forensic gates, API validation, and replay evidence |
+| **21** | [Run the Prototype](#run-the-prototype) | Live prototype, demonstration walkthrough, and local setup |
+| **22** | [Technology Stack](#technology-stack) | Prototype technology and enterprise architecture stack |
+| **23** | [Repository Structure](#repository-structure) | Codebase organization and engineering layout |
+| **24** | [Production Realization](#production-realization) | Four horizons from prototype to enterprise realization |
+| **25** | [AI for Good — Preserving Control in Financial Infrastructure](#ai-for-good--preserving-control-in-financial-infrastructure) | Social, economic, and responsible-AI value |
+| **26** | [License & Acknowledgements](#license--acknowledgements) | License and IBM Z Datathon recognition |
+
+</details>
+
+---
   
 ## Overview
 
